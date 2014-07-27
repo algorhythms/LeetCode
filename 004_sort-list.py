@@ -9,6 +9,9 @@ class Solution:
     # @param head, a ListNode
     # @return a ListNode
     def sortList(self, head):
+        """
+        Workaround by sorted()
+        """
         if head==None:
             return None
         lst = [] # must be constant space
@@ -19,7 +22,7 @@ class Solution:
 
 
         comparator = lambda x, y: cmp(x.val, y.val)
-        lst = sorted(lst, comparator) # return # sorted is not side-effect # O(n log n)
+        lst = sorted(lst, comparator)  # return # sorted is not side-effect # O(n log n)
         for i in range(len(lst)-1):
             lst[i].next = lst[i+1]
         lst[-1].next = None

@@ -30,7 +30,7 @@ class Solution:
                     intersection = int(intersection*1000) # avoid floating errors
 
 
-                    key = (slope, intersection)
+                    key = (slope, intersection)  # only tuples can be hashed, whereas lists cannot
 
                 if key not in hash_map:
                     # hash_map[key] = [0 for n in range(length)] # increase complexity

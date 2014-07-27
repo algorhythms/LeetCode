@@ -12,11 +12,10 @@ class Solution:
     # ascending
     def insertionSortList_TLE(self, head):
         """
-        Known issue: Time Limit Excedded
+        Known issue: Time Limit Exceded
         """
         comparator = lambda x, y: cmp(x.val, y.val)
         # open set & closed set
-        # iterate through all the nodes
         dummy_head = ListNode(0)
         dummy_head.next = head
 
@@ -30,7 +29,7 @@ class Solution:
             ptr_before = dummy_head
             ptr = dummy_head.next # error using ptr = head
 
-            # WHILE BEFORE IF THUS INCREASING TIME COMPLEXITY
+            # WHILE OUTSIDE IF THUS INCREASING TIME COMPLEXITY
             while(ptr_before):
                 if comparator(ptr, open_head)>0:
                     ptr_before.next = open_head
@@ -58,17 +57,17 @@ class Solution:
         comparator = lambda x, y: cmp(x.val, y.val)
         # open set & closed set
         # iterate through all the nodes
-        dummy_head = ListNode(0)
+        dummy_head = ListNode(0)  # Singly-linked list, thus need dummy_head  
         dummy_head.next = head
 
         closed_tail = head
         while (closed_tail and closed_tail.next):
             open_head = closed_tail.next
             open_head_next = closed_tail.next.next
-            if not comparator(closed_tail, open_head)<=0: # only compare the closed set tail and open set head
+            if not comparator(closed_tail, open_head)<=0:  # Step 1: only compare the closed set tail and open set head
 
                 pre = dummy_head
-                while comparator(pre.next, open_head)<0: # find position 
+                while comparator(pre.next, open_head)<0:  # Step 2: find position
                     pre = pre.next
 
                 # swap nodes
