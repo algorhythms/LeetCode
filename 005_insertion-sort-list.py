@@ -52,7 +52,7 @@ class Solution:
 
     def insertionSortList(self, head):
         """
-        Know issue: Time Limit Excedded
+        O(n^2), but with better performance since while loop inside a if
         """
         comparator = lambda x, y: cmp(x.val, y.val)
         # open set & closed set
