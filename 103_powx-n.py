@@ -3,7 +3,10 @@ class Solution:
     # @param x, a float
     # @param n, a integer
     # @return a float
-    def pow_2(self, x, n):
+    def pow_TLE(self, x, n):
+        """
+        O(n)
+        """
         if abs(x)<=0.00001:
             return 0
         if x==1.0:
@@ -36,10 +39,16 @@ class Solution:
 
         return product
 
+
+
+
+
     def pow(self, x, n):
+        """
+        O(log n)
+        x^n = (x^2)^(n/2)
+        """
         invert_flag = False if n>0 else True
-        # O(log n)
-        # x^n = (x^2)^(n/2)
         n = abs(n)
         product = 1.0
         while n>0:
