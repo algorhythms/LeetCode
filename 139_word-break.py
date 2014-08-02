@@ -50,7 +50,7 @@ class Solution:
                         continue
 
                     # main
-                    if s[i:i+len(word)]==word:
+                    if s[i:i+len(word)]==word: # test whether [i, i+len) can construct a word
                         state[i + len(word)] = True  # record the checking
                 except IndexError:
                     continue
