@@ -9,6 +9,8 @@ class Solution:
         """
         TLE
         O(n^2)
+        Algorithm: DFS. The reason is that DFS repeatly calculate whether a certain part of string can be segmented.
+        Therefore we can use dynamic programming.
         """
         string_builder = ""
         if s=="":
