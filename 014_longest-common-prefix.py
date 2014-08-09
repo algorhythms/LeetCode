@@ -2,6 +2,7 @@ __author__ = 'Danyang'
 class Solution:
     # @return a string
     def longestCommonPrefix(self, strs):
+        # checking, otherwise: ValueError: min() arg is an empty sequence
         if len(strs)==0:
             return ""
 
