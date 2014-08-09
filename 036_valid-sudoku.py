@@ -7,6 +7,7 @@ class Solution:
         for i in xrange(9):
             row = []
             column = []
+            square = []
             for j in xrange(9):
                 # check row
                 try:
@@ -28,10 +29,7 @@ class Solution:
                 except ValueError:
                     pass
 
-        # check square
-        for i in xrange(9):
-            square = []
-            for j in xrange(9):
+                # check square
                 try:
                     square_element = int(board[i/3*3+j/3][i%3*3+j%3])
                     if square_element in square:
@@ -40,7 +38,7 @@ class Solution:
                         square.append(square_element)
 
                 except ValueError:
-                    continue
+                    pass
 
         return True
 
