@@ -25,7 +25,7 @@ class Solution:
             length += 1
             pre=pre.next
 
-        # find & remove 
+        # find & remove
         pre = dummy
         count = 0
         while pre.next:
