@@ -19,14 +19,14 @@ class Solution:
         :return: head node
         """
         result_head = ListNode(0)
+
         cur1 = l1
         cur2 = l2
         cur = result_head
         while cur1 or cur2:
-            addition = self.addNode(cur1, cur2)
-            cur.val += addition
+            cur.val += self.addNode(cur1, cur2)
             if cur.val<10:
-                if cur1 and cur1.next or cur2 and cur2.next:
+                if cur1 and cur1.next or cur2 and cur2.next:  # next node
                     cur.next = ListNode(0)
             else:
                 cur.val -= 10
