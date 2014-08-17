@@ -14,7 +14,7 @@ class ListNode:
 
 class Solution:
     # class attribute to keep trace the currently processing nodes
-    h = None 
+    current_node = None
 
     def sortedListToBST(self, head):
         """
@@ -27,7 +27,7 @@ class Solution:
         if not head:
             return head
 
-        self.h = head
+        self.current_node = head
         length = self.getLength(head)
         return self.sortedListToBST_dfs(0, length-1)
 
@@ -36,8 +36,8 @@ class Solution:
             return
         mid = (start+end)/2
         left_subtree = self.sortedListToBST_dfs(start, mid-1)
-        root = TreeNode(self.h.val)
-        self.h = self.h.next
+        root = TreeNode(self.current_node.val)
+        self.current_node = self.current_node.next
         right_subtree = self.sortedListToBST_dfs(mid+1, end)
 
         root.left = left_subtree
