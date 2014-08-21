@@ -27,18 +27,16 @@ class Solution:
                 max_sub_array = max(max_sub_array, current_sub_array)
             else:
                 # keep two 2
-                self.keep_top_2(max_profits, max_sub_array)
+                if max_sub_array>max_profits[0]:
+                    max_profits[1] = max_profits[0]
+                    max_profits[0] = max_sub_array
+                elif max_sub_array>max_profits[1]:
+                    max_profits[1] = max_sub_array
                 max_sub_array = 0
                 current_sub_array = 0
 
         return sum(max_profits)
 
-    def keep_top_2(self, max_profits, candidate):
-        if candidate>max_profits[0]:
-            max_profits[1] = max_profits[0]
-            max_profits[0] = candidate
-        elif candidate>max_profits[1]:
-            max_profits[1] = candidate
 
 
     def maxProfit(self, prices):
@@ -54,7 +52,7 @@ class Solution:
             return 0
 
         # O(n) using dp
-        forward = [0 for _ in xrange(len(prices))]  # forward 0..i
+        forward = [0 for _ in xrange(len(prices))]  # forward[i] for 0..i
         lowest_buy_price = prices[0]
         for i in xrange(0, len(prices)):
             if i==0:
@@ -64,7 +62,7 @@ class Solution:
 
             lowest_buy_price = min(prices[i], lowest_buy_price)
 
-        backward = [0 for _ in xrange(len(prices))]  # backward i..len-1
+        backward = [0 for _ in xrange(len(prices))]  # backward[i] for i..len-1
         highest_sell_price = prices[-1]
         for i in xrange(len(prices)-1, -1, -1):
             if i==len(prices)-1:

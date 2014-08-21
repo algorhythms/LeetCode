@@ -15,8 +15,7 @@ class Solution:
         for i in xrange(1, len(prices)):
             delta_prices.append(prices[i]-prices[i-1])
 
-        # two pointers O(n)
-
+        # O(n)
         max_sub_array = 0
         current_sub_array = 0
         for j in xrange(len(delta_prices)):
