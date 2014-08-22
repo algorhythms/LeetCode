@@ -16,6 +16,7 @@ class Solution:
             delta_prices.append(prices[i]-prices[i-1])
 
         # O(n)
+        # notice: possible to do nothing thus profit at least is 0 
         max_sub_array = 0
         current_sub_array = 0
         for j in xrange(len(delta_prices)):
