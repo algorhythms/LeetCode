@@ -21,6 +21,8 @@ class Solution:
         """
         dfs
         The path may start and end at any node in the tree.
+
+        Reference http://fisherlei.blogspot.sg/2013/01/leetcode-binary-tree-maximum-path-sum.html
         :param root:
         :return:
         """
@@ -31,10 +33,10 @@ class Solution:
         right_max_sum = self.getMax(root.right)
 
         # update global max
-        current_max_sum = max(root.val, root.val+left_max_sum, root.val+right_max_sum, root.val+left_max_sum+right_max_sum)  # four situation
+        current_max_sum = max(root.val, root.val+left_max_sum, root.val+right_max_sum, root.val+left_max_sum+right_max_sum)  # four situations
         self.global_max = max(self.global_max, current_max_sum)
 
-        # return value for upper layer to calculate the current_max_sum 
+        # return value for upper layer to calculate the current_max_sum
         return max(root.val, root.val+left_max_sum, root.val+right_max_sum)  # excluding arch (i.e. root.val+left_max_sum+right_max_sum)
 
 
