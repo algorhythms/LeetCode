@@ -12,7 +12,7 @@ class Solution:
     def connect(self, root):
         """
         bfs
-        same as Populating Next Right Pointers in Each Node I 
+        same as Populating Next Right Pointers in Each Node I
         :param root: TreeNode
         :return: nothing
         """
