@@ -24,11 +24,7 @@ class Solution:
                 A[blue_start_ptr], A[i] = A[i], A[blue_start_ptr]
                 # no i+=1, since you need to examine A[i] again
 
-
-
-
-
-        print A
+        # print A
 
 if __name__=="__main__":
     Solution().sortColors([1, 2, 0])

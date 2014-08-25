@@ -21,10 +21,11 @@ class Solution:
             return  # prune
 
         for ind, val in enumerate(nums):
-            try:
-                self.get_combination(k, nums[ind+1:], current+[val], result)  # list(current).append(val) is side-effect
-            except IndexError:
-                self.get_combination(k, [], current+[val], result)
+            # try:
+            self.get_combination(k, nums[ind+1:], current+[val], result)  # list(current).append(val) is side-effect
+            # except IndexError:
+            #     self.get_combination(k, [], current+[val], result)
+            # array slice out of index will return []
 
 
 if __name__=="__main__":
