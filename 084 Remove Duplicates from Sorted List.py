@@ -10,8 +10,10 @@ class Solution:
     # @return a ListNode
     def deleteDuplicates(self, head):
         """
-        Two pointers, closed_ptr and open_ptr
+        Two pointers, closed_ptr and open_ptr, to find the next non-duplicate
         O(n)
+        :param head: ListNode
+        :return: ListNode
         """
         # trivial
         if not head:
