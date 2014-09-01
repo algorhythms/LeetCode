@@ -1,16 +1,15 @@
 __author__ = 'Danyang'
-
-
 class Solution:
-    # @param s, a string
-    # @param dict, a set of string
-    # @return a boolean
     def wordBreak_TLE(self, s, dict):
         """
         TLE
         O(n^2)
-        Algorithm: DFS. The reason is that DFS repeatly calculate whether a certain part of string can be segmented.
+        Algorithm: DFS. The reason is that DFS repeatedly calculate whether a certain part of string can be segmented.
         Therefore we can use dynamic programming.
+
+        :param s: a string
+        :param dict: a set of string
+        :return: a boolean
         """
         string_builder = ""
         if s=="":
@@ -36,6 +35,10 @@ class Solution:
         The dynamic solution can tell us whether the string can be broken to words, but can not tell us what words the string is broken to.
 
         O(n*m)
+
+        :param s: a string
+        :param dict: a set of string
+        :return: a boolean
         """
         state = [False] * (len(s)+1)
         state[0] = True # dummy
@@ -47,7 +50,7 @@ class Solution:
 
             for word in dict:
                 try:
-                    # trival
+                    # trivial
                     if state[i+len(word)]==True:
                         continue
 
