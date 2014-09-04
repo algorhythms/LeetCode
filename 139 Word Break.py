@@ -35,7 +35,7 @@ class Solution:
         The dynamic solution can tell us whether the string can be broken to words, but can not tell us what words the string is broken to.
 
         O(n*m)
-
+        Google On Campus Presentation, demonstration questions. 4 Sep 2014, Nanyang Technological University, Singapore
         :param s: a string
         :param dict: a set of string
         :return: a boolean

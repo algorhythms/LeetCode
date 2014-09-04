@@ -2,15 +2,18 @@ __author__ = 'Danyang'
 
 
 class Solution:
-    # @param s, a string
-    # @param dict, a set of string
-    # @return a list of strings
     def wordBreak(self, s, dict):
         """
         record how to construct the sentences for a given prefix
 
         In Word Break, we use a bool array to record whether a prefix could be segmented.
         Now we should use a vector for every prefix to record how to construct that prefix from another prefix.
+
+        Google On Campus Presentation, demonstration questions. 4 Sep 2014, Nanyang Technological University, Singapore
+
+        :param s: String
+        :param dict: a set of string
+        :return: a list of strings
         """
         # prefix = [[]] * (len(s) + 1) # namespace reuse
         prefix = [[] for _ in range(len(s)+1)]
