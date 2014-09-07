@@ -1,12 +1,16 @@
+"""
+Determine whether an integer is a palindrome. Do this without extra space.
+"""
 __author__ = 'Danyang'
-
-
 class Solution:
-    # @return a boolean
     def isPalindrome(self, x):
         """
+        Algorithm: int, compare lsb and msb
         No extra space
         If you are thinking of converting the integer to string, note the restriction of using extra space.
+
+        :param x: int
+        :return: boolean
         """
         if x<0:
             return False

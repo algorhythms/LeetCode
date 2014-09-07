@@ -1,3 +1,11 @@
+"""
+You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each
+of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+"""
+
 __author__ = 'Danyang'
 # Definition for singly-linked list.
 class ListNode:
@@ -6,17 +14,19 @@ class ListNode:
         self.next = None
 
     def __repr__(self):
-        # for debugger
+        # for debugging
         return repr(self.val)
 
 class Solution:
-    # @return a ListNode
     def addTwoNumbers(self, l1, l2):
         """
-        Two pointers & math
+        Algorithm: Two pointers & math
+        Two pointers for l1 and l2 respectively
+        Math - carry for addition, in the form of new node
+
         :param l1: linked list head node
         :param l2: linked list head node
-        :return: head node
+        :return: ListNode
         """
         result_head = ListNode(0)
 
@@ -24,7 +34,7 @@ class Solution:
         cur2 = l2
         cur = result_head
         while cur1 or cur2:
-            cur.val += self.addNode(cur1, cur2)
+            cur.val = cur.val + self.addNode(cur1, cur2)
             if cur.val<10:
                 if cur1 and cur1.next or cur2 and cur2.next:  # next node
                     cur.next = ListNode(0)
@@ -41,6 +51,13 @@ class Solution:
         return result_head
 
     def addNode(self, node1, node2):
+        """
+        Handles None situation
+
+        :param node1: ListNode
+        :param node2: ListNode
+        :return: integer, summation
+        """
         if not node1 and not node2:
             raise Exception("two nodes are None")
         if not node1:
