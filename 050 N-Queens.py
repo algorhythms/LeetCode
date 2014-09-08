@@ -1,3 +1,26 @@
+"""
+The n-queens puzzle is the problem of placing n queens on an n*n chessboard such that no two queens attack each other.
+
+Given an integer n, return all distinct solutions to the n-queens puzzle.
+
+Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a
+queen and an empty space respectively.
+
+For example,
+There exist two distinct solutions to the 4-queens puzzle:
+
+[
+ [".Q..",  // Solution 1
+  "...Q",
+  "Q...",
+  "..Q."],
+
+ ["..Q.",  // Solution 2
+  "Q...",
+  "...Q",
+  ".Q.."]
+]
+"""
 __author__ = 'Danyang'
 INVALID = -1
 QUEEN = 1
@@ -16,7 +39,7 @@ class Solution:
 
     def backtrack(self, queen_index, current, result):
         """
-
+        dfs, backtracking
         :param queen_index:
         :param current: 2D matrix
         :param result: list of 2D matrix
@@ -35,7 +58,7 @@ class Solution:
             new_config = [list(element) for element in current]  # new copy
             new_config[queen_index][i] = QUEEN
 
-            # config
+            # update invalid position in the new config
             for m in xrange(n):
                 # col
                 if new_config[m][i]==DEFAULT:
@@ -61,6 +84,7 @@ class Solution:
                 col = i-m
                 if 0<=row<n and 0<=col<n and new_config[row][col]==DEFAULT: new_config[row][col] = INVALID
 
+            # dfs
             self.backtrack(queen_index+1, new_config, result)
 
 

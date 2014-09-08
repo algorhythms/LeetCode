@@ -1,17 +1,28 @@
+"""
+Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
+
+Do not allocate extra space for another array, you must do this in place with constant memory.
+
+For example,
+Given input array A = [1,1,2],
+
+Your function should return length = 2, and A is now [1,2].
+"""
 __author__ = 'Danyang'
 class Solution:
-    # @param a list of integers
-    # @return an integer
     def removeDuplicates(self, A):
         """
         Algorithms: Two Pointers, open & closed
         Data structure: array
+        Shifting the array
 
         del, pop(), or remove() are not allowed.
         return the length of "shrunk" array
         The array remains the same length
-        """
 
+        :param A: list
+        :return: "shrunk" list
+        """
         length = len(A)
 
         # trivial

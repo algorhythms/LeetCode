@@ -1,27 +1,40 @@
+"""
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+For example, given n = 3, a solution set is:
+
+"((()))", "(()())", "(())()", "()(())", "()()()"
+"""
 __author__ = 'Danyang'
 class Solution:
-    # @param an integer
-    # @return a list of string
     def generateParenthesis(self, n):
-        lst = []
-        self.generateParenthesisDfs(lst, "", n, n)
-        return lst
+        """
+        :param n: integer
+        :return: list of string
+        """
+        result = []
+        self.generateParenthesisDfs(result, "", n, n)
+        return result
 
-    def generateParenthesisDfs(self, lst, cur, left, right):
+    def generateParenthesisDfs(self, result, cur, left, right):
         """
         DFS
         Catalan Number
-        :param lst: result list
+        :param result: result list
         :param cur: currently processing string
-        :param left: number of left parenthesis left
-        :param right: number of right parenthesis left
+        :param left: number of left parenthesis remaining
+        :param right: number of right parenthesis remaining
         """
         # trivial
         if left==0 and right==0:
-            lst.append(cur)
+            result.append(cur)
+            return
         # add left parenthesis
         if left>0:
-            self.generateParenthesisDfs(lst, cur+"(", left-1, right)
+            self.generateParenthesisDfs(result, cur+"(", left-1, right)
         # add right parenthesis
         if right>left:
-            self.generateParenthesisDfs(lst, cur+")", left, right-1)
+            self.generateParenthesisDfs(result, cur+")", left, right-1)
+
+if __name__=="__main__":
+    assert Solution().generateParenthesis(3)==['((()))', '(()())', '(())()', '()(())', '()()()']

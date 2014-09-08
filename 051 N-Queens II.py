@@ -1,3 +1,8 @@
+"""
+Follow up for N-Queens problem.
+
+Now, instead outputting board configurations, return the total number of distinct solutions.
+"""
 __author__ = 'Danyang'
 INVALID = -1
 QUEEN = 1

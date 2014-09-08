@@ -1,6 +1,16 @@
+"""
+The count-and-say sequence is the sequence of integers beginning as follows:
+1, 11, 21, 1211, 111221, ...
+
+1 is read off as "one 1" or 11.
+11 is read off as "two 1s" or 21.
+21 is read off as "one 2, then one 1" or 1211.
+Given an integer n, generate the nth sequence.
+
+Note: The sequence of integers will be represented as a string.
+"""
 __author__ = 'Danyang'
 class Solution:
-    # @return a string
     def countAndSay(self, n):
         """
         :param n: integer
@@ -14,7 +24,7 @@ class Solution:
 
     def singleCountAndSay(self, num_string):
         """
-        Two pointers algorithm
+        Two pointers algorithm: FIND NEXT DIFFERENT
         :param num_string: input number as string
         :return: output representation as string
         """

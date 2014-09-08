@@ -1,3 +1,6 @@
+"""
+Implement pow(x, n).
+"""
 __author__ = 'Danyang'
 class Solution:
     # @param x, a float
@@ -46,7 +49,11 @@ class Solution:
     def pow(self, x, n):
         """
         O(log n)
-        x^n = (x^2)^(n/2)
+        Algorithm: math, x^n = (x^2)^(n/2)
+
+        :param x: float
+        :param n: integer
+        :return: float
         """
         invert_flag = False if n>0 else True
         n = abs(n)

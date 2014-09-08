@@ -1,30 +1,34 @@
+"""
+Write a function to find the longest common prefix string amongst an array of strings.
+"""
 __author__ = 'Danyang'
 class Solution:
-    # @return a string
     def longestCommonPrefix(self, strs):
+        """
+        O(k*n)
+        :param strs: a list of string
+        :return: string, prefix
+        """
         # checking, otherwise: ValueError: min() arg is an empty sequence
-        if len(strs)==0:
+        if not strs:
             return ""
+
+        n = len(strs)
 
         str_builder = ""
         min_len = min(len(string) for string in strs)
         for i in range(min_len):
-            flag = True
-            char = None
-            for str in strs:
-                try:
-                    if not char:
-                        char = str[i]
-                    else:
-                        if str[i]!=char:
-                            flag = False
-                            break
+            char = strs[0][i]
 
+            j = 0
+            while j<n:
+                try:
+                    if strs[j][i]!=char: break
+                    j += 1
                 except IndexError:
-                    flag = False
                     break
 
-            if flag:
+            if j==n:
                 str_builder += char
             else:
                 break

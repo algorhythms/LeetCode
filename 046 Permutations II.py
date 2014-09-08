@@ -1,3 +1,10 @@
+"""
+Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+
+For example,
+[1,1,2] have the following unique permutations:
+[1,1,2], [1,2,1], and [2,1,1].
+"""
 __author__ = 'Danyang'
 class Solution:
     def permuteUnique_TLE(self, num):
@@ -36,7 +43,7 @@ class Solution:
             result.append(current)
 
         for ind, val in enumerate(nums):
-            if ind>0 and val==nums[ind-1]: continue
+            if ind>0 and val==nums[ind-1]: continue  # JUMP
             self.get_permute(nums[:ind]+nums[ind+1:], current+[val], result)
 
 if __name__=="__main__":

@@ -1,5 +1,10 @@
+"""
+Given an integer, convert it to a roman numeral.
+
+Input is guaranteed to be within the range from 1 to 3999.
+"""
 __author__ = 'Danyang'
-roman2int_map = {
+int2roman = {
     1: "I",
     4: "IV",
     5: "V",
@@ -19,11 +24,11 @@ roman2int_map = {
 }
 
 class Solution:
-    # @return a string
     def intToRoman(self, num):
         """
         dealing with digits
         notice the 1, 4, 5, 9, 10 repetition
+
         :param num: integer, Input is guaranteed to be within the range from 1 to 3999
         :return: a string
         """
@@ -31,9 +36,9 @@ class Solution:
         components = [1, 4, 5, 9, 10, 10, 40, 50, 90, 100, 400, 500, 900, 1000]
 
         # starting from the largest
-        for component in reversed(components):
+        for component in reversed(components):  # reversed
             while num>=component:
-                string_builder.append(roman2int_map[component])
+                string_builder.append(int2roman[component])
                 num -= component
 
         return "".join(string_builder)

@@ -1,10 +1,18 @@
+"""
+Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it
+is able to trap after raining.
+
+For example,
+Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
+"""
 __author__ = 'Danyang'
 class Solution:
     def trap(self, A):
         """
         Simplified version of Palantir Technology Online Test 2013
 
-        Algorithm: forward scanning & backward scanning
+        Algorithm: forward scanning & backward scanning, pointers algorithm
+        O(n)
 
         :param A: a list of integers
         :return: an integer

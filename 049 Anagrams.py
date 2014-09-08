@@ -1,3 +1,8 @@
+"""
+Given an array of strings, return all groups of strings that are anagrams.
+
+Note: All inputs will be in lower-case.
+"""
 __author__ = 'Danyang'
 class Solution:
     def anagrams_complicated(self, strs):
@@ -30,7 +35,7 @@ class Solution:
 
     def anagrams(self, strs):
         """
-        sorting
+        Algorithm: sort string and hash map
         :param strs: a list of strings
         :return: a list of strings
         """
@@ -39,7 +44,7 @@ class Solution:
             string = "".join(sorted(string))
             indexes = hash_map.get(string, [])
             indexes.append(ind)  # side-effect
-            hash_map[string] = indexes
+            hash_map[string] = indexes  # reassign
 
         result = []
         for val in hash_map.values():

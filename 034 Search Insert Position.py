@@ -1,3 +1,15 @@
+"""
+Given a sorted array and a target value, return the index if the target is found. If not, return the index where it
+would be if it were inserted in order.
+
+You may assume no duplicates in the array.
+
+Here are few examples.
+[1,3,5,6], 5 -> 2
+[1,3,5,6], 2 -> 1
+[1,3,5,6], 7 -> 4
+[1,3,5,6], 0 -> 0
+"""
 __author__ = 'Danyang'
 class Solution:
     # @param A, a list of integers
@@ -39,13 +51,13 @@ class Solution:
             return 0
 
         start = 0
-        end = length - 1
-        while start<=end:
+        end = length
+        while start<end:
             mid = (start + end) / 2
             if target==A[mid]:
                 return mid
             elif target<A[mid]:
-                end = mid - 1
+                end = mid
             else:
                 start = mid + 1
 
