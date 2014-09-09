@@ -26,7 +26,6 @@ class Solution:
         counter = 0
         dp = [[] for _ in A]
 
-
         q = []
         q.append(0)
         while q:
@@ -54,7 +53,8 @@ class Solution:
         start = 0
         end = 1  # max reach [0, 1)
         current_max = 0
-        while end<length:  # when end==length, it has already reached the last item 
+        while end<length:  # when end==length, it has already reached the last item
+            if not start<end: return 0  # avoid dead loop
             for i in xrange(start, end):
                 current_max = max(current_max, A[i]+i)
 
@@ -66,5 +66,5 @@ class Solution:
 
 
 if __name__=="__main__":
-    print Solution().jump([2,3,1,1,4])
+    print Solution().jump([3, 2, 1, 0, 4])
     assert Solution().jump([2,3,1,1,4])==2
