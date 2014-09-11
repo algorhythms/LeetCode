@@ -1,3 +1,6 @@
+"""
+Divide two integers without using multiplication, division and mod operator.
+"""
 __author__ = 'Danyang'
 class Solution:
     def divide(self, dividend, divisor):

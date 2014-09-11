@@ -14,8 +14,7 @@ __author__ = 'Danyang'
 class Solution:
     def numDistinct(self, S, T):
         """
-        dp: sub-sequence and matching
-
+        Algorithm: dp, sub-sequence and matching
 
         Let W(i, j) stand for the number of subsequences of S(0, i) in T(0, j).
         If S.charAt(i) == T.charAt(j), W(i, j) = W(i-1, j-1) + W(i-1,j); Otherwise, W(i, j) = W(i-1,j).

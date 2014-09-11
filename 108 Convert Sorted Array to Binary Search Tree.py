@@ -1,3 +1,6 @@
+"""
+Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
+"""
 __author__ = 'Danyang'
 # Definition for a  binary tree node
 class TreeNode:

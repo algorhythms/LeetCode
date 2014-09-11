@@ -1,3 +1,8 @@
+"""
+Given two binary trees, write a function to check if they are equal or not.
+
+Two binary trees are considered equal if they are structurally identical and the nodes have the same value.
+"""
 __author__ = 'Danyang'
 # Definition for a  binary tree node
 class TreeNode:
@@ -7,12 +12,12 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    # @param p, a tree node
-    # @param q, a tree node
-    # @return a boolean
     def isSameTree(self, p, q):
         """
-        DFS
+        dfs
+        :param p: TreeNode
+        :param q: TreeNode
+        :return: boolean
         """
 
         # trivial

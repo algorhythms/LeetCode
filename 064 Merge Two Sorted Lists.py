@@ -1,3 +1,7 @@
+"""
+Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of
+the first two lists.
+"""
 __author__ = 'Danyang'
 # Definition for singly-linked list.
 class ListNode:
@@ -31,8 +35,8 @@ class Solution:
                 # insert
                 temp = the_other.next
                 pre.next, the_other.next = the_other, cur
-                the_other = temp  # advance the_other
 
+                the_other = temp  # advance the_other
             pre = pre.next
 
 

@@ -1,3 +1,9 @@
+"""
+Given inorder and postorder traversal of a tree, construct the binary tree.
+
+Note:
+You may assume that duplicates do not exist in the tree.
+"""
 __author__ = 'Danyang'
 # Definition for a  binary tree node
 class TreeNode:
@@ -9,7 +15,11 @@ class TreeNode:
 class Solution:
     def buildTree(self, inorder, postorder):
         """
-        recursive algorithm
+        Recursive algorithm. Pre-order, in-order, post-order traversal relationship
+
+        in-order:   [left_subtree, root,          right_subtree]
+        post-order: [left_subtree, right_subtree, root]
+
         :param inorder: a list of integers
         :param postorder: a list of integers
         :return: TreeNode root

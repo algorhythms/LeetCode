@@ -1,3 +1,8 @@
+"""
+Given a binary tree, find its minimum depth.
+
+The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+"""
 __author__ = 'Danyang'
 # Definition for a  binary tree node
 class TreeNode:
@@ -7,9 +12,11 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    # @param root, a tree node
-    # @return an integer
     def minDepth(self, root):
+        """
+        :param root: TreeNode
+        :return: integer
+        """
         return self.fathom(root, 0)
 
     def fathom(self, root, depth):

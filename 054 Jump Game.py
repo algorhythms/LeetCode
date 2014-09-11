@@ -37,12 +37,12 @@ class Solution:
         if length<=1:
             return True
 
-        max_reach = [-1]*length
+        max_reach = [-1]*length  # normally starting from \phi
 
         max_reach[0] = A[0]+0  # reachable index
         for i in xrange(1, length):
             # able to reach the end index
-            if max_reach[i-1]>=length-1:
+            if max_reach[i-1]>=length-1:  # directly reach the end
                 return True
 
             # fail to reach current index

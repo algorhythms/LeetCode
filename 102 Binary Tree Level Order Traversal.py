@@ -1,3 +1,21 @@
+"""
+Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+
+For example:
+Given binary tree {3,9,20,#,#,15,7},
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its level order traversal as:
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+confused what "{1,#,2,3}" means? > read more on how binary tree is serialized on OJ.
+"""
 __author__ = 'Danyang'
 # Definition for a  binary tree node
 class TreeNode:
@@ -7,14 +25,12 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    # @param root, a tree node
-    # @return a list of lists of integers
     def levelOrder(self, root):
         """
         Queue
         BFS
         :param root: Tree node
-        :return: List
+        :return: a list of lists of integers
         """
         result = []
         q = []
@@ -31,7 +47,7 @@ class Solution:
                     q.append(cur.left)
                 if cur.right:
                     q.append(cur.right)
-            q = q[length:]
+            q = q[length:]  # no need to create a new list
             result.append(cur_level)
         return result
 

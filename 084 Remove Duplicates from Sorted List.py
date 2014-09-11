@@ -1,3 +1,10 @@
+"""
+Given a sorted linked list, delete all duplicates such that each element appear only once.
+
+For example,
+Given 1->1->2, return 1->2.
+Given 1->1->2->3->3, return 1->2->3.
+"""
 __author__ = 'Danyang'
 # Definition for singly-linked list.
 class ListNode:
@@ -6,8 +13,6 @@ class ListNode:
         self.next = None
 
 class Solution:
-    # @param head, a ListNode
-    # @return a ListNode
     def deleteDuplicates(self, head):
         """
         Two pointers, closed_ptr and open_ptr, to find the next non-duplicate

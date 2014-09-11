@@ -1,8 +1,15 @@
+"""
+Implement int sqrt(int x).
+
+Compute and return the square root of x.
+"""
 __author__ = 'Danyang'
 class Solution:
     def sqrt(self, x):
         """
         Newton's method
+        x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} \
+
         :param x: Integer
         :return: Integer
         """

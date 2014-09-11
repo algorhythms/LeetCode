@@ -1,3 +1,9 @@
+"""
+Given a binary tree, determine if it is height-balanced.
+
+For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of
+every node never differ by more than 1.
+"""
 __author__ = 'Danyang'
 # Definition for a  binary tree node
 class TreeNode:
@@ -7,9 +13,13 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    # @param root, a tree node
-    # @return a boolean
     def isBalanced(self, root):
+        """
+        pre-order traversal
+
+        :param root: TreeNode
+        :return: boolean
+        """
         if not root:
             return True
         if abs(self.fathom(root.left, 0)-self.fathom(root.right, 0))>1:

@@ -1,3 +1,12 @@
+"""
+Follow up for "Remove Duplicates":
+What if duplicates are allowed at most twice?
+
+For example,
+Given sorted array A = [1,1,1,2,2,3],
+
+Your function should return length = 5, and A is now [1,1,2,2,3].
+"""
 __author__ = 'Danyang'
 class Solution:
     def removeDuplicates_complicated(self, A):
@@ -47,17 +56,17 @@ class Solution:
             return length
 
         close_ptr = 0
-        duplicate_once = False
+        duplicate_once = False  # flag
         for open_ptr in range(close_ptr+1, length):
-            if A[close_ptr]!=A[open_ptr]:
+            if A[close_ptr]!=A[open_ptr]:  # found non-duplicate
                 duplicate_once = False
                 close_ptr += 1
                 A[close_ptr] = A[open_ptr]
-            elif not duplicate_once:
+            elif not duplicate_once:  # found duplicate, but not duplicated before
                 duplicate_once = True
                 close_ptr += 1
                 A[close_ptr] = A[open_ptr]
-            else:
+            else:  # found duplicate, and duplicated before, continue searching
                 continue  # find next non-duplicate
 
         return close_ptr+1
