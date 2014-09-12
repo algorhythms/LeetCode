@@ -1,0 +1,57 @@
+"""
+A message containing letters from A-Z is being encoded to numbers using the following mapping:
+
+'A' -> 1
+'B' -> 2
+...
+'Z' -> 26
+Given an encoded message containing digits, determine the total number of ways to decode it.
+
+For example,
+Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12).
+
+The number of ways decoding "12" is 2.
+"""
+__author__ = 'Danyang'
+class Solution:
+    def numDecodings(self, s):
+        """
+        dp
+        - 1 2 2 3 1 2 2 3
+        1 1 2 ? ?
+        dp[i] = (dp[i-1]) + optional(dp[i-2])
+
+        notice the special handling for "0
+        :param s: a string
+        :return: an integer
+        """
+        if s.startswith("0"):
+            return 0
+
+        n = len(s)
+        if not s:
+            return 0
+        dp = [0 for _ in xrange(n+1)]
+        dp[0] = 1
+        dp[1] = 1
+
+        for i in xrange(2, n+1):
+            if s[i-1]!="0":
+                dp[i] = dp[i-1]
+                if 10<=int(s[i-2]+s[i-1])<27:
+                    dp[i] += dp[i-2]
+
+            else:
+                if s[i-2] not in ("1", "2"):
+                    return 0
+                else:
+                    dp[i] = dp[i-2]
+
+
+        return dp[-1]
+
+if __name__=="__main__":
+    assert Solution().numDecodings("10")==1
+    assert Solution().numDecodings("27")==1
+    assert Solution().numDecodings("12")==2
+    assert Solution().numDecodings("0")==0
