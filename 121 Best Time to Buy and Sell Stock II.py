@@ -1,3 +1,6 @@
+"""
+
+"""
 __author__ = 'Danyang'
 class Solution:
     def maxProfit(self, prices):

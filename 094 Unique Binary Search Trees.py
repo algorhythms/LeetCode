@@ -30,3 +30,6 @@ class Solution:
         for i in range(n):
             factorial *= i+1
         return factorial
+
+if __name__=="__main__":
+    print Solution().numTrees(100)-Solution().numTrees(99)

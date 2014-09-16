@@ -1,0 +1,152 @@
+"""
+You are given a string, S, and a list of words, L, that are all of the same length. Find all starting indices of
+substring(s) in S that is a concatenation of each word in L exactly once and without any intervening characters.
+
+For example, given:
+S: "barfoothefoobarman"
+L: ["foo", "bar"]
+
+You should return the indices: [0,9].
+(order does not matter).
+"""
+__author__ = 'Danyang'
+class Solution:
+    def findSubstring_TLE(self, S, L):
+        """
+        Time limit exceeded
+
+        Algorithm
+        1. brutal force scanning: O(n*(l*k)
+        2. sliding window: O(n*k))
+        n: len(S)
+        l: len(L)
+        k: len(L[0])
+
+        :param S: String
+        :param L: a list of string
+        :return: a list of integer
+        """
+        if not L:
+            return
+
+        k = len(L[0])
+        l = len(L)
+
+        working_list = list(L)
+        result = []
+        window_t = -1  # [0, t)
+        window = []
+        i = 0
+        while i<=len(S)-3:
+            # test window
+            if len(window)==l:
+                result.append(window_t-l*k)
+
+            word = S[i:i+3]
+            if word in working_list:
+                window.append(word)
+                working_list.remove(word)
+                window_t = i+3
+                i += 3
+
+            elif word not in L:
+                if window:
+                    i = window_t-len(window)*k+1  # going to original point plus 1
+                else:
+                    i += 1
+
+                window = []
+                window_t = -1
+                working_list = list(L)
+
+
+            elif word in L and word not in working_list:
+                window = window[window.index(word)+1:]
+                window.append(word)
+                # working_list.remove(word)
+                window_t = i+3
+                i += 3
+
+        return result
+
+    def findSubstring(self, S, L):
+        """
+        Algorithm
+        1. brutal force scanning: O(n*(l*k)
+        2. sliding window: O(n*k))
+        n: len(S)
+        l: len(L)
+        k: len(L[0])
+
+        S = a1a3a2a1a3a4a5
+        L = a1a2a3
+
+        [a1a3a2]a1a3a4a5
+        a1[a3a2a1]a3a4a5
+        a1a3[a2a1a3]a4a5
+
+        :param S: String
+        :param L: a list of string
+        :return: a list of integer
+        """
+        if not L:
+            return
+
+        k = len(L[0])
+        l = len(L)
+
+        Lmap = {}
+        for item in L:
+            if item in Lmap:
+                Lmap[item] += 1
+            else:
+                Lmap[item] = 1
+
+        Lmap_original = dict(Lmap)
+
+        result = []
+        window_t = -1  # [0, t)
+        window = []
+        i = 0
+        while i<=len(S)-k:
+            # test window
+            if len(window)==l:
+                result.append(window_t-l*k)
+
+            word = S[i:i+k]
+            if word in Lmap and Lmap[word]>0:
+                window.append(word)
+                Lmap[word] -= 1
+                window_t = i+k
+                i += k
+
+            elif word not in Lmap:
+                if window:
+                    i = window_t-len(window)*k+1  # going to original point plus 1
+                else:
+                    i += 1
+
+                window = []
+                window_t = -1
+                Lmap = dict(Lmap_original)
+
+
+            elif word in Lmap and Lmap[word]==0:
+                for j in xrange(0, window.index(word)+1):
+                    Lmap[window[j]] += 1  # restore
+                window = window[window.index(word)+1:]
+                window.append(word)
+                Lmap[word] -= 1
+                window_t = i+k
+                i += k
+
+        if len(window)==l:  # when reaching the end, assert Solution().findSubstring("a", ["a"])==[0]
+            result.append(window_t-l*k)
+
+        return result
+
+if __name__=="__main__":
+    assert Solution().findSubstring("abababab", ["a","b","a"])==[0,2,4]
+    assert Solution().findSubstring("a", ["a"])==[0]
+    assert Solution().findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", ["fooo","barr","wing","ding","wing"])==[13]
+    assert Solution().findSubstring("barfoofoofoobarman", ["foo", "foo"])==[3, 6]
