@@ -9,4 +9,4 @@ Ranked by chronological order: [Link](http://deepreader.io/LeetCode/problem_list
 Welcome to raise an issue if you have any feedback.
 
 ### TODO
-Question burn-down rate: 128/151 completed
+Question burn-down rate: 130/151 completed
