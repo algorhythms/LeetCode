@@ -27,14 +27,14 @@ class Solution:
         """
         length = len(s)
         dp = [[False for _ in xrange(length+1)] for _ in xrange(length+1)]
+        for i in xrange(length+1):
+            dp[i][i] = True
 
         longest = [0, 0]
         for j in xrange(length+1):
             for i in xrange(j-1, -1, -1):
                 if i+1==j:
                     dp[i][j] = True
-                elif i+1==j-1:
-                    dp[i][j] = s[i]==s[j-1]
                 else:
                     dp[i][j] = s[i]==s[j-1] and dp[i+1][j-1]  # pre-access? starting backward
 
@@ -44,12 +44,65 @@ class Solution:
 
         return s[longest[0]:longest[1]]
 
+    def longestPalindrome_TLE2(self, s):
+        """
+        :param s: string
+        :return: string
+        """
+        length = len(s)
+
+        longest = ""
+        dp = [[False for _ in xrange(length+1)] for _ in xrange(length+1)]  # larger than usual
+        for i in xrange(length+1):
+            dp[i][i] = True  # empty
+        for i in xrange(length):
+            dp[i][i+1] = True  # single char
+        for i in xrange(length-1):
+            dp[i][i+2] = s[i]==s[i+1]
+            if dp[i][i+1]:
+                longest = s[i:i+2]
+
+        for l in xrange(3, length+1):  # breadth
+            for i in xrange(0, length-l):
+                if s[i]==s[i+l-1]:
+                    dp[i][i+l] = dp[i+1][i+l-1]
+                else:
+                    dp[i][i+l] = False
+
+                if dp[i][i+l] and len(longest)<l:
+                    longest = s[i:i+l]
+
+        return longest
+
     def longestPalindrome(self, s):
         """
         :param s: string
         :return: string
         """
-        # TODO
+        if not s:
+            return
+        length = len(s)
+        if length==1:
+            return s
+
+        longest = s[0]
+        for i in xrange(0, length):
+            current = self.get_palindrome_from_center(s, i, i)  # odd length
+            if len(current)>len(longest): longest = current
+            current = self.get_palindrome_from_center(s, i, i+1)
+            if len(current)>len(longest): longest = current
+        return longest
+
+    def get_palindrome_from_center(self, s, begin, end):
+        """
+        # [begin, end]
+        """
+        while begin>=0 and end<len(s) and s[begin]==s[end]:
+            begin -= 1
+            end += 1
+
+        return s[begin+1: end-1+1]
+
 
 if __name__=="__main__":
     assert Solution().longestPalindrome("dfaaabbbaaac")=="aaabbbaaa"
