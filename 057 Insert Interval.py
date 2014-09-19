@@ -33,9 +33,15 @@ class Solution:
         return self.merge(intervals+[newInterval])
 
     def merge(self, intervals):
+        """
+        sort first by .start
+        then decide whether to extend the .end
+        :param intervals: list of Interval
+        :return: list of Interval
+        """
         intervals.sort(cmp=lambda a, b: a.start - b.start)
 
-        result = [intervals[0]]  # shared reference
+        result = [intervals[0]]
         for cur in intervals[1:]:
             pre = result[-1]
             if cur.start<=pre.end:  # overlap

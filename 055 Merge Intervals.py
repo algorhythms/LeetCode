@@ -59,7 +59,7 @@ class Solution:
             return []
 
         intervals.sort(cmp=lambda a, b: a.start-b.start)
-        result = [intervals[0]]  # shared reference
+        result = [intervals[0]]
         for cur in intervals[1:]:
             pre = result[-1]
             if cur.start<=pre.end:  # overlap
