@@ -1,61 +1,80 @@
+"""
+Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid
+dictionary word.
+
+Return all such possible sentences.
+
+For example, given
+s = "catsanddog",
+dict = ["cat", "cats", "and", "sand", "dog"].
+
+A solution is ["cats and dog", "cat sand dog"].
+"""
 __author__ = 'Danyang'
-
-
 class Solution:
     def wordBreak(self, s, dict):
         """
-        record how to construct the sentences for a given prefix
+        .______   .______       _______  _______  __  ___   ___  _______     _______.
+        |   _  \  |   _  \     |   ____||   ____||  | \  \ /  / |   ____|   /       |
+        |  |_)  | |  |_)  |    |  |__   |  |__   |  |  \  V  /  |  |__     |   (----`
+        |   ___/  |      /     |   __|  |   __|  |  |   >   <   |   __|     \   \
+        |  |      |  |\  \----.|  |____ |  |     |  |  /  .  \  |  |____.----)   |
+        | _|      | _| `._____||_______||__|     |__| /__/ \__\ |_______|_______/
 
-        In Word Break, we use a bool array to record whether a prefix could be segmented.
-        Now we should use a vector for every prefix to record how to construct that prefix from another prefix.
+        record how to construct the sentences for a given dp
+
+        In Word Break, we use a bool array to record whether a dp could be segmented.
+        Now we should use a vector for every dp to record how to construct that dp from another dp.
 
         Google On Campus Presentation, demonstration questions. 4 Sep 2014, Nanyang Technological University, Singapore
+
+                - l e e t c o d e
+        prefix: d       l       c
+
 
         :param s: String
         :param dict: a set of string
         :return: a list of strings
         """
-        # prefix = [[]] * (len(s) + 1) # namespace reuse
-        prefix = [[] for _ in range(len(s)+1)]
+        # dp = [[]] * (len(s) + 1) # namespace reuse
+        dp = [[] for _ in range(len(s)+1)]
 
-        prefix[0].append("dummy")
+        dp[0].append("dummy")
 
         for i in range(len(s)):
-            if not prefix[i]:
+            if not dp[i]:
                 continue
             for word in dict:
                 if s[i: i+len(word)]==word:
-                    prefix[i+len(word)].append(word)
-
+                    dp[i+len(word)].append(word)
 
         # build result
-        if not prefix[-1]:
+        if not dp[-1]:
             return []
 
-        out = []
+        result = []
         cur_sentence = []
-        self.__build_result(prefix, len(s), cur_sentence, out)
-        return out
+        self.__build_result(dp, len(s), cur_sentence, result)
+        return result
 
 
-    def __build_result(self, prefix, cur_index, cur_sentence, out):
+    def __build_result(self, dp, cur_index, cur_sentence, result):
         """
-        recursive
+        dfs recursive
         """
+        # reached, build the result from cur_sentence
         if cur_index==0:
             string_builder = ""
             for i in range(len(cur_sentence)-1, -1, -1):
                 string_builder += cur_sentence[i]
                 if i!=0:
                     string_builder += " "
-            out.append(string_builder)
+            result.append(string_builder)
             return
 
-
-        for i in range(len(prefix[cur_index])):
-            cur_sentence.append(prefix[cur_index][i])
-            self.__build_result(prefix, cur_index-len(prefix[cur_index][i]), cur_sentence, out)
-            cur_sentence.pop()
+        # dfs
+        for prefix in dp[cur_index]:
+            self.__build_result(dp, cur_index-len(prefix), cur_sentence+[prefix], result)
 
 if __name__=="__main__":
-    print Solution().wordBreak("catsanddog", ["cat", "cats", "and", "sand", "dog"])
+    assert Solution().wordBreak("catsanddog", ["cat", "cats", "and", "sand", "dog"])==['cat sand dog', 'cats and dog']

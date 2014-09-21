@@ -22,6 +22,14 @@ class LRUCache:
             return -1
 
     def set(self, key, value):
+        """
+        Algorithm:
+        data structure: Queue and HashMap
+
+        :param key: int
+        :param value: int
+        :return: value
+        """
         if key in self.dic:
             self.q.remove(key)
             self.q.insert(0, key)

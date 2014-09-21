@@ -1,3 +1,12 @@
+"""
+Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
+
+For example,
+Given [100, 4, 200, 1, 3, 2],
+The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
+
+Your algorithm should run in O(n) complexity.
+"""
 __author__ = 'Danyang'
 class Solution:
     def longestConsecutive_TLE(self, num):
@@ -35,8 +44,9 @@ class Solution:
 
     def longestConsecutive(self, num):
         """
+        Algorithm: pivot scanning
+        array, inverted index (visited)
         O(n) within in one scan
-        algorithm: array, inverted index (visited)
         O(kn), k is the length of consecutive sequence
 
         visited map
@@ -48,8 +58,7 @@ class Solution:
 
         max_length = -1<<31
         for ind, val in enumerate(num):
-            if visited[val]:
-                continue
+            if visited[val]: continue
 
             current_length = 1
 

@@ -1,10 +1,14 @@
 __author__ = 'Danyang'
 class Solution:
-    # @param tokens, a list of string
-    # @return an integer
     def evalRPN(self, tokens):
+        """
+        stack
+        basic in bytecode operation
+        basic in compiler technique
+        :param tokens:
+        :return:
+        """
         ops = ["+", "-", "*", "/"]
-
         def arith(a, b, op):
             if (op=="+"):
                 return a + b
@@ -15,6 +19,19 @@ class Solution:
                 return int(float(a) / b) # round towards 0
             if (op=="*"):
                 return a * b
+
+        # function is first-order class
+        # not supported by leetcode
+        # import operator
+        # ops = {
+        #     "+": operator.add,
+        #     "-": operator.sub,
+        #     "*": operator.mul,
+        #     "/": operator.div,
+        # }
+        #
+        # def arith(a, b, op):
+        #     return ops[op](a, b)
 
         # stack
         stack = []

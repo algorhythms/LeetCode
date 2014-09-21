@@ -10,7 +10,7 @@ Given binary tree {1,#,2,3},
    3
 return [1,2,3].
 
-Note: Recursive solution is trivial, could you do it iteratively?
+Note: Recursive solution is trivial, could you do it iteratively? - see preTraverse_itr
 """
 __author__ = 'Danyang'
 # Definition for a  binary tree node

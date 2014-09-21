@@ -6,13 +6,10 @@ class ListNode:
         self.next = None
 
 class Solution:
-    # @param head, a ListNode
-    # @return a ListNode
-
     # ascending
     def insertionSortList_TLE(self, head):
         """
-        Known issue: Time Limit Exceded
+        Time Limit Exceded
         """
         comparator = lambda x, y: cmp(x.val, y.val)
         # open set & closed set
@@ -53,12 +50,20 @@ class Solution:
     def insertionSortList(self, head):
         """
         O(n^2), but with better performance since while loop inside a if
+
+        [ [closed_lst], [open_lst] ], insert the first item of open_lst into the closed_lst:
+        1. compare the first item the last item of the closed_lst
+        2. if in order, continue to next
+        3. if not, find the insertion point and insert
+
+        :param head: ListNode
+        :return: ListNode
         """
         comparator = lambda x, y: cmp(x.val, y.val)
         # open set & closed set
         # iterate through all the nodes
-        dummy_head = ListNode(0)  # Singly-linked list, thus need dummy_head  
-        dummy_head.next = head
+        dummy = ListNode(0)  # Singly-linked list, thus need dummy_head
+        dummy.next = head
 
         closed_tail = head
         while (closed_tail and closed_tail.next):
@@ -66,22 +71,21 @@ class Solution:
             open_head_next = closed_tail.next.next
             if not comparator(closed_tail, open_head)<=0:  # Step 1: only compare the closed set tail and open set head
 
-                pre = dummy_head
+                pre = dummy
                 while comparator(pre.next, open_head)<0:  # Step 2: find position
                     pre = pre.next
 
                 # swap nodes
                 open_head.next = pre.next
                 pre.next = open_head
+
                 closed_tail.next = open_head_next
-
-
 
             else:
                 closed_tail = closed_tail.next
 
 
-        return dummy_head.next
+        return dummy.next
 
 if __name__=="__main__":
     import random

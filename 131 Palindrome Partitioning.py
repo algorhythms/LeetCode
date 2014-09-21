@@ -1,3 +1,16 @@
+"""
+Given a string s, partition s such that every substring of the partition is a palindrome.
+
+Return all possible palindrome partitioning of s.
+
+For example, given s = "aab",
+Return
+
+  [
+    ["aa","b"],
+    ["a","a","b"]
+  ]
+"""
 __author__ = 'Danyang'
 class Solution:
     def partition(self, s):
@@ -10,13 +23,14 @@ class Solution:
         self.get_partition(s, [], result)
         return result
 
-    def get_partition(self, s, cur_lst, result):
-        if not s:
-            result.append(cur_lst)
-        # partition s
-        for i in xrange(len(s)):
-            if self.is_palindrome(s[:i+1]):  # otherwise prune 
-                self.get_partition(s[i+1:], cur_lst+[s[:i+1]], result)
+    def get_partition(self, seq, cur, result):
+        if not seq:
+            result.append(cur)
+
+        # partition seq
+        for i in xrange(len(seq)):
+            if self.is_palindrome(seq[:i+1]):  # otherwise prune
+                self.get_partition(seq[i+1:], cur+[seq[:i+1]], result)
 
 
     def is_palindrome(self, s):
@@ -25,4 +39,4 @@ class Solution:
         return s==s[::-1]
 
 if __name__=="__main__":
-    print Solution().partition("aab")
+    assert Solution().partition("aab")==[['a', 'a', 'b'], ['aa', 'b']]

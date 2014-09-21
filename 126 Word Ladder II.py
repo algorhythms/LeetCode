@@ -147,7 +147,7 @@ class Node:
     def __repr__(self):
         return repr(self.string)
 
-class Solution_TLE:
+class Solution_TLE2:
     def findLadders(self, start, end, dict):
         """
         bfs

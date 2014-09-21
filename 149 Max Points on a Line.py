@@ -1,23 +1,35 @@
+"""
+Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
+"""
 __author__ = 'Danyang'
 #Definition for a point
 class Point:
-    # points are integer
     def __init__(self, a=0, b=0):
+        """
+
+        :param a: int
+        :param b: int
+        :return:
+        """
         self.x = a
         self.y = b
 
 class Solution:
-    # @param points, a list of Points
-    # @return an integer
     def maxPoints(self, points):
+        """
+
+        :param points: a list of Points
+        :return: int
+        """
         # from collections import defaultdict
         # hash_map = defaultdict(int)
         # defaultdict not supported in LeetCode
-        hash_map = {}
-        # C style index
+
+        hash_map = {}  # key -> inner_dict, where key = (k, b), inner_dict is index -> list
+
         length = len(points)
-        for i in range(length):
-            for j in range(i+1, length):
+        for i in xrange(length):
+            for j in xrange(i+1, length):
                 point1 = points[i]
                 point2 = points[j]
                 if point1.x == point2.x:
@@ -26,16 +38,14 @@ class Solution:
                     slope = float(point1.y-point2.y)/(point1.x-point2.x)
                     intersection = slope*point1.x - point1.y
 
-                    slope = int(slope*1000) # avoid floating errors
-                    intersection = int(intersection*1000) # avoid floating errors
-
+                    slope = int(slope*1000) # avoid numeric errors
+                    intersection = int(intersection*1000) # avoid numeric errors
 
                     key = (slope, intersection)  # only tuples can be hashed, whereas lists cannot
 
                 if key not in hash_map:
-                    # hash_map[key] = [0 for n in range(length)] # increase complexity
-                    hash_map[key] = [0] * length
-                hash_map[key][i] = 1
+                    hash_map[key] = [0 for _ in points]
+                hash_map[key][i] = 1  # avoid duplicate
                 hash_map[key][j] = 1
 
 
@@ -51,8 +61,6 @@ class Solution:
             current = item.count(1)
             if current>max:
                 max = current
-            # print key # affect time limit
-
 
         return max
 

@@ -8,5 +8,8 @@ Ranked by chronological order: [Link](http://deepreader.io/LeetCode/problem_list
 ### Feedback
 Welcome to raise an issue if you have any feedback.
 
+### Notes
+Failed attempts are kept in the source code, which are annotated as TLE (Time Limit Exceeds) or MLE (Memory Limit Exceeds).
+
 ### TODO
-Question burn-down rate: 135/151 completed
+Question burn-down rate: 137/151 completed

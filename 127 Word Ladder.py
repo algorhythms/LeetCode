@@ -119,10 +119,10 @@ class Solution:
         """
         bfs
 
-        pass the time limit
+        Modify the current str by one char, and test whether it is in the set, rather than iterate through the dict and
+        calculate the number of different chars. In other words, iterate through 'abcdefghijklmnopqrstuvwxyz' rather
+        than dict
 
-        modify the current str by one char, and test whether it is in the set, rather than iterate through the dict and
-        calculate the number of different chars.
 
         :param start: a string
         :param end: a string

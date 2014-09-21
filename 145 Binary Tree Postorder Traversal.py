@@ -10,7 +10,7 @@ Given binary tree {1,#,2,3},
    3
 return [3,2,1].
 
-Note: Recursive solution is trivial, could you do it iteratively?
+Note: Recursive solution is trivial, could you do it iteratively? - see postTraverse_itr
 """
 __author__ = 'Danyang'
 # Definition for a  binary tree node
@@ -60,7 +60,7 @@ class Solution:
             if cur.right:
                 stack.append(cur.right)
 
-            lst.insert(0, cur.val)  # reverse insert
+            lst.insert(0, cur.val)  # reversely insert
 
 
 

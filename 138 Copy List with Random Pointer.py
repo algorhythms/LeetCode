@@ -1,3 +1,9 @@
+"""
+A linked list is given such that each node contains an additional random pointer which could point to any node in the
+list or null.
+
+Return a deep copy of the list.
+"""
 __author__ = 'Danyang'
 # Definition for singly-linked list with a random pointer.
 class RandomListNode:
@@ -7,12 +13,22 @@ class RandomListNode:
         self.random = None
 
 class Solution:
-    # @param head, a RandomListNode
-    # @return a RandomListNode
     def copyRandomList(self, head):
         """
+        Algorithm:
+
         Duplicate the node in the list
         Split the list into two
+
+        A->B->C
+
+        A->A'->B->B'->C->C'
+
+        A->B->C
+        A'->B'->C'
+
+        :param head: RandomListNode
+        :return: RandomListNode
         """
         # duplicate
         dummy = RandomListNode(0)
@@ -35,7 +51,7 @@ class Solution:
             cur = pre.next
 
             if cur.random:
-                cur.next.random = cur.random.next  # for duplicated node
+                cur.next.random = cur.random.next  # for duplicated node. NEXT IS RANDOM
 
             pre = pre.next.next
 
