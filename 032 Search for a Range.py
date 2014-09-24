@@ -29,7 +29,7 @@ class Solution:
         end = length  # [0, length)
         while start<end:
             mid = (start+end)/2
-            if A[mid]<target:
+            if A[mid]<target:  # NOTICE: less than
                 start = mid+1
             else:
                 end = mid
@@ -44,7 +44,7 @@ class Solution:
         end = length  # no "-1" # [0, length)
         while start<end:
             mid = (start+end)/2
-            if A[mid]<=target:
+            if A[mid]<=target:  # NOTICE: less than or equal
                 start = mid+1
             else:
                 end = mid

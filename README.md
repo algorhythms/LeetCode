@@ -12,7 +12,7 @@ Welcome to raise an issue if you have any feedback.
 Failed attempts are kept in the source code, which are annotated as TLE (Time Limit Exceeds) or MLE (Memory Limit Exceeds).
 
 ### TODO
-Question burn-down rate: 137/151 completed
+Question burn-down rate: 142/152 completed
 
 [ascii](https://gist.github.com/xero/3555086)
 ```
