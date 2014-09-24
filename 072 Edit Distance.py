@@ -7,6 +7,7 @@ class Solution:
 
         Part of Natural Language Processing
         Algorithm:
+        Edit: Substitution, Addition, Deletion. Degree of Freedom is high
         word1[:i] is string_1a
         word2[:j] is string_2b
         d[i][j] represents convert word1[:i] to word2[:j]
