@@ -36,8 +36,6 @@ class Solution:
 
     def sortList(self, head):
         """
-        Workaround by sorted()
-
         Quick sort: not guarantee to be O(n lgn)
         Heap sort: not great as index
         Merge sort: H(n) = 2H(n/2) + n/2, thus O(n lgn)

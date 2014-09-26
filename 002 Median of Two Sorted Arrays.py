@@ -1,5 +1,6 @@
 """
-There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall
+run time complexity should be O(log (m+n)).
 """
 __author__ = 'Danyang'
 class Solution:
@@ -20,17 +21,17 @@ class Solution:
         whether to disregard A[m/2] or B[n/2] takes time to consider
 
         :param A: list
-        :param B: list 
+        :param B: list
         :return: float
         """
         m = len(A)
         n = len(B)
         if((m+n)&1==0):
-            return (self.find_median(A, B, (m+n)/2)+self.find_median(A, B, (m+n)/2-1))/2.0
+            return (self.find_kth(A, B, (m+n)/2)+self.find_kth(A, B, (m+n)/2-1))/2.0
         else:
-            return self.find_median(A, B, (m+n)/2)
+            return self.find_kth(A, B, (m+n)/2)
 
-    def find_median(self, A, B, k):
+    def find_kth(self, A, B, k):
         """
 
         :param A:
@@ -52,14 +53,14 @@ class Solution:
         # pay attention to consider the equal sign. Assigning equal sign is an art.
         if A[m/2]>B[n/2]:
             if k>m/2+n/2:
-                return self.find_median(A, B[n/2+1:], k-n/2-1)  # exclude B[n/2]
+                return self.find_kth(A, B[n/2+1:], k-n/2-1)  # exclude B[n/2]
             else:
-                return self.find_median(A[:m/2], B, k)  # exclude A[m/2]
+                return self.find_kth(A[:m/2], B, k)  # exclude A[m/2]
         else:
             if k>m/2+n/2:
-                return self.find_median(A[m/2+1:], B, k-m/2-1)  # exclude A[m/2]
+                return self.find_kth(A[m/2+1:], B, k-m/2-1)  # exclude A[m/2]
             else:
-                return self.find_median(A, B[:n/2], k)  # exclude B[n/2]
+                return self.find_kth(A, B[:n/2], k)  # exclude B[n/2]
 
 
 if __name__=="__main__":
