@@ -20,8 +20,8 @@ Welcome to raise an issue [here](https://github.com/zhangdanyangg/LeetCode/issue
 ### Notes
 Failed attempts are kept in the source code, which are annotated as TLE (Time Limit Exceeds) or MLE (Memory Limit Exceeds).
 
-### TODO
-Question burn-down rate: 151/152 completed
+### Completion
+Questions: 152/152 completed
 
 ###Miscellaneous
 Practice  
