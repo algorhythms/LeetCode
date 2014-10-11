@@ -12,13 +12,13 @@ Here are few examples.
 """
 __author__ = 'Danyang'
 class Solution:
-    # @param A, a list of integers
-    # @param target, an integer to be inserted
-    # @return integer
     def searchInsert_complex(self, A, target):
         """
         binary search
         iterative solution
+        :param A: a list of integers
+        :param target: an integer to be inserted
+        :return: integer
         """
         length = len(A)
         if not A or length==0:
@@ -45,6 +45,9 @@ class Solution:
         """
         binary search
         iterative solution
+        :param A: a list of integers
+        :param target: an integer to be inserted
+        :return: integer
         """
         length = len(A)
         if not A or length==0:
@@ -64,4 +67,10 @@ class Solution:
         return start
 
 if __name__=="__main__":
-    Solution().searchInsert([1, 3], 4)
+    assert Solution().searchInsert([1, 3, 5, 6], 5)==2
+    assert Solution().searchInsert([1, 3, 5, 6], 2)==1
+    assert Solution().searchInsert([1, 3, 5, 6], 7)==4
+    assert Solution().searchInsert([1, 3, 5, 6], 0)==0
+
+
+
