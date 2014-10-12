@@ -1,3 +1,13 @@
+"""
+Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2.
+(each operation is counted as 1 step.)
+
+You have the following 3 operations permitted on a word:
+
+a) Insert a character
+b) Delete a character
+c) Replace a character
+"""
 __author__ = 'Danyang'
 class Solution:
     def minDistance(self, word1, word2):
@@ -7,6 +17,9 @@ class Solution:
 
         Part of Natural Language Processing
         Algorithm:
+        Addition at anywhere
+        Deletion at anywhere
+        Substitution at anywhere
         Edit: Substitution, Addition, Deletion. Degree of Freedom is high
         word1[:i] is string_1a
         word2[:j] is string_2b

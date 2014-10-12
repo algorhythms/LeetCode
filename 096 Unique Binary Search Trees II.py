@@ -19,12 +19,12 @@ class TreeNode:
         self.left = None
         self.right = None
 
-class Solution:
 
+class Solution:
     def generateTrees(self, n):
         """
         dfs
-        Catalan
+        Catalan: https://www.youtube.com/watch?v=QdcujZTp_8M (Forth proof)
         :param n: integer
         :return: list of TreeNode
         """
@@ -36,30 +36,35 @@ class Solution:
     def generate(self, start, end):
         """
         dfs without dp
+        {number| number \in [start, end]}
+
+        Follow the 1st proof of Catalan Number
         :param start: initial number in the array
         :param end: final number in the array
         :return: list of TreeNode
         """
-        sub_trees = []
+        subtree_roots = []
 
         # trivial
         if start>end:
-            sub_trees.append(None)
-            return sub_trees
+            subtree_roots.append(None)
+            return subtree_roots
 
         # pivot
         # list of unique subtrees = list of unique left subtrees, pivot, list of unique right subtrees
         for pivot in range(start, end+1):
-            left_sub_trees = self.generate(start, pivot-1)  # no dp yet
-            right_sub_trees = self.generate(pivot+1, end)  # no dp yet
-            for left_node in left_sub_trees:
-                for right_node in right_sub_trees:
+            left_subtree_roots = self.generate(start, pivot-1)  # no dp yet
+            right_subtree_roots = self.generate(pivot+1, end)  # no dp yet
+
+            for left_node in left_subtree_roots:
+                for right_node in right_subtree_roots:
                     pivot_node = TreeNode(pivot)
                     pivot_node.left = left_node
                     pivot_node.right = right_node
-                    sub_trees.append(pivot_node)
+
+                    subtree_roots.append(pivot_node)
 
 
-        return sub_trees
+        return subtree_roots
 
 

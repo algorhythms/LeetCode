@@ -42,6 +42,8 @@ class Solution:
                +dp[1]*dp[1]  # 2 is pivot
                +dp[2]*dp[0]  # 3 as pivot
 
+        follow the 2nd proof of Catalan number.
+        Proof: http://en.wikipedia.org/wiki/Catalan_number#First_proof
         :param n: integer
         :return: integer
         """

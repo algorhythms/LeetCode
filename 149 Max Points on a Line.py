@@ -55,14 +55,14 @@ class Solution:
         if(len(hash_map)==0):
             return 0
 
-        max = -1<<32
+        maxa = -1<<32
         for key, item in hash_map.items():
             # current = len(filter(lambda x: x==1, item)) # increase complexity
             current = item.count(1)
-            if current>max:
-                max = current
+            if current>maxa:
+                maxa = current
 
-        return max
+        return maxa
 
 
 

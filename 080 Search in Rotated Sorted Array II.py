@@ -1,3 +1,11 @@
+"""
+Follow up for "Search in Rotated Sorted Array":
+What if duplicates are allowed?
+
+Would this affect the run-time complexity? How and why?
+
+Write a function to determine if a given target is in the array.
+"""
 __author__ = 'Danyang'
 class Solution:
     def search_set(self, A, target):
@@ -18,7 +26,7 @@ class Solution:
         :param target: an integer
         :return: a boolean
         """
-        A = list(set(A))  # short-cut eliminate duplicates
+        A = list(set(A))  # short-cut eliminate duplicates  # but O(n)
 
         length = len(A)
         start = 0
@@ -75,7 +83,7 @@ class Solution:
             # found
             if A[mid]==target:
                 return True
-            # undetermined
+            # undetermined  # the only significant difference.
             if A[start]==A[mid]:
                 start += 1
             # case 1
@@ -85,7 +93,7 @@ class Solution:
                 else:
                     end = mid-1
             # case 2
-            elif A[start]>A[mid] and A[mid]<=A[end]:
+            elif A[start]>A[mid] and A[mid]<=A[end]:  # slight difference compared to A[mid]<A[end]
                 if target>A[mid] and target<=A[end]:
                     start = mid+1
                 else:
@@ -100,4 +108,4 @@ class Solution:
         return False
 
 if __name__=="__main__":
-    print Solution().search([1,1,3,1], 3)
+    assert Solution().search([1,1,3,1], 3)==True
