@@ -25,6 +25,7 @@ __author__ = 'Danyang'
 INVALID = -1
 QUEEN = 1
 DEFAULT = 0
+directions = [(+1, +1), (-1, -1), (-1, +1), (+1, -1)]
 class Solution:
     def solveNQueens(self, n):
         """
@@ -39,7 +40,11 @@ class Solution:
 
     def backtrack(self, queen_index, current, result):
         """
-        dfs, backtracking
+        Search problem: dfs, backtracking
+
+        Python:
+        notice, the bound should be checked using "if condition" rather than "try-catch" since negative index is acceptable in python
+
         :param queen_index:
         :param current: 2D matrix
         :param result: list of 2D matrix
@@ -67,24 +72,32 @@ class Solution:
                 if new_config[queen_index][m]==DEFAULT:
                     new_config[queen_index][m] = INVALID
 
-                # diagonal
-                row = queen_index+m
-                col = i+m
-                if 0<=row<n and 0<=col<n and new_config[row][col]==DEFAULT: new_config[row][col] = INVALID
+                # diagonal - not optimized
+                # row = queen_index+m
+                # col = i+m
+                # if 0<=row<n and 0<=col<n and new_config[row][col]==DEFAULT: new_config[row][col] = INVALID
+                #
+                # row = queen_index-m
+                # col = i-m
+                # if 0<=row<n and 0<=col<n and new_config[row][col]==DEFAULT: new_config[row][col] = INVALID
+                #
+                # row = queen_index-m
+                # col = i+m
+                # if 0<=row<n and 0<=col<n and new_config[row][col]==DEFAULT: new_config[row][col] = INVALID
+                #
+                # row = queen_index+m
+                # col = i-m
+                # if 0<=row<n and 0<=col<n and new_config[row][col]==DEFAULT: new_config[row][col] = INVALID
 
-                row = queen_index-m
-                col = i-m
-                if 0<=row<n and 0<=col<n and new_config[row][col]==DEFAULT: new_config[row][col] = INVALID
-
-                row = queen_index-m
-                col = i+m
-                if 0<=row<n and 0<=col<n and new_config[row][col]==DEFAULT: new_config[row][col] = INVALID
-
-                row = queen_index+m
-                col = i-m
-                if 0<=row<n and 0<=col<n and new_config[row][col]==DEFAULT: new_config[row][col] = INVALID
+                # diagonal - optimized
+                for direction in directions:
+                    row = queen_index+direction[0]*m
+                    col = i+direction[1]*m
+                    if 0<=row<n and 0<=col<n and new_config[row][col]==DEFAULT:
+                        new_config[row][col] = INVALID
 
             # dfs
+            # backtrack by using clone of the board configuration
             self.backtrack(queen_index+1, new_config, result)
 
 
@@ -101,4 +114,4 @@ class Solution:
 
 
 if __name__=="__main__":
-    print Solution().solveNQueens(4)
+    assert Solution().solveNQueens(4)==[['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]
