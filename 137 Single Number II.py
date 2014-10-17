@@ -34,7 +34,7 @@ class Solution:
         """
         bit_0, bit_1, bit_2 = ~0, 0, 0  # bit_0 is ~0 since all numbers appear 0 times.
         for elmt in A:
-            bit_t = bit_2
+            bit_t = bit_2  # temp
             bit_2 = (bit_1 & elmt) | (bit_2 & ~elmt)
             bit_1 = (bit_0 & elmt) | (bit_1 & ~elmt)
             bit_0 = (bit_t & elmt) | (bit_0 & ~elmt)  # three times means 0 times (mod 3)
