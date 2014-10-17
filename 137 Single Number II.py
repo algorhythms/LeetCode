@@ -25,16 +25,19 @@ class Solution:
 
 
         This solution is easy to understand and also general enough for appearance of n times
+
+        bit_2 is from adding elmt previously appears once (now twice) and subtracting elmt previously appearance twice (now three times)
+        bit_1 is from adding elmt previously does not appear (now once) and subtracting elmt previously appearance once (now twice)
+        bit_0 is from adding elmt previously appears twice (now three times) and subtracting elmt previously appearance three times (now once)
         :param A: a list of int
         :return: int
         """
         bit_0, bit_1, bit_2 = ~0, 0, 0  # bit_0 is ~0 since all numbers appear 0 times.
         for elmt in A:
-            temp = bit_2
-            bit_2 = (bit_1 & elmt) | (bit_2 & ~elmt)  # bit_2 is from adding elmt previously appears once (now twice) and subtracting elmt previously appearance twice (now three times)
-            bit_1 = (bit_0 & elmt) | (bit_1 & ~elmt)  # bit_1 is from adding elmt previously does not appear (now once) and subtracting elmt previously appearance once (now twice)
-            bit_0 = (temp & elmt) | (bit_0 & ~elmt)   # bit_0 is from adding elmt previously appears twice (now three times) and subtracting elmt previously appearance three times (now once)
-            # three times means 0 times (mod 3)
+            bit_t = bit_2
+            bit_2 = (bit_1 & elmt) | (bit_2 & ~elmt)
+            bit_1 = (bit_0 & elmt) | (bit_1 & ~elmt)
+            bit_0 = (bit_t & elmt) | (bit_0 & ~elmt)  # three times means 0 times (mod 3)
         return bit_1
 
     def singleNumber_array(self, A):
