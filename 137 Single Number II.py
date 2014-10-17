@@ -23,15 +23,18 @@ class Solution:
         add the bit VERTICALLY, then result would be abcd where a, b, c, d can be any number, not just binary. a, b, c,
         d can be divided by 3. Until here, you can use a list to hold a, b, c, d, but it can be optimized further.
 
+
+        This solution is easy to understand and also general enough for appearance of n times
         :param A: a list of int
         :return: int
         """
-        bit_0, bit_1, bit_2 = ~0, 0, 0
-        for element in A:
+        bit_0, bit_1, bit_2 = ~0, 0, 0  # bit_0 is ~0 since all numbers appear 0 times.
+        for elmt in A:
             temp = bit_2
-            bit_2 = (bit_1 & element) | (bit_2 & ~element)
-            bit_1 = (bit_0 & element) | (bit_1 & ~element)
-            bit_0 = (temp & element) | (bit_0 & ~element)
+            bit_2 = (bit_1 & elmt) | (bit_2 & ~elmt)  # bit_2 is from adding elmt previously appears once (now twice) and subtracting elmt previously appearance twice (now three times)
+            bit_1 = (bit_0 & elmt) | (bit_1 & ~elmt)  # bit_1 is from adding elmt previously does not appear (now once) and subtracting elmt previously appearance once (now twice)
+            bit_0 = (temp & elmt) | (bit_0 & ~elmt)   # bit_0 is from adding elmt previously appears twice (now three times) and subtracting elmt previously appearance three times (now once)
+            # three times means 0 times (mod 3)
         return bit_1
 
     def singleNumber_array(self, A):
