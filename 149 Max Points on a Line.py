@@ -15,15 +15,12 @@ class Point:
         self.y = b
 
 class Solution:
-    def maxPoints(self, points):
+    def maxPoints_complicated(self, points):
         """
 
         :param points: a list of Points
         :return: int
         """
-        # from collections import defaultdict
-        # hash_map = defaultdict(int)
-        # defaultdict not supported in LeetCode
 
         hash_map = {}  # key -> inner_dict, where key = (k, b), inner_dict is index -> list
 
@@ -64,6 +61,50 @@ class Solution:
 
         return maxa
 
+    def maxPoints(self, points):
+        """
+        reference: http://fisherlei.blogspot.sg/2013/12/leetcode-max-points-on-line-solution.html
+        :param points: a list of Points
+        :return: int
+        """
+        maxa = -1<<32
+        length = len(points)
+        if (length<=1):
+            return length
+
+        for i in xrange(length):
+            hash_map = {}
+            duplicate = 1 # point_i itself
+            for j in xrange(length):
+                if i==j:
+                    continue
+
+                point1 = points[i]
+                point2 = points[j]
+                if point1.x==point2.x and point1.y==point2.y:
+                    duplicate += 1
+                    continue
+                if point1.x==point2.x:
+                    key = 1<<32
+                else:
+                    slope = float(point1.y-point2.y)/(point1.x-point2.x)
+                    slope = int(slope*10000) # avoid numeric errors
+                    # no need to calculate intersection. During this iteration, all lines pass point1
+                    key = slope
+
+                if key not in hash_map:
+                    hash_map[key] = 0
+                hash_map[key]+=1
+
+
+            if hash_map:
+                max_key = max(hash_map, key=hash_map.get)
+                max_value = hash_map[max_key]
+            else:
+                max_value  = 0
+            maxa = max(maxa, max_value+duplicate)
+
+        return maxa
 
 
 
@@ -83,6 +124,6 @@ if __name__=="__main__":
               (-7, -65), (-9, -166), (-475, -53), (-68, 20), (210, 103), (700, 306), (7, -6), (-3, -52), (-106, -146),
               (560, 248), (10, 6), (6, 119), (0, 2), (-41, 6), (7, 19), (30, 250)]
 
-
     points = [Point(point[0], point[1]) for point in points]
+    print Solution().maxPoints(points)
     assert Solution().maxPoints(points)==22
