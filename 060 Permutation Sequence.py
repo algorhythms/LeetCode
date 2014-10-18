@@ -58,9 +58,10 @@ class Solution_TLE:
 
 
 class Solution:
-    def getPermutation(self, n, k):
+    def getPermutation_complicated(self, n, k):
         """
         Mathematics, reference: http://fisherlei.blogspot.sg/2013/04/leetcode-permutation-sequence-solution.html
+        Reversed Contour Expansion
 
         A = [1, 2, ..., n], where A's index starts from 0
         Suppose for n element, the k-th permutation is:
@@ -100,6 +101,49 @@ class Solution:
         result.append(array[0])
 
         return "".join(str(element) for element in result)
+
+    def getPermutation(self, n, k):
+        """
+        Reverse Contour Expansion
+
+        equation: sum a_i * i! = k
+        :param n: integer
+        :param k: integer
+        :return: String
+        """
+        # factorial
+        fac = [1 for _ in xrange(n)]
+        for i in xrange(1, n):
+            fac[i] = fac[i-1]*i
+
+        # solve equation
+        k -= 1  # index starting from 0
+        a = [0 for _ in xrange(n)]
+        for i in xrange(n-1, -1, -1):
+            a[n-1-i] = k/fac[i]  # a[i] = k/fac[i]
+            k %= fac[i]
+
+        # post-process
+        candidate = range(1, n+1)  # sorted
+        visited = [False for _ in xrange(n)]
+        for ind, val in enumerate(a):
+            i = 0  # pointer
+            cnt = 0  # counter
+            while True:
+                if visited[i]:
+                    i += 1
+                else:
+                    if cnt==val: break
+                    cnt += 1
+                    i += 1
+
+            a[ind] = candidate[i]
+            visited[i] = True
+
+        return "".join(map(str, a))
+
+
+
 
 
 
