@@ -16,6 +16,7 @@ __author__ = 'Danyang'
 class Solution:
     def simplifyPath(self, path):
         """
+        use "." as intermediate
 
         :param path: a string
         :return: a string

@@ -72,8 +72,8 @@ class Solution:
     def findSubstring(self, S, L):
         """
         Algorithm
-        1. brutal force scanning: O(n*(l*k)
-        2. sliding window: O(n*k))
+        1. brutal force scanning: O(n*(l*k)), rechecking
+        2. sliding window: O(n*k)
         n: len(S)
         l: len(L)
         k: len(L[0])
@@ -95,7 +95,7 @@ class Solution:
         k = len(L[0])
         l = len(L)
 
-        Lmap = {}
+        Lmap = {}  # map of L
         for item in L:
             if item in Lmap:
                 Lmap[item] += 1
@@ -105,7 +105,7 @@ class Solution:
         Lmap_original = dict(Lmap)
 
         result = []
-        window_t = -1  # [0, t)
+        window_t = -1  # [0, t), no need start_ptr
         window = []
         i = 0
         while i<=len(S)-k:
@@ -114,15 +114,17 @@ class Solution:
                 result.append(window_t-l*k)
 
             word = S[i:i+k]
+            # case 1, match one in L
             if word in Lmap and Lmap[word]>0:
                 window.append(word)
                 Lmap[word] -= 1
                 window_t = i+k
                 i += k
 
+            # case 2, no match
             elif word not in Lmap:
                 if window:
-                    i = window_t-len(window)*k+1  # going to original point plus 1
+                    i = window_t-len(window)*k+1  # going to window start+1  # cannot jump
                 else:
                     i += 1
 
@@ -130,9 +132,9 @@ class Solution:
                 window_t = -1
                 Lmap = dict(Lmap_original)
 
-
+            # case 3, mach one in L not used up
             elif word in Lmap and Lmap[word]==0:
-                for j in xrange(0, window.index(word)+1):
+                for j in xrange(0, window.index(word)+1):  # kind of prefix suffix concepts
                     Lmap[window[j]] += 1  # restore
                 window = window[window.index(word)+1:]
                 window.append(word)

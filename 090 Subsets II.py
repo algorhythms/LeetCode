@@ -34,7 +34,7 @@ class Solution:
         result.append(current)
         for ind, val in enumerate(S):
             # JUMP, avoid duplicates
-            if ind-1>=0 and val==S[ind-1]:
+            if ind-1>=0 and val==S[ind-1]:  # ensure uni-direction
                 continue
             self.get_subset(S[ind+1:], current+[val], result)
 

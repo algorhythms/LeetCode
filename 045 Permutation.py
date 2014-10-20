@@ -17,16 +17,16 @@ class Solution:
         self.get_permute(num, [], result)
         return result
 
-    def get_permute(self, nums, current, result):
-        length = len(nums)
+    def get_permute(self, seq, current, result):
+        length = len(seq)
         if length==0:
             result.append(current)
 
-        for ind, val in enumerate(nums):
+        for ind, val in enumerate(seq):
             # try:
-            self.get_permute(nums[:ind]+nums[ind+1:], current+[val], result)  # list(current).append(val) is side-effect
+            self.get_permute(seq[:ind]+seq[ind+1:], current+[val], result)  # list(current).append(val) is side-effect
             # except IndexError:
-            #     self.get_permute(nums[:ind], current+[val], result)
+            #     self.get_permute(seq[:ind], current+[val], result)
             # array slice out of index will return []
 
 if __name__=="__main__":

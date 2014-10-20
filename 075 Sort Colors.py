@@ -22,6 +22,9 @@ class Solution:
         """
         Algorithm: pivoting. Similar concept as QuickSort
         constant space
+
+        [W, R, B]
+
         :param A: a list of integers
         :return: nothing, sort in place
         """

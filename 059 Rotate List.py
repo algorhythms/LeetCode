@@ -42,15 +42,16 @@ class Solution:
         last = pre
 
         # normalize, since possible k > length
-        k = k%length
+        k = k%length  # k is length in nature
 
         # find breaking point
         count = 0
         pre = dummy
-        while count<length-k:
+        while count<length-k:  # you will appreciate python's half open range and 0-based index k
             count += 1
             pre = pre.next
 
+        # then do the manipulate in one group of operations (no loop)
         if k!=0: # avoid cyclic link
             pre.next, dummy.next, last.next = None, pre.next, dummy.next
 

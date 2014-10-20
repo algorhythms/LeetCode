@@ -96,6 +96,14 @@ class Solution:
     def mergeKLists(self, lists):
         """
         use heap
+        heap pointer
+
+        -------------------
+         |  |  |  |  |  |
+         |  |  |  |  |  |
+         |  |  |  |  |  |
+         |  |  |  |  |  |
+
         reference: https://github.com/leetcoders/Leetcode-Py/blob/master/Merge%20k%20Sorted%20Lists.py
         :param lists:
         :return:

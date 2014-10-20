@@ -41,10 +41,14 @@ class Solution:
         """
         hash_map = {}
         for ind, string in enumerate(strs):
-            string = "".join(sorted(string))
-            indexes = hash_map.get(string, [])
-            indexes.append(ind)  # side-effect
-            hash_map[string] = indexes  # reassign
+            string = "".join(sorted(string))  # string reversing and sorting are a little different
+            if string not in hash_map:
+                hash_map[string] = [ind]
+            else:
+                hash_map[string].append(ind)
+            # indexes = hash_map.get(string, [])
+            # indexes.append(ind)  # side-effect
+            # hash_map[string] = indexes  # reassign
 
         result = []
         for val in hash_map.values():

@@ -15,6 +15,8 @@ class Solution:
     def lengthOfLastWord(self, s):
         """
         String
+
+        ... what is the meaning of this question?
         :param s: string
         :return: integer
         """

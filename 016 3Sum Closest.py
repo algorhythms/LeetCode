@@ -8,7 +8,6 @@ the sum of the three integers. You may assume that each input would have exactly
 """
 __author__ = 'Danyang'
 class Solution:
-    # @return an integer
     def threeSumClosest(self, num, target):
         """
         Three pointers scanning algorithm

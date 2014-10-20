@@ -73,6 +73,8 @@ class Solution:
 
     def threeSum(self, num):
         """
+        Brute force first, then determine whether sorting time complexity exceeds the brute force
+
         Three pointers
         Algorithm:
         1. sort everything first

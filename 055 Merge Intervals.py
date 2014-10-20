@@ -58,7 +58,7 @@ class Solution:
         if not intervals:
             return []
 
-        intervals.sort(cmp=lambda a, b: a.start-b.start)
+        intervals.sort(cmp=lambda a, b: a.start-b.start)  # sort first, since time complexity less than brute force
         result = [intervals[0]]
         for cur in intervals[1:]:
             pre = result[-1]

@@ -48,6 +48,23 @@ class Solution:
 
         notice the boundary condition
 
+
+        Thought:
+        dfs, easy to come up, but high space complexity
+        thus, dp
+        f[i][j] represents s3[:i+j] comes from s1[:i] and s2[:j]
+        two possible conditions:
+        1. s[i+j] = s[i]
+        2. s[i+j] = s[j]
+        others are false
+
+        f[i][j] = f[i-1][j] if s3[i+j]==s1[i]
+                = f[i][j-1] if s3[i+j]==s2[j]
+                = false
+
+        :type s1: str
+        :type s2: str
+        :type s3: str
         :param s1:
         :param s2:
         :param s3:

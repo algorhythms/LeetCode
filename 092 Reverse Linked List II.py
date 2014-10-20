@@ -46,29 +46,35 @@ class Solution:
         start_pre = None
         start = None
 
-        cur = pre.next
+        cur = pre.next  # cannot put it in while loop? affect reverse link
         while pre.next:
             # record starting point
             if cnt==m:
                 start_pre = pre
                 start = cur
 
+            # reverse link (not node)
+            # 1 -> 2 -> 3
+            # 1 <- 2 -> 3
+            elif m<cnt<=n:
+                # temp = cur.next
+                # cur.next = pre
+                # pre = cur
+                # cur = temp
+
+                # cur.nex is assign first, left to right
+                cur.next, pre, cur = pre, cur, cur.next  # different from pre, cur, cur.next = cur, cur,next, pre
+                cnt += 1
+                continue
+
             # reconnect
-            if cnt==n+1:
+            elif cnt==n+1:
                 end = pre
                 start_pre.next = end
                 start.next = cur
                 break
 
-            # reverse
-            if m<cnt<=n:
-                # temp = cur.next
-                # cur.next = pre
-                # pre = cur
-                # cur = temp
-                cur.next, pre, cur = pre, cur, cur.next  # different from pre, cur, cur.next = cur, cur,next, pre
-                cnt += 1
-                continue
+
 
             pre = pre.next
             cur = cur.next

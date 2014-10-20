@@ -22,6 +22,7 @@ class Solution:
         dp[i] = (dp[i-1]) + optional(dp[i-2])
 
         notice the special handling for "0
+
         :param s: a string
         :return: an integer
         """
@@ -41,7 +42,7 @@ class Solution:
                 if 10<=int(s[i-2]+s[i-1])<27:
                     dp[i] += dp[i-2]
 
-            else:
+            else:  # 0 is special
                 if s[i-2] not in ("1", "2"):
                     return 0
                 else:

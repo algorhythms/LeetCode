@@ -24,35 +24,37 @@ class Solution:
         :param T: str
         :return: str
         """
-        min_window = [0, 1<<32]  # start end
+        min_window = [0, 1<<32]  # [start, end)
         w_chars = [0 for _ in range(256)]  # window
-        t_chars = [0 for _ in range(256)]  # 256 ascii
+        T_CHARS = [0 for _ in range(256)]  # 256 ascii, static
+        for char in T:
+            T_CHARS[ord(char)] += 1  # remain static after construction
+
         appeared_cnt = 0
         start_ptr = 0
-        for char in T:
-            t_chars[ord(char)] += 1
-
         for end_ptr in xrange(len(S)):
             # expand
             val = S[end_ptr]
-            if t_chars[ord(val)]>0:
+            if T_CHARS[ord(val)]>0:
                 w_chars[ord(val)] += 1
-            if t_chars[ord(val)]>0 and w_chars[ord(val)]<=t_chars[ord(val)]:
+            if T_CHARS[ord(val)]>0 and w_chars[ord(val)]<=T_CHARS[ord(val)]:
                 appeared_cnt += 1  # when to decrease appeared_cnt?
 
             # shrink
             if appeared_cnt==len(T):  # until find all
-                # while w_chars[ord(S[start_ptr])]>t_chars[ord(S[start_ptr])] or w_chars[ord(S[start_ptr])]<=0:
-                while w_chars[ord(S[start_ptr])]>t_chars[ord(S[start_ptr])] or t_chars[ord(S[start_ptr])]<=0:
-                    w_chars[ord(S[start_ptr])] -= 1
+                # while w_chars[ord(S[start_ptr])]>T_CHARS[ord(S[start_ptr])] or w_chars[ord(S[start_ptr])]<=0:
+                while w_chars[ord(S[start_ptr])]>T_CHARS[ord(S[start_ptr])] or T_CHARS[ord(S[start_ptr])]<=0:
+                    w_chars[ord(S[start_ptr])] -= 1  # if negative, it doesn't matter
                     start_ptr += 1
 
+                # after shrinking, still valid window
                 if min_window[1]-min_window[0]>end_ptr-start_ptr+1:
                     min_window[0], min_window[1] = start_ptr, end_ptr+1
 
         if min_window[1]==1<<32:
             return ""
-        return S[min_window[0]:min_window[1]]
+        else:
+            return S[min_window[0]:min_window[1]]
 
 if __name__=="__main__":
-    print Solution().minWindow("ADOBECODEBANC", "ABC")
+    assert Solution().minWindow("ADOBECODEBANC", "ABC")=="BANC"

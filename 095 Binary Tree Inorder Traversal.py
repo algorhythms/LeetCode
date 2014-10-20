@@ -23,11 +23,14 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    # @param root, a tree node
-    # @return a list of integers
     def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :param root:
+        :return: a list of integers
+        """
         lst = []
-        self.inorderTraverse(root, lst)
+        self.inorderTraverse_itr(root, lst)
         return lst
 
     def inorderTraverse(self, root, lst):
@@ -39,3 +42,32 @@ class Solution:
         self.inorderTraverse(root.left, lst)
         lst.append(root.val)
         self.inorderTraverse(root.right, lst)
+
+    def inorderTraverse_itr(self, root, lst):
+        """
+        iterative version
+        leftmost first in the lst
+        double loop
+
+        reference: http://fisherlei.blogspot.sg/2013/01/leetcode-binary-tree-inorder-traversal.html
+        :type root: TreeNode
+        :param root:
+        :param lst:
+        :return:
+        """
+        if not root:
+            return
+
+        cur = root
+        stk = []
+        while stk or cur:
+            while cur:
+                stk.append(cur)
+                cur = cur.left
+            cur = stk.pop()  # left_most
+            lst.append(cur.val)
+            cur = cur.right
+            # if cur.right:  # should go to next iteration
+            #     cur = cur.right
+            #     stk.append(cur)
+

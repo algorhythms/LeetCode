@@ -51,7 +51,7 @@ class Solution:
         n = len(board[0])
         next_positions = [(pre_row-1, pre_col), (pre_row+1, pre_col), (pre_row, pre_col-1), (pre_row, pre_col+1)]  # four directions
         for next_position in next_positions:
-            if 0<=next_position[0]<m and 0<=next_position[1]<n:
+            if 0<=next_position[0]<m and 0<=next_position[1]<n:  # pre-checking
                 if visited[next_position[0]][next_position[1]]==False and board[next_position[0]][next_position[1]]==word[0]:
                     visited[next_position[0]][next_position[1]] = True
                     if self.search(board, next_position[0], next_position[1], word[1:], visited):

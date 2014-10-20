@@ -20,10 +20,12 @@ isMatch("aab", "c*a*b") -> false
 """
 __author__ = 'Danyang'
 class Solution:
-    def isMatch(self, s, p):
+    def isMatch_MLE(self, s, p):
         """
         dp, similar to 011 Regular Expression Matching.
         Backward dp
+
+        but Memory Limit Exceeds
 
         :param s: tape, an input string
         :param p: pattern, a pattern string
@@ -54,12 +56,14 @@ class Solution:
 
         return dp[0][0]
 
-    def isMatch(self, s, p):
+    def isMatch_forward(self, s, p):
         """
+        "?" is not the problem
+        "*" is the problem
         Forward dp:
         dp starting from -1
         if pattern[j]!="*", dp[i][j] = dp[i-1][j-1] && tape[i] matches pattern[j]
-        if pattern[j]=="*", dp[i][j] = any(dp[m][j-1])
+        if pattern[j]=="*", dp[i][j] = any(dp[m][j-1])  w.r.t m
 
         Compact the 2-D dp to 1-D dp:
         iterate through j, since we only need know j-1 state, thus dropping the dimension for j in dp

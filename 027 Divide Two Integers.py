@@ -7,6 +7,7 @@ class Solution:
         """
         O(n lgn)
         use concept of binary
+        addition and substraction with 2^x
         :param dividend:
         :param divisor:
         :return: integer

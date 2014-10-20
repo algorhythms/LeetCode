@@ -13,6 +13,7 @@ class Solution:
 
         Algorithm: forward scanning & backward scanning, pointers algorithm
         O(n)
+        dp, store the max
 
         :param A: a list of integers
         :return: an integer

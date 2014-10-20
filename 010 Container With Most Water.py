@@ -25,6 +25,7 @@ class Solution:
             max_area = max(area, max_area)
 
             # move the shorter boarder
+            # move two pointers
             if height[start]<height[end]:
                 start += 1
             else:

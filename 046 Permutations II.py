@@ -9,6 +9,7 @@ __author__ = 'Danyang'
 class Solution:
     def permuteUnique_TLE(self, num):
         """
+        list to set
         Time Limit Exceeded
         :param num: a list of integer
         :return: a list of lists of integers
@@ -29,6 +30,7 @@ class Solution:
 
     def permuteUnique(self, num):
         """
+        Jump
         compared to 045 Permutation, two lines added: sort and continue
         :param num: a list of integer
         :return: a list of lists of integers
@@ -43,7 +45,7 @@ class Solution:
             result.append(current)
 
         for ind, val in enumerate(nums):
-            if ind>0 and val==nums[ind-1]: continue  # JUMP
+            if ind-1>=0 and val==nums[ind-1]: continue  # JUMP; only need to compare to previous value
             self.get_permute(nums[:ind]+nums[ind+1:], current+[val], result)
 
 if __name__=="__main__":

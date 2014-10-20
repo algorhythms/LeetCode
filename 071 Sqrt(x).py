@@ -10,6 +10,7 @@ class Solution:
         Newton's method
         x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} \
 
+        http://en.wikipedia.org/wiki/Newton's_method
         :param x: Integer
         :return: Integer
         """

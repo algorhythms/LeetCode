@@ -54,8 +54,8 @@ class Solution:
                 continue
 
             min_h = val
-            global_max = max(global_max, val*1)
-            for j in xrange(ind, -1, -1):
+            global_max = max(global_max, min_h*1)
+            for j in xrange(ind, -1, -1):  # scanning backward
                 min_h = min(min_h, height[j])
                 current_area = min_h*(ind-j+1)
                 global_max = max(global_max, current_area)
@@ -105,7 +105,8 @@ class Solution:
 
     def largestRectangleArea(self, height):
         """
-        O(n)
+        O(2*n)
+        every bar at most enter the stack once and is popped out once.
 
         Algorithm: Stack.
         Keep a stack storing the bars increasing order, then calculate the area by popping out the stack to get the
@@ -117,6 +118,8 @@ class Solution:
         When calculate the area: area = height[last]*( i-(inc_stack[-1]+1) ) rather than area = height[last] * (i-last),
         since originally from inc_stack[-1]+1 to last are higher bars already popped out, which should be included in
         the calculation.
+
+        pay attention to corner case
 
         reference: http://fisherlei.blogspot.sg/2012/12/leetcode-largest-rectangle-in-histogram.html
         :param height: a list of int
@@ -134,19 +137,19 @@ class Solution:
             if not inc_stack or height[i]>=height[inc_stack[-1]]:
                 inc_stack.append(i)
                 i += 1
-            else:
-                last = inc_stack.pop()
+            else: # if inc_stack and height[i]<height[inc_stack[-1]]
+                last = inc_stack.pop()  # the area calculation is triggered when the bar is popped out
                 if inc_stack:
                     area = height[last]*(i-(inc_stack[-1]+1))
                 else:
-                    area = height[last]*i
+                    area = height[last]*i  # corner case
                 global_max = max(global_max, area)
 
         # after processing all heights, process the remaining stack
         while inc_stack:
             last = inc_stack.pop()
             if inc_stack:
-                area = height[last]*( i-(inc_stack[-1]+1) )
+                area = height[last]*(i-(inc_stack[-1]+1))
             else:
                 area = height[last]*i
             global_max = max(global_max, area)

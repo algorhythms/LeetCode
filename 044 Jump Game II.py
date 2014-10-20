@@ -15,7 +15,7 @@ __author__ = 'Danyang'
 class Solution:
     def jump_TLE(self, A):
         """
-        dfs
+        bfs
         :param A: a list of integers
         :return: integer, minimum number of jumps
         """
@@ -42,8 +42,10 @@ class Solution:
 
     def jump(self, A):
         """
-        Simplified dfs, use pointers to scan the array.
+        Simplified bfs, use pointers to scan the array.
         Algorithm: Two Pointers
+
+        gmax, record the max reachable index (absolute position) from the sliding window
         :param A: a list of integers
         :return: integer, minimum number of jumps
         """
@@ -52,15 +54,15 @@ class Solution:
 
         start = 0
         end = 1  # max reach [0, 1)
-        current_max = 0
+        gmax = 0
         while end<length:  # when end==length, it has already reached the last item
             if not start<end: return 0  # avoid dead loop
             for i in xrange(start, end):
-                current_max = max(current_max, A[i]+i)
+                gmax = max(gmax, A[i]+i)
 
             counter += 1
             start = end
-            end = current_max+1
+            end = gmax+1
 
         return counter
 

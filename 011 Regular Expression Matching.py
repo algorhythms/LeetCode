@@ -20,7 +20,9 @@ __author__ = 'Danyang'
 class Solution:
     def isMatch_error(self, s, p):
         """
-        Using FSA? It is complicated to build
+        Using FSA? It is complicated to build compared to 066 Valid Number, since you have to construct the transition
+        table from the pattern
+
         Algorithm: simple pointer
 
         :param s:
@@ -67,6 +69,8 @@ class Solution:
     def isMatch_TLE(self, s, p):
         """
         Algorithm: dfs, advancing the tape
+        "." is not a problem
+        "*" is the problem
 
         :param s:
         :param p:
@@ -79,6 +83,7 @@ class Solution:
         index = 0
         state = 0
 
+        # dfs terminal condition
         if not tape and not regex:
             return True
         # if not s and p or s and not p:
@@ -92,13 +97,13 @@ class Solution:
                 return False
 
         if state+1<len(regex) and regex[state+1]=="*":
-            if tape[index]==regex[state] or regex[state]==".":
+            if tape[index]==regex[state] or regex[state]==".":  # consume tokens
                 return self.isMatch(tape[index+1:], regex[state:]) or \
                        self.isMatch(tape[index+1:], regex[state+2:]) or \
                        self.isMatch(tape[index:], regex[state+2:])
             else:
                 return self.isMatch(tape[index:], regex[state+2:])
-        else:
+        else:  # without trailing *
             if tape[index]==regex[state] or regex[state]==".":
                 return self.isMatch(tape[index+1:], regex[state+1:])
             else:
@@ -109,6 +114,7 @@ class Solution:
         Algorithm: dfs, advancing the tape  --> dp
 
         dp, similar to the dfs solution
+        backward dp
 
           . * a * a -
         b
@@ -119,6 +125,7 @@ class Solution:
         -
 
         define dp[i][j] = tape[i:] and regex[j:] are matched
+        So what is the state and how is the state transferred?
         :param s:
         :param p:
         :return: boolean
@@ -147,12 +154,12 @@ class Solution:
             for j in xrange(n-1, -1, -1):
                 if regex[j]=="*":
                     if j-1>=0 and regex[j-1]!="*":
-                        dp[i][j] = dp[i][j+1]
+                        dp[i][j] = dp[i][j+1]  # skip
                     else:
                         return False  # two consecutive *
                 elif j+1<n and regex[j+1]=="*":
                     if tape[i]==regex[j] or regex[j]==".":
-                        dp[i][j] = dp[i][j+2] or dp[i+1][j] or dp[i+1][j+2]
+                        dp[i][j] = dp[i][j+2] or dp[i+1][j] or dp[i+1][j+2]  # what is done in dfs
                     else:
                         dp[i][j] = dp[i][j+2]
                 else:
@@ -160,6 +167,8 @@ class Solution:
                         dp[i][j] = dp[i+1][j+1]
                     else:
                         dp[i][j] = False
+
+        # notice that in edge cases and normal cases, checking conditions are exactly the same
 
         return dp[0][0]
 

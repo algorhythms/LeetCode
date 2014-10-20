@@ -56,7 +56,7 @@ class Solution:
 
     def solve(self, board, i, j):
         """
-
+        dfs
         :param board: a 9x9 2D array
         :return: Boolean
         """
@@ -67,7 +67,7 @@ class Solution:
 
         if board[i][j]==".":
             for num in range(1, 10):
-                num_str = str(num)
+                num_str = str(num)  # try number
                 # To speed up, use condition short-curcit.
                 # row, col, square
                 if all([board[i][col]!=num_str for col in xrange(9)]) and \
@@ -75,7 +75,7 @@ class Solution:
                         all([board[i/3*3+count/3][j/3*3+count%3]!=num_str for count in xrange(9)]):
                     board[i][j] = num_str
                     if not self.solve(board, i, j+1):
-                        board[i][j] = "."
+                        board[i][j] = "."  # restore, backtrack, save space
                     else:
                         return True
         else:

@@ -29,7 +29,7 @@ class Solution:
             if current<=0 or current>length or A[current-1]==current:  # out-of-range or in-place
                 i += 1
             else:
-                A[current-1], A[i] = current, A[current-1]
+                A[current-1], A[i] = current, A[current-1]   # go to the next iteration
 
 
         for i in xrange(length):
