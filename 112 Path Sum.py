@@ -24,7 +24,7 @@ class TreeNode:
 class Solution:
     def hasPathSum(self, root, sum):
         """
-        DFS
+        dfs
 
         :param root: TreeNode
         :param sum: int
@@ -44,6 +44,7 @@ class Solution:
         if sum==0 and root.left is None and root.right is None:
             return True
 
+        # dfs without pre-checking
         return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
 
 

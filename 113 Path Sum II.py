@@ -31,12 +31,11 @@ class Solution:
         :param sum: integer
         :return: a list of lists of integers
         """
-        cur_path = []
-        lst = []
-        self.accumulatePathSum(root, sum, cur_path, lst)
-        return lst
+        result = []
+        self.accumulatePathSum(root, sum, [], result)
+        return result
 
-    def accumulatePathSum(self, root, sum, cur_path, lst):
+    def accumulatePathSum(self, root, sum, cur_path, result):
         """
         DFS
         Similar to previous path sum
@@ -45,14 +44,13 @@ class Solution:
         if not root:
             return
 
-
         sum = sum - root.val
         cur_path.append(root.val)
-
         # terminal condition
         if sum==0 and root.left is None and root.right is None:
-            lst.append(list(cur_path))  # new copy
+            result.append(list(cur_path))  # new copy
             return
 
-        self.accumulatePathSum(root.left, sum, list(cur_path), lst)  # new copy
-        self.accumulatePathSum(root.right, sum, list(cur_path), lst)  # new copy
+        # dfs with pre-checking
+        if root.left: self.accumulatePathSum(root.left, sum, list(cur_path), result)  # new copy
+        if root.right: self.accumulatePathSum(root.right, sum, list(cur_path), result)  # new copy

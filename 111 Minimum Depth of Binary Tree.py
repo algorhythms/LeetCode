@@ -24,7 +24,7 @@ class Solution:
         DFS
         """
         if not root:
-            return depth
+            return depth  # whether -1 or not depends on whether depth starts from 0 or 1
         if root.left is None and root.right is not None:
             return self.fathom(root.right, depth+1)
         if root.right is None and root.left is not None:

@@ -29,6 +29,15 @@ class Solution:
         i 0 0 0 0 0 0 3 3
         t 0 0 0 0 0 0 0 3
 
+
+        Thought:
+        (in this case, S as the vertical line, T as the horizontal line
+        f[i][j] is the number of distant subsequences of T[:j] in S[:i]
+        f[i][j] is at least f[i-1][j]
+        if S[i]==T[j]:
+        transit from f[i-1][j-1] (if you delete both S[i] and T[j])
+        f[i][j] += f[i-1][j-1]
+
         :param S: string
         :param T: string
         :return: integer

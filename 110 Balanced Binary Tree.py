@@ -37,5 +37,5 @@ class Solution:
         DFS
         """
         if not root:
-            return depth
+            return depth-1  # test cases
         return max(self.fathom(root.left, depth + 1), self.fathom(root.right, depth + 1))

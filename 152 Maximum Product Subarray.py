@@ -54,6 +54,7 @@ class Solution:
     def maxProduct(self, A):
         """
         dp, collect number of negative number (notice 0).
+        negative number and 0 will be special in this question
 
         two pointers, sliding window
 
@@ -97,8 +98,8 @@ class Solution:
                 if A[start_ptr]<0:
                     cur /= A[start_ptr]
                     start_ptr += 1
-                if start_ptr==end_ptr:
-                    cur = 0
+                if start_ptr==end_ptr:  # consider A=[-2, 0, -1] when processing [-1]
+                    cur = 0 # otherwise 1
                     
             global_max = max(global_max, cur)
 

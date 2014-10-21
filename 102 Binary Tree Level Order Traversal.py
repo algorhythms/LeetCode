@@ -39,16 +39,15 @@ class Solution:
 
         while q:
             length = len(q)
-            cur_level = []
+            # cur_level = []
             for i in range(length):
                 cur = q[i]
-                cur_level.append(cur.val)
                 if cur.left:
                     q.append(cur.left)
                 if cur.right:
                     q.append(cur.right)
+            result.append(map(lambda x: x.val, q[:length]))  # no need to create a new list
             q = q[length:]  # no need to create a new list
-            result.append(cur_level)
         return result
 
 if __name__=="__main__":

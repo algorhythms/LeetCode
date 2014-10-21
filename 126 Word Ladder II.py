@@ -152,6 +152,8 @@ class Solution_TLE2:
         """
         bfs
 
+        Most straightforward solution by using data structure
+
         hem -> hex -> tex -> ted
         hem -> tem -> tex -> ted
 
@@ -162,7 +164,7 @@ class Solution_TLE2:
         :param dict: set
         :return: a list of lists of strings
         """
-        dict |= {end}
+        dict |= {end}  # set
         result = []
         lower_cases = 'abcdefghijklmnopqrstuvwxyz'
 

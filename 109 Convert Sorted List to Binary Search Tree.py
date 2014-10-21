@@ -17,7 +17,9 @@ class ListNode:
 
 class Solution:
     # class attribute to keep trace the currently processing nodes
-    current_node = None
+    # current_node = None
+    def __init__(self):
+        self.current_node = None  # !important, avoid time complexity of look up
 
     def sortedListToBST(self, head):
         """

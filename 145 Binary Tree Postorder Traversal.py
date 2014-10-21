@@ -24,6 +24,7 @@ class Solution:
     def postorderTraversal(self, root):
         """
         dfs
+        Recursive post-order traversal is trivial. What is the iteration version for this
         :param root: TreeNode
         :return: a list of int
         """
@@ -45,22 +46,25 @@ class Solution:
         """
         stack = [L, R, cur]
 
+        double stacks
+
         :param root:
         :param lst:
         :return:
         """
         if not root:
             return
-        stack = [root]
-        while stack:
-            cur = stack.pop()
+        stk = [root]
+        while stk:
+            cur = stk.pop()
+            lst.insert(0, cur.val)  # reversely insert
             if cur.left:
-                stack.append(cur.left)
+                stk.append(cur.left)
 
             if cur.right:
-                stack.append(cur.right)
+                stk.append(cur.right)
 
-            lst.insert(0, cur.val)  # reversely insert
+
 
 
 

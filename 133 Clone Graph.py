@@ -73,7 +73,7 @@ class Solution:
         if not node:
             return
 
-        original2copy = {} # dict
+        original2copy = {} # dict  #!important
         q = [node]  # queue of nodes whose the neighbors are to be copied
 
         clone = UndirectedGraphNode(node.label)

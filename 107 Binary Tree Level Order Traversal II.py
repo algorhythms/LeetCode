@@ -37,7 +37,7 @@ class Solution:
         next_level = [root]
         while next_level:
             current_level = next_level
-            result.insert(0, [element.val for element in current_level])  # current level, only difference with Binary Tree Level Order Traversal I
+            result.insert(0, map(lambda x: x.val, current_level))  # current level, only difference with Binary Tree Level Order Traversal I
 
             next_level = []
             for element in current_level:

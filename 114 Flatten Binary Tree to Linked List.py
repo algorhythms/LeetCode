@@ -33,9 +33,11 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
+    def __repr__(self):
+        return repr(self.val)
 
 class Solution:
-    def flatten(self, root):
+    def flatten_data_structure(self, root):
         """
 
         :param root: TreeNode
@@ -68,4 +70,57 @@ class Solution:
         self.dfs_traverse(root.left, lst)
         self.dfs_traverse(root.right, lst)
 
+    def flatten(self, root):
+        """
+        pre-order should be easy
+        flatten left subtree
+        flatten right subtree
+        root->left->right
+
+        in-order is harder to flatten
+        http://fisherlei.blogspot.sg/2012/12/leetcode-flatten-binary-tree-to-linked.html
+        :param root:
+        :return:
+        """
+        if not root:
+            return None
+
+
+        left_last = self.get_last(root.left)
+
+        left = self.flatten(root.left)
+        right = self.flatten(root.right)
+
+        # left_last = left
+        # while left_last and left_last.right:
+        #     left_last = left_last.right
+
+        root.left = None
+        if left:
+            root.right = left
+            left_last.right = right
+        else:
+            root.right = right
+        return root
+
+    def get_last(self, root):
+        """
+        pre-order last
+        :param root:
+        :return:
+        """
+        if not root:
+            return None
+        if not root.left and not root.right:
+            return root
+        if root.right:
+            return self.get_last(root.right)
+        else:
+            return self.get_last(root.left)
+
+if __name__=="__main__":
+    node1 = TreeNode(1)
+    node2 = TreeNode(2)
+    node1.left = node2
+    Solution().flatten(node1)
 

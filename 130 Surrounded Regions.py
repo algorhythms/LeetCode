@@ -17,6 +17,7 @@ X O X X
 """
 __author__ = 'Danyang'
 CONNECTED = 'C'
+directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 class Solution:
     def solve(self, board):
         """
@@ -39,28 +40,16 @@ class Solution:
             if board[0][j]=='O': q.append((0, j))
             if board[m-1][j]=='O': q.append((m-1, j))
 
-        i = 0
-        while i<len(q): # dynamically expanding, no deletion of elements
-            cor = q[i]
-            board[cor[0]][cor[1]]=CONNECTED
-            try: # left
-                if board[cor[0]][cor[1]-1]=='O': q.append((cor[0], cor[1]-1))
-            except IndexError:
-                pass
-            try: # right
-                if board[cor[0]][cor[1]+1]=='O': q.append((cor[0], cor[1]+1))
-            except IndexError:
-                pass
-            try: # up
-                if board[cor[0]-1][cor[1]]=='O': q.append((cor[0]-1, cor[1]))
-            except IndexError:
-                pass
-            try: # down
-                if board[cor[0]+1][cor[1]]=='O': q.append((cor[0]+1, cor[1]))
-            except IndexError:
-                pass
 
-            i += 1
+        while q: # dynamically expanding, no deletion of elements
+            cor = q.pop()
+            board[cor[0]][cor[1]]=CONNECTED  # cannot be both "O" and CONNECTED
+            for direction in directions:
+                row = cor[0]+direction[0]
+                col = cor[1]+direction[1]
+                if 0<=row<m and 0<=col<n and board[row][col]=='O':
+                    q.append((row, col))
+
 
         for i in xrange(m):
             for j in xrange(n):

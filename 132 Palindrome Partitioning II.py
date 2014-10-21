@@ -164,6 +164,7 @@ class Solution:
 
         when drawing the matrix, you will find it difficult to construct it at one shot (especially, vertical line)
 
+
         To avoid TLE, use 1-d dp instead of 2-d dp
         D[i] represents #cut for s[i:length+1]
         if s[i:j] is palindrome and we need #cut for s[j:] is D[j], then
@@ -171,7 +172,7 @@ class Solution:
 
         To avoid TLE, use dp for determination of palindrome
         Determine s[i:k+1] is palindrome:
-        dp2[i, k+1] = dp2[i+1, k] && s[i]==s[k]
+        pan[i, k+1] = pan[i+1, k] && s[i]==s[k]
 
         * another algorithm is dfs with global_min
         * to tell s[i:k+1] whether it is palindrome can be optimized by dp
@@ -183,29 +184,29 @@ class Solution:
 
         length = len(s)
         # palindrome dp
-        dp2 = [[False for _ in xrange(length+1)] for _ in xrange(length+1)]
+        pan = [[False for _ in xrange(length+1)] for _ in xrange(length+1)]
         for i in xrange(length+1):
             try:
-                dp2[i][i] = True
-                dp2[i][i+1] = True
+                pan[i][i] = True
+                pan[i][i+1] = True
             except IndexError:
                 pass
 
         for i in xrange(length, -1, -1):
             for j in xrange(i+2, length+1):
                 try:
-                    dp2[i][j] = dp2[i+1][j-1] and s[i]==s[j-1]
+                    pan[i][j] = pan[i+1][j-1] and s[i]==s[j-1]
                 except IndexError:
-                    dp2[i][j] = True
+                    pan[i][j] = True
 
         # min cut dp
         D = [length-i-1 for i in xrange(length)]  # max is all cut
         for i in xrange(length-1, -1, -1):
-            if dp2[i][length]:
+            if pan[i][length]:
                 D[i] = 0
             else:
                 for j in xrange(i+1, length):
-                    if dp2[i][j]:
+                    if pan[i][j]:
                         D[i] = min(D[i], D[j]+1)
         return D[0]
 

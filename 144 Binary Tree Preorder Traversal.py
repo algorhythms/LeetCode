@@ -45,6 +45,7 @@ class Solution:
         stack = [R, L, cur]
 
         Pretty simple using stack
+        double stacks
 
         :param root:
         :param lst:
@@ -52,15 +53,15 @@ class Solution:
         """
         if not root:
             return
-        stack = [root]
-        while stack:
-            node = stack.pop()
+        stk = [root]
+        while stk:
+            node = stk.pop()
             lst.append(node.val)
             if node.right:  # right first
-                stack.append(node.right)
+                stk.append(node.right)
 
             if node.left:
-                stack.append(node.left)
+                stk.append(node.left)
 
 
 
