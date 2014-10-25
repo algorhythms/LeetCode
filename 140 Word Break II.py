@@ -64,12 +64,7 @@ class Solution:
         """
         # reached, build the result from cur_sentence
         if cur_index==0:
-            string_builder = ""
-            for i in range(len(cur_sentence)-1, -1, -1):
-                string_builder += cur_sentence[i]
-                if i!=0:
-                    string_builder += " "
-            result.append(string_builder)
+            result.append(" ".join(cur_sentence[::-1]))
             return
 
         # dfs
