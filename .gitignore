@@ -233,3 +233,5 @@ uwsgi_params
 .idea/
 *.eml
 *.iml
+
+doc/
