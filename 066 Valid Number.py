@@ -26,7 +26,10 @@ class Solution:
 
     def isNumber(self, s):
         """
-        FSA
+        D-FSA: Deterministic Finite State Automata
+        Transition table T, which is constructed from FSA
+
+        state = T[state, token]
 
         Draw the diagram for FSA
         :param s:
