@@ -49,8 +49,11 @@ class Solution:
     def pow(self, x, n):
         """
         O(log n)
-        Algorithm: math, x^n = (x^2)^(n/2)
-
+        Algorithm: math, Exponentiation by Squaring
+        
+        Basically: x^n = (x^2)^(n/2)
+        More formally: x^n = x^(n/2) * x^(n/2) * x^(n%2)
+        
         :param x: float
         :param n: integer
         :return: float
