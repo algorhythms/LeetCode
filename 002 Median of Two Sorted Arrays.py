@@ -9,7 +9,6 @@ class Solution:
         Merge two arrays to get the median, O((m+n)/2)
 
         Algorithm: Find k-th element in 2 array
-        O(log (m+n)), thus binary search. (Time complexity is: O(log m + log n) actually)
 
         A: A_left A[m/2] A_right
         B: B_left B[n/2] A_right
@@ -19,6 +18,9 @@ class Solution:
         if A[m/2]<=B[n/2] and k<=m/2+n/2, then disregard B_right and B[n/2]
 
         whether to disregard A[m/2] or B[n/2] takes time to consider
+        
+        T(N) = T(3/4 N) + O(1), thus T(N) = O(lg N) where N = |A|+|B|
+        O(log (m+n)), thus binary search.
 
         :param A: list
         :param B: list
