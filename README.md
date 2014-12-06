@@ -56,7 +56,3 @@ I am just writing the code for the sake of doing it, since there's lots of fun i
                         ..=====+++++++++=.
                               ..~+=...
 ```
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/zhangdanyangg/leetcode/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
