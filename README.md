@@ -17,13 +17,13 @@ Indexed by chronological order: [Link](http://deepreader.io/LeetCode/problem_lis
 ### Feedback
 Welcome to raise an issue [here](https://github.com/zhangdanyangg/LeetCode/issues) if you have any feedback.
 
-### Notes
-Failed attempts are kept in the source code, which are annotated as TLE (Time Limit Exceeds) or MLE (Memory Limit Exceeds).
+### Notes: TLE & MLE
+Failed attempts are kept in the source code as documentation, which are annotated as TLE (Time Limit Exceeds) or MLE (Memory Limit Exceeds).
 
 ### Completion
 Questions: 155/155 completed
 
-###Miscellaneous
+### Miscellaneous
 Practice  
 I am just writing the code for the sake of doing it, since there's lots of fun in learning and writing.  
 
