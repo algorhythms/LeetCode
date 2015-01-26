@@ -11,6 +11,10 @@ class Solution:
         Algorithm 2:
         Similar to 082 Largest Rectangle in Histogram with additional height calculation
         Scanning row by row. (possible to use another dp)
+        
+        Algorihtm 3:
+        Without using stack, keep two dp arrays
+        https://github.com/algorhythms/LeetCode-Java/blob/master/src/MaximalRectangle/Solution.java
 
         reference: http://shanjiaxin.blogspot.sg/2014/05/maximal-rectangle-leetcode.html
         :param matrix: a list of lists of char
