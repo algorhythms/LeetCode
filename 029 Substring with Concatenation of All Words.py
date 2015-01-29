@@ -16,8 +16,8 @@ class Solution:
         Time limit exceeded
 
         Algorithm
-        1. brutal force scanning: O(n*(l*k)
-        2. sliding window: O(n*k))
+        1. brutal force scanning: O(n*(l*k))
+        2. sliding window: O(n*k)
         n: len(S)
         l: len(L)
         k: len(L[0])
