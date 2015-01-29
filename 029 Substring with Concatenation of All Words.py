@@ -85,6 +85,9 @@ class Solution:
         a1[a3a2a1]a3a4a5
         a1a3[a2a1a3]a4a5
 
+        Notice:
+        1. notice "aaaaaaaa" ["aa", "aa", "aa"]; sometimes cannot jump the whole word
+
         :param S: String
         :param L: a list of string
         :return: a list of integer
@@ -104,48 +107,54 @@ class Solution:
 
         Lmap_original = dict(Lmap)
 
-        result = []
-        window_t = -1  # [0, t), no need start_ptr
-        window = []
+        ret = []
+        win_e = -1  # [0, t), no need start_ptr
+        working_win = []
         i = 0
-        while i<=len(S)-k:
+        while i<len(S):
             # test window
-            if len(window)==l:
-                result.append(window_t-l*k)
+            if len(working_win)==l:
+                ret.append(win_e-l*k)
+                candidate = win_e-l*k+1
+                if S[candidate:candidate+k] in Lmap:
+                    win_e = -1
+                    i = candidate
+                    Lmap = dict(Lmap_original)
+                    working_win = []
 
             word = S[i:i+k]
             # case 1, match one in L
             if word in Lmap and Lmap[word]>0:
-                window.append(word)
+                working_win.append(word)
                 Lmap[word] -= 1
-                window_t = i+k
+                win_e = i+k
                 i += k
 
             # case 2, no match
             elif word not in Lmap:
-                if window:
-                    i = window_t-len(window)*k+1  # going to window start+1  # cannot jump
+                if working_win:
+                    i = win_e-len(working_win)*k+1  # going to window start+1  # cannot jump
                 else:
                     i += 1
 
-                window = []
-                window_t = -1
+                working_win = []
+                win_e = -1
                 Lmap = dict(Lmap_original)
 
             # case 3, mach one in L not used up
             elif word in Lmap and Lmap[word]==0:
-                for j in xrange(0, window.index(word)+1):  # kind of prefix suffix concepts
-                    Lmap[window[j]] += 1  # restore
-                window = window[window.index(word)+1:]
-                window.append(word)
+                for j in xrange(0, working_win.index(word)+1):  # kind of prefix suffix concepts
+                    Lmap[working_win[j]] += 1  # restore
+                working_win = working_win[working_win.index(word)+1:]
+                working_win.append(word)
                 Lmap[word] -= 1
-                window_t = i+k
+                win_e = i+k
                 i += k
 
-        if len(window)==l:  # when reaching the end, assert Solution().findSubstring("a", ["a"])==[0]
-            result.append(window_t-l*k)
+        if len(working_win)==l:  # when reaching the end, assert Solution().findSubstring("a", ["a"])==[0]
+            ret.append(win_e-l*k)
 
-        return result
+        return ret
 
 if __name__=="__main__":
     assert Solution().findSubstring("abababab", ["a","b","a"])==[0,2,4]
