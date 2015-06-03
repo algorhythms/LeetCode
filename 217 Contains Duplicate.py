@@ -13,9 +13,6 @@ class Solution:
         :type nums: list[int]
         :rtype : bool
         """
-        if not nums:
-            return False
-
         d = Counter(nums)
         for k, v in d.items():
             if v > 1:
