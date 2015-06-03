@@ -21,7 +21,7 @@ Welcome to raise an issue [here](https://github.com/zhangdanyangg/LeetCode/issue
 Failed attempts are kept in the source code as documentation, which are annotated as TLE (Time Limit Exceeds) or MLE (Memory Limit Exceeds).
 
 ### Completion
-Questions: 155/155 completed
+Questions: 155/221 completed
 
 ### Miscellaneous
 Practice  
