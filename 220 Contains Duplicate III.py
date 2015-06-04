@@ -14,7 +14,7 @@ class Solution:
         * In terms of index difference, since there are i-k and i+k, when scanning from left to right, only consider i-k.
 
         Alternative algorithms:
-        Window + TreeSet (Java) / SortedSet (C++)  # TODO 
+        Window + TreeSet (Java) / SortedSet (C++)  # TODO
 
         :type nums: list[int]
         :rtype: bool
