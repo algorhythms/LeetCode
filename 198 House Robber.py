@@ -14,7 +14,7 @@ class Solution:
         """
         DP
         O(n)
-        f_i = max(f_{i-1}, f_{i-2} + A[i]
+        f_i = max(f_{i-1}, f_{i-2} + A[i])
         """
         n = len(nums)
         f = [0 for _ in xrange(n+2)]
