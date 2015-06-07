@@ -20,16 +20,17 @@ class TreeNode:
 class Solution:
     def countNodes(self, root):
         """
-        TLE 
+        TLE, but it seems to be OJ issues
+        O((lg n)^2)
         """
         if not root:
             return 0
         h = self.get_height(root)
         h_r = self.get_height(root.right)
         if h == h_r+1:
-            return 1<<(h-1)-1+1+self.countNodes(root.right)  # left_tree nodes + root + right_tree nodes
+            return 2**(h-1)-1+1+self.countNodes(root.right)  # left_tree nodes + root + right_tree nodes
         else:
-            return 1<<(h-2)-1+1+self.countNodes(root.left)  # right_tree nodes + root + left_tree nodes
+            return 2**(h-2)-1+1+self.countNodes(root.left)  # right_tree nodes + root + left_tree nodes
 
     def get_height(self, cur):
         h = 0  # depth starting from 0
@@ -90,6 +91,7 @@ class Solution_TLE:
             return 0
 
         return 1+self.countNodes(root.left)+self.countNodes(root.right)
+
 
 if __name__ == "__main__":
     pass
