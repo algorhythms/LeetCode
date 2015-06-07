@@ -48,11 +48,3 @@ class Solution:
 
 if __name__ == "__main__":
     assert Solution().maximumGap([1, 1000]) == 999
-
-
-
-
-
-
-
-
