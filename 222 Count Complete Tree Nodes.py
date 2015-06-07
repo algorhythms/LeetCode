@@ -20,7 +20,6 @@ class TreeNode:
 class Solution:
     def countNodes(self, root):
         """
-        TLE, but it seems to be OJ issues
         O((lg n)^2)
         """
         if not root:
