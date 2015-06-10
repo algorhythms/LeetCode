@@ -27,8 +27,7 @@ class Solution:
         for i in xrange(1, n+1):
             f[i] = f[i-1]+nums[i-1]
 
-        b = 0
-        e = 1
+        b, e = 0, 1
         mini = sys.maxint
         while e <= n:
             if f[e]-f[b] >= s:
@@ -36,6 +35,7 @@ class Solution:
                 b += 1
             else:
                 e += 1
+
         if mini == sys.maxint:
             mini = 0
 
@@ -43,5 +43,5 @@ class Solution:
 
 
 if __name__ == "__main__":
-    print Solution().minSubArrayLen(7, [2, 3, 1, 2, 4, 3])
+    assert Solution().minSubArrayLen(7, [2, 3, 1, 2, 4, 3]) == 2
 
