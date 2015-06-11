@@ -19,9 +19,9 @@ class Stack:
     def __init__(self):
         """
         initialize your data structure here.
+        One queue cannot mimic the stack, then you should use two queues.
         """
         self.q = [[], []]
-
 
     def push(self, x):
         """
