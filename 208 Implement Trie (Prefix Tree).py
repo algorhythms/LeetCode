@@ -21,7 +21,7 @@ class Trie:
         """
         Notice:
         * When insert new word, do not override the existing TrieNode
-        * A flag to indicate whether there is a word ending here. 
+        * A flag to indicate whether there is a word ending here.
         """
         self.root = TrieNode()
 
