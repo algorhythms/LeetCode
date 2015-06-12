@@ -17,6 +17,8 @@ __author__ = 'Daniel'
 class Solution:
     def findRepeatedDnaSequences(self, s):
         """
+        Limited space of possible values --> rewrite hash function
+
         "A": 0 (00)
         "C": 1 (01)
         "G": 2 (10)
