@@ -6,6 +6,8 @@ one share of the stock multiple times). However, you may not engage in multiple 
 must sell the stock before you buy again).
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def maxProfit(self, prices):
         """
@@ -17,7 +19,7 @@ class Solution:
         :param prices: list of integers
         :return: integer
         """
-        if len(prices)<=1:
+        if len(prices) <= 1:
             return 0
 
         delta_prices = []  # \delta
@@ -27,7 +29,7 @@ class Solution:
         # O(n)
         profit = 0
         for i in xrange(len(delta_prices)):
-            if delta_prices[i]>0:
+            if delta_prices[i] > 0:
                 profit += delta_prices[i]
 
         return profit

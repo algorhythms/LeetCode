@@ -5,6 +5,8 @@ If you were only permitted to complete at most one transaction (ie, buy one and 
 algorithm to find the maximum profit.
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def maxProfit(self, prices):
         """
@@ -18,7 +20,7 @@ class Solution:
         :param prices: a list of integer
         :return: integer, max profit
         """
-        if len(prices)<=1:
+        if len(prices) <= 1:
             return 0
         delta_prices = []
         for i in xrange(1, len(prices)):
@@ -29,14 +31,14 @@ class Solution:
         max_sub_array = 0
         current_sub_array = 0
         for j in xrange(len(delta_prices)):
-            if current_sub_array+delta_prices[j]>=0:
+            if current_sub_array+delta_prices[j] >= 0:
                 current_sub_array += delta_prices[j]
             else:
                 current_sub_array = 0
             max_sub_array = max(max_sub_array, current_sub_array)
 
-
         return max_sub_array
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     print Solution().maxProfit([3, 2, 1, 4, 5, 6, 2])
