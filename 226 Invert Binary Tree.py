@@ -29,7 +29,7 @@ class TreeNode:
 
 
 class Solution:
-    def invertTree_recursive(self, root):
+    def invertTree_recur(self, root):
         """
         :type root: TreeNode
         :rtype: TreeNode
@@ -37,8 +37,8 @@ class Solution:
         if not root:
             return None
 
-        self.invertTree(root.left)
-        self.invertTree(root.right)
+        self.invertTree_recur(root.left)
+        self.invertTree_recur(root.right)
         root.left, root.right = root.right, root.left
         return root
 
