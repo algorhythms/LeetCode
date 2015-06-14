@@ -35,10 +35,10 @@ from collections import defaultdict, namedtuple
 import heapq
 
 
-class HeightLine:
+class HeightLine(object):
     def __init__(self, height):
         self.height = height
-        self.deleted = False
+        self.deleted = False  # lazy deletion
 
     def __cmp__(self, other):
         # Reverse order by height to get max-heap
