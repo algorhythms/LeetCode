@@ -35,57 +35,57 @@ from collections import defaultdict, namedtuple
 import heapq
 
 
-class HeightLine(object):
-    def __init__(self, height):
-        self.height = height
+class Building(object):
+    def __init__(self, h):
+        self.h = h
         self.deleted = False  # lazy deletion
 
     def __cmp__(self, other):
         # Reverse order by height to get max-heap
-        assert isinstance(other, HeightLine)
-        return other.height - self.height
+        assert isinstance(other, Building)
+        return other.h - self.h
 
 # An event represents the buildings that start and end at a particular
 # x-coordinate.
-Event = namedtuple('Event', 'start end')
+Event = namedtuple('Event', 'starts ends')
 
 
 class Solution:
     def getSkyline(self, buildings):
         """
         Sweep line
-        Treat a builting as entering line and leaving line
+        Treat a building as entering line and leaving line
         :type buildings: list[list[int]]
         :rtype: list[list[int]]
         """
         # Map from x-coordinate to event.
-        events = defaultdict(lambda: Event(start=[], end=[]))
+        events = defaultdict(lambda: Event(starts=[], ends=[]))
         for left, right, height in buildings:
-            hl = HeightLine(height)
-            events[left].start.append(hl)  # possible multiple building at the same x-coordinate.
-            events[right].end.append(hl)
+            building = Building(height)
+            events[left].starts.append(building)  # possible multiple building at the same x-coordinate.
+            events[right].ends.append(building)
 
-        standing_h = []  # Heap of buildings currently standing.
+        cur_heap = []  # Heap of buildings currently standing.
         cur_max_h = 0  # current max height of standing buildings.
         ret = []
         # Process events in order by x-coordinate.
         for x, event in sorted(events.items()):  # sort the dictionary by key
-            for hl in event.start:
-                heapq.heappush(standing_h, hl)
-            for hl in event.end:
-                hl.deleted = True
+            for building in event.starts:
+                heapq.heappush(cur_heap, building)
+            for building in event.ends:
+                building.deleted = True
 
             # Pop any finished buildings from the top of the heap.
             # To avoid using multiset - lazy deletion.
-            while standing_h and standing_h[0].deleted:
-                heapq.heappop(standing_h)
+            while cur_heap and cur_heap[0].deleted:
+                heapq.heappop(cur_heap)
 
             # Top of heap (if any) is the highest standing building, so
             # its height is the current height of the skyline.
-            h = standing_h[0].height if standing_h else 0
+            new_h = cur_heap[0].h if cur_heap else 0
 
-            if h != cur_max_h:
-                cur_max_h = h
+            if new_h != cur_max_h:
+                cur_max_h = new_h
                 ret.append([x, cur_max_h])
 
         return ret
