@@ -35,7 +35,6 @@ class Solution:
         else:
             return self.kthSmallest(root.left, k)
 
-
     def cnt(self, root):
         if not root:
             return 0
