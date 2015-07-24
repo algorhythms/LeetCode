@@ -16,14 +16,15 @@ class ListNode:
 class Solution:
     def deleteNode(self, node):
         """
-        Only access to the node to be deleted. 
+        Only access to the node to be deleted.
         :param node: ListNode
         :return: None, Do not return anything, modify node in-place instead.
         """
-        pre = node
-        while pre.next.next:
-            pre.val = pre.next.val
-            pre = pre.next
+        cur = node
+        while cur.next:
+            cur.val = cur.next.val
+            if not cur.next.next:
+                cur.next = None
+                break
 
-        pre.val = pre.next.val
-        pre.next = None
+            cur = cur.next
