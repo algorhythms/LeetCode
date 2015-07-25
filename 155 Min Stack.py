@@ -8,6 +8,8 @@ getMin() -- Retrieve the minimum element in the stack.
 Stack Data Structure
 """
 __author__ = 'Danyang'
+
+
 class MinStack:
     def __init__(self):
         """
@@ -32,20 +34,17 @@ class MinStack:
         :return: int
         """
         self.stk.append(x)
-        if len(self.non_asc)==0 or x<=self.non_asc[-1]:  # rather than <
+        if len(self.non_asc) == 0 or x <= self.non_asc[-1]:  # rather than <
             self.non_asc.append(x)
-
 
     def pop(self):
         """
 
-        :return: nothin
+        :return: nothing
         """
         x = self.stk.pop()
-        if x==self.non_asc[-1]:
+        if x == self.non_asc[-1]:
             self.non_asc.pop()
-
-
 
     def top(self):
         """

@@ -34,18 +34,19 @@ class Solution:
             n = len(matrix[0])
 
             lst = [matrix[i][0] for i in xrange(m)]
-            row = self.bisect(lst, target)
-            for i in range(row, -1, -1):
-                if matrix[row][-1] >= target:
-                    col = self.bisect(matrix[i], target)
-                    if matrix[i][col] == target:
-                        return True
+            row_by_first = self.bisect(lst, target)
+            lst = [matrix[i][-1] for i in xrange(m)]
+            row_by_last = self.bisect(lst, target, False)
+            for i in range(row_by_first, row_by_last-1, -1):
+                col = self.bisect(matrix[i], target)
+                if matrix[i][col] == target:
+                    return True
 
             return False
         except IndexError:
             return False
 
-    def bisect(self, A, t):
+    def bisect(self, A, t, lower=True):
         lo = 0
         hi = len(A)
         while lo < hi:
@@ -56,9 +57,10 @@ class Solution:
                 lo = mid+1
             else:
                 hi = mid
-
-        return lo-1
-
+        if lower:
+            return lo-1
+        else:
+            return lo
 
 if __name__ == "__main__":
     assert Solution().searchMatrix([[1, 4], [2, 5]], 4) == True
