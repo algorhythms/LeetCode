@@ -20,5 +20,3 @@ Welcome to raise an issue [here](https://github.com/idf/LeetCode/issues) if you 
 ### Notes: TLE & MLE
 Failed attempts are kept in the source code as documentation, which are annotated as TLE (Time Limit Exceeds) or MLE (Memory Limit Exceeds).
 
-### Completion
-Questions: 195+/210 completed
