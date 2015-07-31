@@ -2,6 +2,8 @@
 Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing all ones and return its area.
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def maximalRectangle(self, matrix):
         """
@@ -12,7 +14,7 @@ class Solution:
         Similar to 082 Largest Rectangle in Histogram with additional height calculation
         Scanning row by row. (possible to use another dp)
         
-        Algorihtm 3:
+        Algorithm 3:
         Without using stack, keep two dp arrays
         https://github.com/algorhythms/LeetCode-Java/blob/master/src/MaximalRectangle/Solution.java
 
@@ -34,7 +36,7 @@ class Solution:
         dp_height[0] = map(lambda x: int(x), matrix[0])
         for i in xrange(1, m):
             for j in xrange(n):
-                if matrix[i][j]=="1":
+                if matrix[i][j] == "1":
                     dp_height[i][j] = 1+dp_height[i-1][j]
                 else:
                     dp_height[i][j] = 0
@@ -62,12 +64,11 @@ class Solution:
 
         return global_max
 
-
     def get_height(self, matrix, row, col):
         # possible replace by dp; otherwise TLE
         height = 0
         for i in xrange(row, -1, -1):
-            if matrix[row][col]=="0":
+            if matrix[row][col] == "0":
                 break
             height += 1
         return height
