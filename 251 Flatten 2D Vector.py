@@ -15,7 +15,6 @@ class Vector2D:
         self.i = 0
         self.j = 0
 
-
     def next(self):
         """
 
@@ -37,6 +36,5 @@ class Vector2D:
         while self.i < len(self.vec2d) and self.j >= len(self.vec2d[self.i]):
             self.i += 1
             self.j = 0
-
 
         return self.i < len(self.vec2d) and self.j < len(self.vec2d[self.i])
