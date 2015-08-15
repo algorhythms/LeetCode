@@ -14,8 +14,19 @@ class Solution:
         :rtype: list[list[int]]
         """
         ret = []
-        self.dfs_TLE(n, [], ret)
+        self.dfs(n, [], ret)
         return ret
+
+    def dfs(self, n, cur, ret):
+        if n > 1 and cur and len(cur) >= 1:
+            ret.append(list(cur)+[n])
+
+        start = cur[-1] if cur else 2
+        for i in xrange(start, int(sqrt(n))+1):
+            if n%i == 0:
+                cur.append(i)
+                self.dfs(n/i, cur, ret)
+                cur.pop()
 
     def dfs_TLE(self, n, cur, ret):
         if n == 1 and cur and len(cur) >= 2:
@@ -31,6 +42,7 @@ class Solution:
                 cur.append(i)
                 self.dfs_TLE(n/i, cur, ret)
                 cur.pop()
+
 
 if __name__ == "__main__":
     print Solution().getFactors(8)
