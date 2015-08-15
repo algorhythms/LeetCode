@@ -14,10 +14,34 @@ class Solution:
         :rtype: list[list[int]]
         """
         ret = []
-        self.dfs(n, [], ret)
+        self.dfs([n], ret)
         return ret
 
-    def dfs(self, n, cur, ret):
+    def dfs(self, cur, ret):
+        """
+        16
+
+        get factors of cur[-1]
+        [16]
+        [2, 8]
+        [2, 2, 4]
+        [2, 2, 2, 2]
+
+        [4, 4]
+        """
+        if len(cur) > 1:
+            ret.append(list(cur))
+
+        n = cur.pop()
+        start = cur[-1] if cur else 2
+        for i in xrange(start, int(sqrt(n))+1):
+            if n%i == 0:
+                cur.append(i)
+                cur.append(n/i)
+                self.dfs(cur, ret)
+                cur.pop()
+
+    def dfs2(self, n, cur, ret):
         if n > 1 and cur and len(cur) >= 1:
             ret.append(list(cur)+[n])
 
@@ -45,4 +69,4 @@ class Solution:
 
 
 if __name__ == "__main__":
-    print Solution().getFactors(8)
+    print Solution().getFactors(16)
