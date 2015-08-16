@@ -20,6 +20,8 @@ class Solution:
         num = a0 * 10^0 + a1*10^1 + a2*10^2 ...
         addDigits(num) = a0 + a1 + a2 ... = num%9
 
+        Formal name: digital root
+
         :type num:
         :rtype: int
         """
