@@ -5,6 +5,8 @@ Note:
 Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def singleNumber_optimal(self, A):
         """
@@ -13,22 +15,26 @@ class Solution:
         GF(3) http://en.wikipedia.org/wiki/Finite_field_arithmetic
         reference: https://oj.leetcode.com/discuss/857/constant-space-solution#a2542
 
-        consider 4-bit numbers:
+        Consider 4-bit numbers:
         0000
         0001
         0010
         ...
         1111
 
-        add the bit VERTICALLY, then result would be abcd where a, b, c, d can be any number, not just binary. a, b, c,
-        d can be divided by 3. Until here, you can use a list to hold a, b, c, d, but it can be optimized further.
+        Add (not AND) the bit VERTICALLY, then result would be abcd where a, b, c, d can be any number, not just binary.
+        a, b, c, d can be divided by 3 if the all element appears three times. Until here, you can use a list to hold a,
+        b, c, d. To further optimize the space, use bits instead of list.
 
+        bit_2 is from adding elmt previously appears once (now twice) and subtracting elmt previously appearance twice
+         (now three times)
+        bit_1 is from adding elmt previously does not appear (now once) and subtracting elmt previously appearance once
+         (now twice)
+        bit_0 is from adding elmt previously appears twice (now three times) and subtracting elmt previously appearance
+         three times (now once)
 
-        This solution is easy to understand and also general enough for appearance of n times
+        This solution is general enough for appearance of n times
 
-        bit_2 is from adding elmt previously appears once (now twice) and subtracting elmt previously appearance twice (now three times)
-        bit_1 is from adding elmt previously does not appear (now once) and subtracting elmt previously appearance once (now twice)
-        bit_0 is from adding elmt previously appears twice (now three times) and subtracting elmt previously appearance three times (now once)
         :param A: a list of int
         :return: int
         """
