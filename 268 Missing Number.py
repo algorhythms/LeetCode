@@ -1,5 +1,5 @@
 """
-iven an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
 
 For example,
 Given nums = [0, 1, 3] return 2.
@@ -14,6 +14,13 @@ __author__ = 'Daniel'
 class Solution(object):
     def missingNumber(self, nums):
         """
+        Algorithm: 
+        Hashmap but use the array itself as the hashmap
+
+        Notice:
+        nums[i], nums[nums[i]] = nums[nums[i]], nums[i]
+        Above is wrong, since evaluate from left to right; thus, when nums[nums[i]] on RHS is None, on LHS, nums[i] is
+        eval to None and nums[nums[i]] indexes by None, causing errors.
         :type nums: List[int]
         :rtype: int
         """
@@ -23,14 +30,13 @@ class Solution(object):
         i = 0
         while i < n:
             if nums[i] == n:
-               num_n = nums[i]
-               nums[i] = None
-               i += 1
+                num_n = nums[i]
+                nums[i] = None
+                i += 1
 
             elif nums[i] is not None and nums[i] != i:
                 j = nums[i]
                 nums[i], nums[j] = nums[j], nums[i]
-                # nums[i], nums[nums[i]] = nums[nums[i]], nums[i]
 
             else:
                 i += 1
@@ -39,6 +45,7 @@ class Solution(object):
             return n
 
         return nums.index(None)
+
 
 if __name__ == "__main__":
     assert Solution().missingNumber([2, 0]) == 1
