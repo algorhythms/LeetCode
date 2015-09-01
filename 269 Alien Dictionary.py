@@ -18,11 +18,10 @@ class Solution(object):
 
         for k in V.keys():
             if k not in visited:
-                if not self.topoligical_dfs(V, k, visited, marked, ret):
+                if not self.topological_dfs(V, k, visited, marked, ret):
                     return ""
 
         return "".join(reversed(ret))
-
 
     def construct_graph(self, words, up, down, ptr, V):
         """
@@ -31,7 +30,7 @@ class Solution(object):
         :param down: lower bound + 1
         :param ptr: starting index for the char in the word
         :param V: Vertices
-        :return: whether contains cycles
+        :return: None
         """
         i = up
         while i < down:
@@ -51,14 +50,22 @@ class Solution(object):
 
                 i = j
 
-    def topoligical_dfs(self, V, cur, visited, marked, ret):
+    def topological_dfs(self, V, cur, visited, marked, ret):
+        """
+        :param V: Vertices HashMap
+        :param cur: currently visiting letter
+        :param visited: visited letters
+        :param marked: marked predecessor in the path
+        :param ret: the path, ordered  topologically
+        :return: whether contains cycles 
+        """
         if cur in marked:
             return False
 
         marked.add(cur)
         for nei in V[cur]:
             if nei not in visited:
-                if not self.topoligical_dfs(V, nei, visited, marked, ret):
+                if not self.topological_dfs(V, nei, visited, marked, ret):
                     return False
 
         marked.remove(cur)
