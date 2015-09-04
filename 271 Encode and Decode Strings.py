@@ -65,7 +65,7 @@ class Codec_error(object):
         """
         Encodes a list of strings to a single string.
 
-        This algorithm contains bugs if \\x00 exits in the original string  
+        This algorithm contains bugs if \\x00 exits in the original string
 
         :type strs: List[str]
         :rtype: str
