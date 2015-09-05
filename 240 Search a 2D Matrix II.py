@@ -24,6 +24,7 @@ __author__ = 'Daniel'
 class Solution:
     def searchMatrix(self, matrix, target):
         """
+        Multiple round of binary search
 
         :type matrix: list[int][int]
         :type target: int

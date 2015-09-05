@@ -8,9 +8,7 @@ import sys
 __author__ = 'Daniel'
 
 
-class WordDistance:
-    #
-    # @param {string[]} words
+class WordDistance(object):
     def __init__(self, words):
         """
         initialize your data structure here.

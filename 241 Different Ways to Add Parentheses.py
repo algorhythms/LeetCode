@@ -29,6 +29,7 @@ __author__ = 'Daniel'
 class Solution:
     def diffWaysToCompute(self, input):
         """
+        Looping + Divide & Conquer
 
         :type: input
         :rtype: list[]

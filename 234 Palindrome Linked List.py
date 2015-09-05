@@ -18,7 +18,7 @@ class Solution:
         """
         Algorithms:
         1. put into array O(N)
-        2. midpoint, reverse the other
+        2. midpoint, reverse the other - O(n) time and O(1) space
 
         :type head: ListNode
         :rtype: bool

@@ -7,7 +7,7 @@ from bisect import bisect_left
 __author__ = 'Daniel'
 
 
-class Solution:
+class Solution(object):
     def shortestWordDistance(self, words, word1, word2):
         """
         :type words: list[str]

@@ -13,6 +13,9 @@ __author__ = 'Daniel'
 
 
 class Node(object):
+    """
+    Data structure is key
+    """
     def __init__(self, origin, q):
         self.origin = origin
         self.q = q

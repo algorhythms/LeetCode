@@ -11,6 +11,10 @@ __author__ = 'Daniel'
 class Solution:
     def countDigitOne(self, n):
         """
+        Count the 1 occurrences at the digit i, due to:
+        1. the digits higher than the currently counting digits
+        2. the digits lower than the currently counting digits
+
         Divide the question into smaller parts, count appearance at 1LSD, 2LSD, 3LSD respectively.
         :type n: int
         :rtype: int

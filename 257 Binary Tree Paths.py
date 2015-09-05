@@ -54,3 +54,14 @@ class Solution:
             self.dfs(cur.right, path, ret)
             path.pop()  # pop the shared path
 
+    def dfs_path(self, cur, path, ret):
+        if not cur:
+            return
+
+        path.append(cur)
+        if not cur.left and not cur.right:
+            ret.append("->".join(map(lambda x: str(x.val), path)))
+
+        self.dfs_path(cur.left, path, ret)
+        self.dfs_path(cur.right, path, ret)
+        path.pop()
