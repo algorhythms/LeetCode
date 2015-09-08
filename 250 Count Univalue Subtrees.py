@@ -18,7 +18,6 @@ class Solution:
 
     def countUnivalSubtrees(self, root):
         """
-
         :type root: TreeNode
         :rtype: int
         """
@@ -34,9 +33,7 @@ class Solution:
         if (not is_left or not is_right or
                     cur.left and cur.left.val != cur.val or
                     cur.right and cur.right.val != cur.val):
-            is_uni = False
+            return False
         else:
-            is_uni = True
-            self.cnt += 1
-
-        return is_uni
+            self.cnt += 1  # for currently visiting node as the root of subtree.
+            return True

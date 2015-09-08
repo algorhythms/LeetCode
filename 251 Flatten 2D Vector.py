@@ -7,7 +7,6 @@ __author__ = 'Daniel'
 class Vector2D:
     def __init__(self, vec2d):
         """
-
         :type vec2d: list[list[int]]
         :type: None
         """
@@ -29,7 +28,7 @@ class Vector2D:
 
     def hasNext(self):
         """
-
+        This function structures the two pointers.
         :rtype: bool
         """
         # update

@@ -15,7 +15,7 @@ class Solution(object):
     def missingNumber(self, nums):
         """
         Algorithm:
-        Hashmap but use the array itself as the hashmap
+        Hashmap, but to save space, use the array itself as the hashmap
 
         Notice:
             nums[i], nums[nums[i]] = nums[nums[i]], nums[i]

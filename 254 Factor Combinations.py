@@ -21,6 +21,8 @@ class Solution:
         """
         16
 
+        The currently processing factor in stored in cur list as the last element
+
         get factors of cur[-1]
         [16]
         [2, 8]
@@ -35,7 +37,7 @@ class Solution:
         n = cur.pop()
         start = cur[-1] if cur else 2
         for i in xrange(start, int(sqrt(n))+1):
-            if n%i == 0:
+            if n % i == 0:
                 cur.append(i)
                 cur.append(n/i)
                 self.dfs(cur, ret)
