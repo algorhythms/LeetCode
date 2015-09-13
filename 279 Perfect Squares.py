@@ -12,19 +12,32 @@ __author__ = 'Daniel'
 class Solution(object):
     def numSquares(self, n):
         """
-        DP
+        bfs
         :type n: int
         :rtype: int
         """
-        F = [i for i in xrange(n+1)]
-        for i in xrange(0, n+1):
-            for j in xrange(1, int(math.sqrt(n-i))+1):
-                if i+j*j <= n:
-                    F[i+j*j] = min(F[i+j*j], F[i]+1)
-                else:
-                    break
+        q = [0]
+        visited = [False for _ in xrange(n+1)]
 
-        return F[n]
+        level = 0
+        while q:
+            level += 1
+            l = len(q)
+            for i in xrange(l):
+                for j in xrange(1, int(math.sqrt(n))+1):
+                    nxt = q[i]+j*j
+                    if nxt <= n and visited[nxt]:
+                        continue
+                    elif nxt < n:
+                        visited[nxt] = True
+                        q.append(nxt)
+                    elif nxt == n:
+                        return level
+                    else:
+                        break
+            q = q[l:]
+
+        return None
 
     def numSquares_TLE(self, n):
         """
@@ -42,4 +55,4 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    print Solution().numSquares(13)
+    assert Solution().numSquares(6) == 3
