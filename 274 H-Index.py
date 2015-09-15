@@ -17,6 +17,47 @@ __author__ = 'Daniel'
 class Solution(object):
     def hIndex(self, citations):
         """
+        Reverse mapping & DP
+        Determine the range of h-index 
+        Chunk by n
+        Let F[i] be the number of paper with >= i citations
+        :type citations: List[int]
+        :rtype: int
+        """
+        n = len(citations)
+        F = [0 for _ in xrange(n+1)]
+        for elt in citations:
+            if elt >= n:  # chunk
+                F[n] += 1
+            else:
+                F[elt] += 1
+
+        if F[n] >= n:
+            return n
+
+        for i in xrange(n-1, -1, -1):
+            F[i] += F[i+1]
+            if F[i] >= i:
+                return i
+
+        return 0
+
+    def hIndex_sort(self, citations):
+        """
+        Algorithm forward sort
+        :type citations: List[int]
+        :rtype: int
+        """
+        n = len(citations)
+        citations.sort()
+        for i in xrange(n):
+            if citations[i] >= n-i:
+                return n-i
+
+        return 0
+
+    def hIndex_reverse_sort(self, citations):
+        """
         Algorithm sort
         :type citations: List[int]
         :rtype: int
@@ -31,3 +72,6 @@ class Solution(object):
                 break
 
         return h
+
+if __name__ == "__main__":
+    print Solution().hIndex([3, 0, 6, 1, 5])
