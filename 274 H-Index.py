@@ -18,7 +18,7 @@ class Solution(object):
     def hIndex(self, citations):
         """
         Reverse mapping & DP
-        Determine the range of h-index 
+        Determine the range of h-index
         Chunk by n
         Let F[i] be the number of paper with >= i citations
         :type citations: List[int]
@@ -74,4 +74,4 @@ class Solution(object):
         return h
 
 if __name__ == "__main__":
-    print Solution().hIndex([3, 0, 6, 1, 5])
+    assert Solution().hIndex([3, 0, 6, 1, 5]) == 3
