@@ -7,7 +7,7 @@ __author__ = 'Daniel'
 class Solution(object):
     def hIndex(self, citations):
         """
-        From linear search into bin search 
+        From linear search into bin search
         :type citations: List[int]
         :rtype: int
         """
