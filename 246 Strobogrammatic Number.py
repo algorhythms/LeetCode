@@ -14,7 +14,6 @@ class Solution:
             "0": "0"
         }
 
-
     def isStrobogrammatic(self, num):
         """
 

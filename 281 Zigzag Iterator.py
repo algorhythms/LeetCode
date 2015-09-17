@@ -35,7 +35,7 @@ class ZigzagIterator(object):
         """
         if not self.hasNext():
             raise StopIteration
-        
+
         ret = self.mat[self.i][self.j]
         self.i += 1
         self._reposition()
