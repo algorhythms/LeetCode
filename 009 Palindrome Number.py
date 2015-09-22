@@ -2,6 +2,8 @@
 Determine whether an integer is a palindrome. Do this without extra space.
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def isPalindrome(self, x):
         """
@@ -12,20 +14,19 @@ class Solution:
         :param x: int
         :return: boolean
         """
-        if x<0:
+        if x < 0:
             return False
 
         # find order of magnitude
         div = 1
-        while x/div>=10:
+        while x/div >= 10:
             div *= 10  # without touch x
 
+        while x > 0:
+            msb = x/div
+            lsb = x%10
 
-        while x>0:
-            msb = x / div
-            lsb = x % 10
-
-            if msb!=lsb:
+            if msb != lsb:
                 return False
 
             # shrink
@@ -37,5 +38,5 @@ class Solution:
         return True
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     Solution().isPalindrome(2147483647)

@@ -13,6 +13,8 @@ roman2int = {
     "D": 500,
     "M": 1000
 }
+
+
 class Solution:
     def romanToInt(self, s):
         """
@@ -23,7 +25,7 @@ class Solution:
         """
         result = 0
         for ind, val in enumerate(s):
-            if ind>0 and roman2int[val]>roman2int[s[ind-1]]:  # e.g. XIV
+            if ind > 0 and roman2int[val] > roman2int[s[ind-1]]:  # e.g. XIV
                 result -= roman2int[s[ind-1]]  # reverse last action
                 result += roman2int[val]-roman2int[s[ind-1]]
             else:

@@ -12,6 +12,8 @@ string convert(string text, int nRows);
 convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def convert(self, s, nRows):
         """
@@ -24,7 +26,7 @@ class Solution:
         matrix = [[] for _ in xrange(nRows)]
 
         i = 0
-        while i<length:
+        while i < length:
             try:
                 # going down
                 for j in xrange(nRows):
@@ -42,5 +44,6 @@ class Solution:
         lst = ["".join(element) for element in matrix]
         return "".join(lst)
 
-if __name__=="__main__":
-    assert Solution().convert("ABCD", 2)=="ACBD"
+
+if __name__ == "__main__":
+    assert Solution().convert("ABCD", 2) == "ACBD"

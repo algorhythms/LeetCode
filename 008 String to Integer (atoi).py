@@ -8,6 +8,8 @@ Notes: It is intended for this problem to be specified vaguely (ie, no given inp
 all the input requirements up front.
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def atoi(self, str):
         """
@@ -26,7 +28,7 @@ class Solution:
         # clean up leading sign
         sign = 1
         if str[0] in ("+", "-"):
-            if str[0]=="-":
+            if str[0] == "-":
                 sign = -1
             str = str[1:]
 
@@ -37,7 +39,7 @@ class Solution:
         # ignore the non-digit appended behind
         # The string can contain additional characters after those that form the integral number,
         # which are ignored and have no effect on the behavior of this function
-        for ind, val in enumerate(str): # find the 1st non-digit
+        for ind, val in enumerate(str):  # find the 1st non-digit
             if not val.isdigit():
                 str = str[:ind]
                 break
@@ -54,8 +56,8 @@ class Solution:
 
         # return sign*sum, and pay attention to the C constraints
         result = sign*sum
-        if result>INT_MAX:
+        if result > INT_MAX:
             return INT_MAX
-        if result<INT_MIN:
+        if result < INT_MIN:
             return INT_MIN
         return result

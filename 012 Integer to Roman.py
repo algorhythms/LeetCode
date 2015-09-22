@@ -23,6 +23,7 @@ int2roman = {
     1000: "M"
 }
 
+
 class Solution:
     def intToRoman(self, num):
         """
@@ -37,7 +38,7 @@ class Solution:
 
         # starting from the largest
         for component in reversed(components):  # reversed
-            while num>=component:
+            while num >= component:
                 string_builder.append(int2roman[component])
                 num -= component
 

@@ -12,6 +12,8 @@ The solution set must not contain duplicate triplets.
     (-1, -1, 2)
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def threeSum_duplicate(self, num):
         """
@@ -30,11 +32,11 @@ class Solution:
         result = []
         for i in xrange(len(num)):
             for j in xrange(i, len(num)):
-                target = 0 - num[i] - num[j]
+                target = 0-num[i]-num[j]
                 if target not in reverse_map:
                     continue
                 for index in reverse_map[target]:
-                    if i!=index and j!=index:
+                    if i != index and j != index:
                         result.append([num[i], num[j], target])
                         break
         return result
@@ -55,7 +57,6 @@ class Solution:
             else:
                 reverse_map[val].append(ind)
 
-
         result = {}
         for i in xrange(len(num)):
             for j in xrange(i, len(num)):
@@ -63,10 +64,10 @@ class Solution:
                 if target not in reverse_map:
                     continue
                 for index in reverse_map[target]:
-                    if index!=i and index!=j:
+                    if index != i and index != j:
                         lst = sorted([num[i], num[j], target])
                         lst = tuple(lst)
-                        result[lst] = 1 # hash
+                        result[lst] = 1  # hash
                         break
 
         return result.keys()
@@ -97,36 +98,32 @@ class Solution:
         result = []
         num.sort()  # sorting first, avoid duplicate,
         i = 0
-        while i<len(num)-2:
+        while i < len(num)-2:
             j = i+1
             k = len(num)-1
-            while j<k:
+            while j < k:
                 lst = [num[i], num[j], num[k]]
-                if sum(lst)==0:
+                if sum(lst) == 0:
                     result.append(lst)
                     k -= 1
                     j += 1
                     # JUMP remove duplicate
-                    while j<k and num[j]==num[j-1]:
+                    while j < k and num[j] == num[j-1]:
                         j += 1
-                    while j<k and num[k]==num[k+1]:
+                    while j < k and num[k] == num[k+1]:
                         k -= 1
-                elif sum(lst)>0:
+                elif sum(lst) > 0:
                     k -= 1
                 else:
                     j += 1
 
             i += 1
             # remove duplicate
-            while i<len(num)-2 and num[i]==num[i-1]:
+            while i < len(num)-2 and num[i] == num[i-1]:
                 i += 1
 
         return result
 
 
-
-
-
-
-if __name__=="__main__":
+if __name__ == "__main__":
     print Solution().threeSum([-1, 0, 1, 2, -1, -4])

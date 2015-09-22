@@ -4,6 +4,8 @@ substring without repeating letters for "abcabcbb" is "abc", which the length is
 is "b", with the length of 1.
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def lengthOfLongestSubstring(self, s):
         """
@@ -21,7 +23,7 @@ class Solution:
 
         start = 0  # pointer
         for ind, val in enumerate(s):
-            if visited_last_index[ord(val)]==-1:
+            if visited_last_index[ord(val)] == -1:
                 longest = max(longest, (ind)-start+1)
             else:
                 longest = max(longest, (ind-1)-start+1)

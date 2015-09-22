@@ -5,20 +5,22 @@ Example1: x = 123, return 321
 Example2: x = -123, return -321
 """
 __author__ = 'Danyang'
-class Solution:
+
+
+class Solution(object):
     def reverse(self, x):
         """
         Sign for preserving negative number of positive number
         :param x: int
         :return: int
         """
-        sign = -1 if x<0 else 1  # preserve the sign first
+        sign = -1 if x < 0 else 1  # preserve the sign first
         x *= sign
 
         # eliminated leading zero in the reversed integer
         while x:
-            if x%10==0:
-                x/=10
+            if x%10 == 0:
+                x /= 10
             else:
                 break
 
@@ -30,6 +32,7 @@ class Solution:
         x = int(x)
         return sign*x
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     print Solution().reverse(123)
 

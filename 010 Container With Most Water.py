@@ -6,6 +6,8 @@ container, such that the container contains the most water.
 Note: You may not slant the container.
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def maxArea(self, height):
         """
@@ -20,13 +22,13 @@ class Solution:
         end = len(height)-1
 
         max_area = -1<<32
-        while start<end:
-            area = min(height[start], height[end]) * (end-start)
+        while start < end:
+            area = min(height[start], height[end])*(end-start)
             max_area = max(area, max_area)
 
             # move the shorter boarder
             # move two pointers
-            if height[start]<height[end]:
+            if height[start] < height[end]:
                 start += 1
             else:
                 end -= 1

@@ -7,7 +7,8 @@ Output: 7 -> 0 -> 8
 """
 
 __author__ = 'Danyang'
-# Definition for singly-linked list.
+
+
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -16,6 +17,7 @@ class ListNode:
     def __repr__(self):
         # for debugging
         return repr(self.val)
+
 
 class Solution:
     def addTwoNumbers(self, l1, l2):
@@ -34,8 +36,8 @@ class Solution:
         cur2 = l2
         cur = result_head
         while cur1 or cur2:
-            cur.val = cur.val + self.addNode(cur1, cur2)
-            if cur.val<10:
+            cur.val = cur.val+self.addNode(cur1, cur2)
+            if cur.val < 10:
                 if cur1 and cur1.next or cur2 and cur2.next:  # next node
                     cur.next = ListNode(0)
             else:
@@ -64,9 +66,10 @@ class Solution:
             return node2.val
         if not node2:
             return node1.val
-        return node1.val + node2.val
+        return node1.val+node2.val
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     l1s = [ListNode(1)]
     l2s = [ListNode(9), ListNode(9)]
     for i in range(len(l1s)-1):
