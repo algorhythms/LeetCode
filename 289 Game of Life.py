@@ -28,7 +28,7 @@ class Solution(object):
 
     def gameOfLife(self, board):
         """
-        B3/S23
+        B3/S23, born 3 stays 2 or 3
 
         In-place solution
         1. Line buffer, directional, main the entires for previous state.
@@ -61,8 +61,3 @@ class Solution(object):
                     board[i][j] &= 1
                 else:
                     board[i][j] = 0
-
-
-
-
-
