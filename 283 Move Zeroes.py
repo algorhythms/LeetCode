@@ -15,6 +15,19 @@ __author__ = 'Daniel'
 class Solution(object):
     def moveZeroes(self, nums):
         """
+        Pivot
+        """
+        left = -1
+        for i in xrange(len(nums)):
+            if nums[i] != 0:
+                left += 1
+                nums[left], nums[i] = nums[i], nums[left]
+
+
+class SolutionCount(object):
+    def moveZeroes(self, nums):
+        """
+        In-place
         :type nums: List[int]
         :rtype: void Do not return anything, modify nums in-place instead.
         """
