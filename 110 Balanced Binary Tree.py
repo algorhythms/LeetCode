@@ -5,14 +5,49 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
 every node never differ by more than 1.
 """
 __author__ = 'Danyang'
-# Definition for a  binary tree node
-class TreeNode:
+
+
+class TreeNode(object):
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
 
-class Solution:
+
+class Solution(object):
+    def __init__(self):
+        self.depth_bottom = {}
+
+    def isBalanced(self, root):
+        self.fathom(root, 0)
+        return self._is_balanced(root, 0)
+
+    def _is_balanced(self, cur, depth):
+        """
+        :param depth: depth from root to current node.
+        """
+        if not cur:
+            return True
+
+        h1 = h2 = depth
+        if cur.left: h1 = self.depth_bottom[cur.left]
+        if cur.right: h2 = self.depth_bottom[cur.right]
+
+        if abs(h1 - h2) > 1:
+            return False
+
+        return all([self._is_balanced(cur.left, depth+1), self._is_balanced(cur.right, depth+1)])
+
+    def fathom(self, root, depth):
+        if not root:
+            return depth-1
+
+        ret = max(self.fathom(root.left, depth+1), self.fathom(root.right, depth+1))
+        self.depth_bottom[root] = ret
+        return ret
+
+
+class Solution_slow(object):
     def isBalanced(self, root):
         """
         pre-order traversal
@@ -22,7 +57,7 @@ class Solution:
         """
         if not root:
             return True
-        if abs(self.fathom(root.left, 0)-self.fathom(root.right, 0))>1:
+        if abs(self.fathom(root.left, 0)-self.fathom(root.right, 0)) > 1:
             return False
 
         if self.isBalanced(root.left) and self.isBalanced(root.right):
@@ -30,12 +65,10 @@ class Solution:
         else:
             return False
 
-
-
     def fathom(self, root, depth):
         """
         DFS
         """
         if not root:
             return depth-1  # test cases
-        return max(self.fathom(root.left, depth + 1), self.fathom(root.right, depth + 1))
+        return max(self.fathom(root.left, depth+1), self.fathom(root.right, depth+1))
