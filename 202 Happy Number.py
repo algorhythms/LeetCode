@@ -20,6 +20,9 @@ class Solution:
     def isHappy(self, n):
         """
         Start with several simple cases and find the pattern.
+
+        if converge to 1, return True
+        if loop, return False
         :param n:
         :rtype: bool
         """
