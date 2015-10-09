@@ -14,7 +14,9 @@ __author__ = 'Daniel'
 class Solution(object):
     def findDuplicate(self, nums):
         """
-        Floyd's loop detection
+        Degenerated case: if there is only one duplicates, just do arithmetic.
+
+        For possibly multiple duplications: Floyd's loop detection
         Abstract the array to linked list, current index as value, current value as next
         Need to derive the math proof
 

@@ -20,7 +20,7 @@ class Solution(object):
         Reverse mapping & DP
         Determine the range of h-index
         Chunk by n
-        Let F[i] be the number of paper with >= i citations
+        Let F[i] be the #paper with i citations (later transform F[i] to #paoer with >= i citations
         :type citations: List[int]
         :rtype: int
         """

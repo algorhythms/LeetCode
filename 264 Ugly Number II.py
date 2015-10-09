@@ -27,6 +27,7 @@ class Node(object):
 class Solution(object):
     def nthUglyNumber(self, n):
         """
+        Prime factor: 2, 3, 5
         Heap
         :type n: int
         :rtype: int

@@ -15,6 +15,8 @@ class Solution(object):
     def inorderSuccessor(self, root, p):
         """
         search
+
+        If it is a general binary tree
         :type root: TreeNode
         :type p: TreeNode
         :rtype: TreeNode

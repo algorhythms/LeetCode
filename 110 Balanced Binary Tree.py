@@ -47,7 +47,7 @@ class Solution(object):
         return ret
 
 
-class Solution_slow(object):
+class SolutionSlow(object):
     def isBalanced(self, root):
         """
         pre-order traversal

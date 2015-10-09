@@ -35,7 +35,7 @@ class Codec(object):
         return strs
 
 
-class Codec(object):
+class CodecMethod2(object):
     def encode(self, strs):
         """
         Encodes a list of strings to a single string.
@@ -60,7 +60,7 @@ class Codec(object):
         return map(lambda x: x.replace("\n\n", "\n"), strs)
 
 
-class Codec_error(object):
+class CodecError(object):
     def encode(self, strs):
         """
         Encodes a list of strings to a single string.

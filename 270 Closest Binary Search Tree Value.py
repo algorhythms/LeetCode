@@ -16,6 +16,9 @@ class TreeNode(object):
 class Solution(object):
     def closestValue(self, root, target):
         """
+        Divide the problem into 2 parts:
+        1. find the value just smaller than target
+        2. find the value just larger than target
         :type root: TreeNode
         :type target: float
         :rtype: int

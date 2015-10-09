@@ -31,6 +31,7 @@ class Solution(object):
         B3/S23, born 3 stays 2 or 3
 
         In-place solution
+        Similar to dp space optimization.
         1. Line buffer, directional, main the entires for previous state.
         2. higher bit, since you got 32-bit int
         :type board: List[List[int]]

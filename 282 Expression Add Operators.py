@@ -20,6 +20,7 @@ class Solution(object):
         Algorithm:
         1. DFS
         2. Special handling for multiplication
+        3. Detect invalid number with leading 0's
         :type num: str
         :type target: int
         :rtype: List[str]
@@ -34,7 +35,7 @@ class Solution(object):
                 ret.append(cur_str)
         else:
             for i in xrange(pos, len(num)):
-                if i != pos and num[pos] == '0':
+                if i != pos and num[pos] == "0":
                     continue
                 nxt_val = int(num[pos:i+1])
 
@@ -47,4 +48,4 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    assert Solution().addOperators("232", 8) == ['2+3*2', '2*3+2']
+    assert Solution().addOperators("232", 8) == ["2+3*2", "2*3+2"]

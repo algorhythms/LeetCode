@@ -13,6 +13,7 @@ class Solution(object):
     def numSquares(self, n):
         """
         bfs
+        the q stores the intermediate result of sum of squares 
         :type n: int
         :rtype: int
         """

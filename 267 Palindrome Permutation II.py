@@ -1,11 +1,6 @@
 """
-Given a string s, return all the palindromic permutations (without duplicates) of it. Return an empty list if no palindromic permutation could be form.
-
-For example:
-
-Given s = "aabb", return ["abba", "baab"].
-
-Given s = "abc", return [].
+Premium Question
+https://leetcode.com/problems/palindrome-permutation-ii/
 """
 from collections import defaultdict
 
@@ -40,18 +35,18 @@ class Solution(object):
         self.grow(s, m, None, cur, ret)
         return ret
 
-    def grow(self, s, m, pi, cur, ret):
+    def grow(self, s, count_map, pi, cur, ret):
         if len(cur) == len(s):
             ret.append(cur)
             return
 
-        for k in m.keys():
-            if k != pi and m[k] > 0:
-                for i in xrange(1, m[k]/2+1):
-                    m[k] -= i*2
-                    self.grow(s, m, k, k*i+cur+k*i, ret)
-                    m[k] += i*2
+        for k in count_map.keys():
+            if k != pi and count_map[k] > 0:
+                for i in xrange(1, count_map[k]/2+1):  # jump the parent
+                    count_map[k] -= i*2
+                    self.grow(s, count_map, k, k*i+cur+k*i, ret)
+                    count_map[k] += i*2
 
 
 if __name__ == "__main__":
-    print Solution().generatePalindromes("aabb")
+    assert Solution().generatePalindromes("aabb") == ['baab', 'abba']

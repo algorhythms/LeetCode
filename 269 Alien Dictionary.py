@@ -50,25 +50,25 @@ class Solution(object):
 
                 i = j
 
-    def topological_dfs(self, V, cur, visited, marked, ret):
+    def topological_dfs(self, V, cur, visited, pathset, ret):
         """
         :param V: Vertices HashMap
         :param cur: currently visiting letter
         :param visited: visited letters
-        :param marked: marked predecessor in the path
+        :param pathset: marked predecessor in the path
         :param ret: the path, ordered  topologically
         :return: whether contains cycles 
         """
-        if cur in marked:
+        if cur in pathset:
             return False
 
-        marked.add(cur)
+        pathset.add(cur)
         for nei in V[cur]:
             if nei not in visited:
-                if not self.topological_dfs(V, nei, visited, marked, ret):
+                if not self.topological_dfs(V, nei, visited, pathset, ret):
                     return False
 
-        marked.remove(cur)
+        pathset.remove(cur)
         visited.add(cur)
         ret.append(cur)
         return True

@@ -10,6 +10,8 @@ class Solution(object):
 
     def numWays(self, n, k):
         """
+        You need to abstract number of colors to binary value (is different color)
+
         Let F1[i] be the number of ways for A[:i] with last two with different colors
             F2[i] be the number of ways for A[:i] with last two with same color
 
@@ -109,6 +111,6 @@ class Solution(object):
         return ret
 
 if __name__ == "__main__":
-    print Solution().numWays(3, 2)
+    assert Solution().numWays(3, 2) == 6
 
 

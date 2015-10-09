@@ -22,22 +22,22 @@ class Solution(object):
             V[edge[1]].append(edge[0])
 
         visited = set()
-        marked = set()
-        if not self.dfs(V, edges[0][0], None, visited, marked):
+        path_set = set()
+        if not self.dfs(V, edges[0][0], None, visited, path_set):
             return False
 
         return len(visited) == n
 
-    def dfs(self, V, k, pi, visited, marked):
-        if k in marked:
+    def dfs(self, V, k, pi, visited, path_set):
+        if k in path_set:
             return False
 
-        marked.add(k)
+        path_set.add(k)
         for neighbor in V[k]:
             if neighbor != pi:
-                if not self.dfs(V, neighbor, k, visited, marked):
+                if not self.dfs(V, neighbor, k, visited, path_set):
                     return False
 
-        marked.remove(k)
+        path_set.remove(k)
         visited.add(k)
         return True

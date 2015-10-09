@@ -12,7 +12,7 @@ __author__ = 'Daniel'
 class Solution(object):
     def isUgly(self, num):
         """
-        Prime factor
+        Prime factors: 2, 3, 5
 
         :type num: int
         :rtype: bool
