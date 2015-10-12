@@ -15,6 +15,29 @@ Each letter in pattern must map to a word with length that is at least 1.
 __author__ = 'Daniel'
 
 
+class Solution(object):
+    def wordPattern(self, pattern, s):
+        lst = s.split(" ")
+        if len(pattern) != len(lst):
+            return False
+
+        char2word = {}
+        words = set()
+        for i in xrange(len(pattern)):
+            if pattern[i] in char2word:
+                if char2word[pattern[i]] != lst[i]:
+                    return False
+                else:
+                    assert lst[i] in words
+            else:
+                if lst[i] in words:
+                    return False
+                char2word[pattern[i]] = lst[i]
+                words.add(lst[i])
+
+        return True
+
+
 class OneToOneMap(object):
     def __init__(self):
         self.m = {}  # keep a single map
@@ -27,10 +50,10 @@ class OneToOneMap(object):
         return self.m.get(a)
 
 
-class Solution(object):
+class SolutionError(object):
     def wordPattern(self, pattern, str):
         """
-        Simplify the condition in if-else
+        May not always work due to OneToOneMap implementation in the case that a word is 1-letter.
 
         :type pattern: str
         :type str: str
