@@ -18,6 +18,8 @@ class Solution(object):
     def read(self, buf, n):
         """
         read n chars to buf
+        Algorithm:
+        Two ptrs
         :type buf: Destination buffer (List[str])
         :type n: Maximum number of characters to read (int)
         :rtype: The number of characters read (int)
@@ -33,8 +35,8 @@ class Solution(object):
                 if r < 4:
                     break
             else:
-                for i in xrange(n-idx):
-                    buf[idx+i] = buf4[i]
+                for i in xrange(idx, n):
+                    buf[i] = buf4[i-idx]
                 idx = n
 
         return idx
