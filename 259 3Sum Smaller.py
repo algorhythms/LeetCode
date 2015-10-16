@@ -1,10 +1,11 @@
 """
 Premium Question
+Smaller than the target.
 """
 __author__ = 'Daniel'
 
 
-class Solution:
+class Solution(object):
     def threeSumSmaller(self, nums, target):
         """
 
@@ -16,13 +17,13 @@ class Solution:
         cnt = 0
         n = len(nums)
         for i in xrange(n-2):
-            j = i+1
-            k = n-1
-            while j < k:
-                if nums[i]+nums[j]+nums[k] < target:
-                    cnt += k-j
-                    j += 1
+            l = i+1
+            h = n-1
+            while l < h:
+                if nums[i]+nums[l]+nums[h] < target:
+                    cnt += h-l  # move the high ptr leftward till low.
+                    l += 1
                 else:
-                    k -= 1
+                    h -= 1
 
         return cnt
