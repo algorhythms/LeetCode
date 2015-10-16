@@ -18,21 +18,22 @@ class Solution(object):
         ret = []
         if not nums:
             ret.append([lower, upper])
+            return map(self.mapper, ret)
+
+        if nums[0] > lower:
+            ret.append([lower, nums[0]-1])
+
+        for i in xrange(1, n):
+            if nums[i] > nums[i-1]+1:
+                ret.append([nums[i-1]+1, nums[i]-1])
+
+        if upper > nums[-1]:
+            ret.append([nums[-1]+1, upper])
+
+        return map(self.mapper, ret)
+
+    def mapper(self, x):
+        if x[0] == x[1]:
+            return "%d" % x[0]
         else:
-            if nums[0] > lower:
-                ret.append([lower, nums[0]-1])
-
-            for i in xrange(1, n):
-                if nums[i] > nums[i-1]+1:
-                    ret.append([nums[i-1]+1, nums[i]-1])
-
-            if upper > nums[-1]:
-                ret.append([nums[-1]+1, upper])
-
-        def mapper(x):
-            if x[0] == x[1]:
-                return "%d" % x[0]
-            else:
-                return "%d->%d" % tuple(x)
-
-        return map(mapper, ret)
+            return "%d->%d" % tuple(x)
