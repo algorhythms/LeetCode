@@ -1,6 +1,11 @@
 """
 Premium Question
+Find the maximum number of overlapped intervals
 """
+import heapq
+import operator
+
+
 __author__ = 'Daniel'
 
 
@@ -10,10 +15,7 @@ class Interval:
         self.end = e
 
 
-import heapq
-
-
-class Solution:
+class Solution(object):
     def minMeetingRooms(self, intervals):
         """
 
@@ -22,21 +24,13 @@ class Solution:
         """
         maxa = 0
 
-        intervals.sort(cmp=Solution.cmp)
-        end_heap = []
+        intervals.sort(key=operator.attrgetter("start"))
+        h_end = []
         for itvl in intervals:
-            heapq.heappush(end_heap, itvl.end)
-            while end_heap and end_heap[0] <= itvl.start:
-                heapq.heappop(end_heap)
+            heapq.heappush(h_end, itvl.end)
+            while h_end and h_end[0] <= itvl.start:
+                heapq.heappop(h_end)
 
-            maxa = max(maxa, len(end_heap))
+            maxa = max(maxa, len(h_end))
 
         return maxa
-
-
-    @staticmethod
-    def cmp(a, b):
-        if a.start != b.start:
-            return a.start-b.start
-
-        return a.end-b.end
