@@ -5,7 +5,63 @@ For example, given the array [2,3,-2,4],
 the contiguous subarray [2,3] has the largest product = 6
 """
 __author__ = 'Danyang'
-class Solution:
+
+
+class Solution(object):
+    def maxProduct_oneline(self, nums):
+        return max(reduce(lambda A, n: [max(A), min(n, A[1]*n, A[2]*n), max(n, A[1]*n, A[2]*n)], nums[1:], [nums[0]]*3))
+
+    def maxProduct(self, nums):
+        """
+        DP
+        State definitions:
+        let small[i] be the smallest product result ending with i
+        let large[i] be the largest product result ending with i
+        Transition functions:
+        small[i] = min(A[i], small[i-1]*A[i], large[i-1]*A[i]
+        large[i] = max(A[i], small[i-1]*A[i], large[i-1]*A[i]
+
+        DP space can be optimized
+        :type nums: List[int]
+        :rtype: int
+        """
+        small = nums[0]
+        large = nums[0]
+        maxa = nums[0]
+        for a in nums[1:]:
+            small, large = min(a, small*a, large*a), max(a, small*a, large*a)
+            maxa = max(maxa, small, large)
+
+        return maxa
+
+    def maxProduct_error2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) < 2:
+            return max(nums)
+
+        n = len(nums)
+        F_pos = [0 for _ in xrange(n+1)]
+        F_neg = [0 for _ in xrange(n+1)]
+
+        maxa = 1
+        for i in xrange(1, n+1):
+            v = nums[i-1]
+            if v > 0:
+                F_pos[i] = F_pos[i-1]*v if F_pos[i-1] != 0 else v
+                F_neg[i] = F_neg[i-1]*v
+            elif v == 0:
+                F_pos[i], F_neg[i] = 0, 0
+            else:
+                F_neg[i] = min(0, F_pos[i-1]*v)
+                F_pos[i] = max(0, F_neg[i-1]*v)
+
+            maxa = max(maxa, F_pos[i])
+
+        return maxa
+
     def maxProduct_error(self, A):
         """
         dp, collect number of negative number
@@ -51,7 +107,7 @@ class Solution:
 
         return global_max
 
-    def maxProduct(self, A):
+    def maxProduct_dp(self, A):
         """
         dp, collect number of negative number (notice 0).
         negative number and 0 will be special in this question
@@ -103,12 +159,11 @@ class Solution:
                     
             global_max = max(global_max, cur)
 
-
-
         return global_max
 
 
 if __name__=="__main__":
+    print Solution().maxProduct([2,3,-2,4])
     assert Solution().maxProduct([2,-5,-2,-4,3])==24
     assert Solution().maxProduct([-2, 0, -1])==0
     assert Solution().maxProduct([-2])==-2
