@@ -1,10 +1,45 @@
 """
 Premium Question
+Generation
+https://leetcode.com/problems/strobogrammatic-number-ii/
 """
+from collections import deque
 __author__ = 'Daniel'
 
 
 class Solution(object):
+    def __init__(self):
+        self.lst = ["11", "69", "88", "96", "00"]  # use list rather than map since no need to look up
+        self.middle = ["0", "1", "8"]
+
+    def findStrobogrammatic(self, n):
+        ret = []
+        self.build(n, deque(), ret)
+        return ret
+
+    def build(self, n, cur, ret):
+        """
+        build from inside
+        """
+        if n%2 == 1 and len(cur) == 0:
+            for elt in self.middle:
+                cur.append(elt)
+                self.build(n, cur, ret)
+                cur.pop()
+        else:
+            if len(cur) == n:
+                ret.append("".join(cur))
+                return
+            for elt in self.lst:
+                if not (elt == "00" and len(cur) == n-2):
+                    cur.appendleft(elt[0])
+                    cur.append(elt[1])
+                    self.build(n, cur, ret)
+                    cur.pop()
+                    cur.popleft()
+
+
+class SolutionArray(object):
     def __init__(self):
         self.map1 = ["11", "69", "88", "96", "00"]
 
@@ -18,6 +53,9 @@ class Solution(object):
         return ret
 
     def build(self, n, cur, ret):
+        """
+        Using list as double-entry queue, performance of every operation is O(n) rather than O(1)
+        """
         if n%2 == 1 and len(cur) == 0:
             for i in ["0", "1", "8"]:
                 cur.append(i)
@@ -83,4 +121,4 @@ class SolutionOutputLimitExceeded(object):
                 cur.pop()
 
 if __name__ == "__main__":
-    print Solution().findStrobogrammatic(1)
+    assert Solution().findStrobogrammatic(3) == ['101', '609', '808', '906', '111', '619', '818', '916', '181', '689', '888', '986']
