@@ -15,6 +15,7 @@ __author__ = 'Daniel'
 class Solution:
     def rob(self, nums):
         """
+        Two cases: cannot touch 1st element vs. cannot touch 2nd element.
         There are two cases here 1) 1st element is included and last is not included 2) 1st is not included and last is
         included.
         :type nums: list

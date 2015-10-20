@@ -14,7 +14,14 @@ class Solution:
         """
         DP
         O(n)
-        f_i = max(f_{i-1}, f_{i-2} + A[i])
+        Let F_i be max value END AT or BEFORE i
+        F_i = max(F_{i-1}, F_{i-2} + A[i])
+
+        Notes:
+        If change the definition of F_i
+        Let F_i be mex value END AT i
+        F_i = max(F_{i-2-k}+A[i] for k \in [0, i-2]),
+        Then time complexity is quadratic
         """
         n = len(nums)
         f = [0 for _ in xrange(n+2)]
