@@ -14,6 +14,9 @@ __author__ = 'Daniel'
 class Solution(object):
     def findDuplicate(self, nums):
         """
+        Condition for convert the array problem to linked list problem:
+        CANNOT contains integer with 0; otherwise cycle: A = [1, 0]
+
         Degenerated case: if there is only one duplicates, just do arithmetic.
 
         For possibly multiple duplications: Floyd's loop detection
@@ -39,5 +42,5 @@ class Solution(object):
         return t
 
 if __name__ == "__main__":
-    print Solution().findDuplicate([1, 2, 3 ,4, 5, 5])
+    assert Solution().findDuplicate([1, 2, 3 ,4, 5, 5]) == 5
 
