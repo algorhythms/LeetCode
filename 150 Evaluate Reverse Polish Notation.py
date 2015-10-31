@@ -1,5 +1,7 @@
 __author__ = 'Danyang'
-class Solution:
+
+
+class Solution(object):
     def evalRPN(self, tokens):
         """
         stack
@@ -9,22 +11,23 @@ class Solution:
         :return:
         """
         ops = ["+", "-", "*", "/"]
+
         def arith(a, b, op):
-            if (op=="+"):
-                return a + b
-            if (op=="-"):
-                return a - b
-            if (op=="/"):
+            if (op == "+"):
+                return a+b
+            if (op == "-"):
+                return a-b
+            if (op == "/"):
                 # return a/b # python treat differently for division 6/-132 is -1
-                return int(float(a) / b) # round towards 0
-            if (op=="*"):
-                return a * b
+                return int(float(a)/b)  # round towards 0
+            if (op == "*"):
+                return a*b
 
         # function is first-order class
         # not supported by leetcode
         # import operator
         # ops = {
-        #     "+": operator.add,
+        # "+": operator.add,
         #     "-": operator.sub,
         #     "*": operator.mul,
         #     "/": operator.div,
@@ -46,5 +49,5 @@ class Solution:
         return stack.pop()
 
 
-if __name__=="__main__":
-    Solution().evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
+if __name__ == "__main__":
+    assert Solution().evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]) == 22
