@@ -5,12 +5,32 @@ to n.
 For example, given n = 12, return 3 because 12 = 4 + 4 + 4; given n = 13, return 2 because 13 = 4 + 9.
 """
 import math
+import sys
 
 __author__ = 'Daniel'
 
 
 class Solution(object):
+    F = [0]  # static dp for all test cases
     def numSquares(self, n):
+        """
+        static dp
+        F_i = min(F_{i - j^2}+1, \forall j)
+
+        O(n), think it as a tree, cache tree O(m+n) = O(2n); rather than O(n sqrt(n))
+        backward
+        """
+        while len(Solution.F) <= n:
+            i = len(Solution.F)
+            Solution.F.append(sys.maxint)
+            j = 1
+            while i - j*j >= 0:
+                Solution.F[i] = min(Solution.F[i], Solution.F[i-j*j]+1)
+                j += 1
+
+        return Solution.F[n]
+
+    def numSquares_bfs(self, n):
         """
         bfs
         the q stores the intermediate result of sum of squares 
