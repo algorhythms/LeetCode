@@ -13,15 +13,41 @@ return [1,2,3].
 Note: Recursive solution is trivial, could you do it iteratively? - see preTraverse_itr
 """
 __author__ = 'Danyang'
+
+
 # Definition for a  binary tree node
-class TreeNode:
+class TreeNode(object):
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
 
-class Solution:
+
+class Solution(object):
     def preorderTraversal(self, root):
+        """Morris"""
+        ret = []
+        cur = root
+        while cur:
+            if not cur.left:
+                ret.append(cur.val)
+                cur = cur.right
+            else:
+                pre = cur.left
+                while pre.right and pre.right != cur:
+                    pre = pre.right
+
+                if not pre.right:
+                    pre.right = cur
+                    ret.append(cur.val)
+                    cur = cur.left
+                else:
+                    pre.right = None
+                    cur = cur.right
+
+        return ret
+
+    def preorderTraversal_memory(self, root):
         """
         dfs
         :param root:

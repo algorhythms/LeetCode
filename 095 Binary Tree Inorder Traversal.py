@@ -15,15 +15,42 @@ Note: Recursive solution is trivial, could you do it iteratively?
 confused what "{1,#,2,3}" means? > read more on how binary tree is serialized on OJ.
 """
 __author__ = 'Danyang'
-# Definition for a  binary tree node
-class TreeNode:
+
+
+class TreeNode(object):
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
 
-class Solution:
+
+class Solution(object):
     def inorderTraversal(self, root):
+        """
+        Morris Traversal
+        """
+        ret = []
+        cur = root
+        while cur:
+            if not cur.left:
+                ret.append(cur.val)
+                cur = cur.right
+            else:
+                pre = cur.left
+                while pre.right and pre.right != cur:
+                    pre = pre.right
+
+                if not pre.right:
+                    pre.right = cur
+                    cur = cur.left
+                else:
+                    pre.right = None
+                    ret.append(cur.val)
+                    cur = cur.right
+
+        return ret
+
+    def inorderTraversal_memory(self, root):
         """
         :type root: TreeNode
         :param root:
