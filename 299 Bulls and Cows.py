@@ -10,27 +10,28 @@ class Solution(object):
         :type guess: str
         :rtype: str
         """
-        hm = defaultdict(int)
+        cnt = defaultdict(int)
         A = 0
         B = 0
         for c in secret:
-            hm[c] += 1
+            cnt[c] += 1
 
         for i, v in enumerate(guess):
             if v == secret[i]:
                 A += 1
-                hm[v] -= 1
-                if hm[v] < 0:
-                    assert hm[v] == -1
+                cnt[v] -= 1
+                if cnt[v] < 0:
+                    # revert matched B
+                    assert cnt[v] == -1
                     B -= 1
-                    hm[v] = 0
+                    cnt[v] = 0
 
-            elif v in hm and hm[v] > 0:
+            elif cnt[v] > 0:
                 B += 1
-                hm[v] -= 1
+                cnt[v] -= 1
 
         return "%dA%dB" % (A, B)
 
 
 if __name__ == "__main__":
-    print Solution().getHint("0", "1")
+    assert Solution().getHint("0", "1") == "0A0B"
