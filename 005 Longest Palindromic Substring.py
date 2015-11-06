@@ -5,7 +5,27 @@ there exists one unique longest palindromic substring.
 __author__ = 'Danyang'
 
 
-class Solution:
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        O(n^2)
+        :param s: string
+        :return: string
+        """
+        if not s:
+            return
+        n = len(s)
+        if n == 1:
+            return s
+
+        ret = s[0]
+        for i in xrange(0, n):
+            cur = self.get_palindrome_from_center(s, i, i)  # odd length
+            if len(cur) > len(ret): ret = cur
+            cur = self.get_palindrome_from_center(s, i, i+1)
+            if len(cur) > len(ret): ret = cur
+        return ret
+
     def longestPalindrome_TLE(self, s):
         """
         Algorithm: dp, O(n^2)
@@ -73,25 +93,6 @@ class Solution:
                 if dp[i][i+l] and len(longest) < l:
                     longest = s[i:i+l]
 
-        return longest
-
-    def longestPalindrome(self, s):
-        """
-        :param s: string
-        :return: string
-        """
-        if not s:
-            return
-        length = len(s)
-        if length == 1:
-            return s
-
-        longest = s[0]
-        for i in xrange(0, length):
-            current = self.get_palindrome_from_center(s, i, i)  # odd length
-            if len(current) > len(longest): longest = current
-            current = self.get_palindrome_from_center(s, i, i+1)
-            if len(current) > len(longest): longest = current
         return longest
 
     def get_palindrome_from_center(self, s, begin, end):
