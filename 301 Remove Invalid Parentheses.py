@@ -37,7 +37,7 @@ class Solution(object):
         return ret
 
     def dfs(self, s, cur, l, removed, i, cnt, ret):
-        """backtracking, pre-check"""
+        """backtracking, post-check"""
         if l < 0 or cnt < 0 or i > len(s):
             return
         if i == len(s):
