@@ -11,34 +11,38 @@ Find the minimum element.
 
 The array may contain duplicates.
 """
+import sys
+
 __author__ = 'Danyang'
-class Solution:
-    def findMin(self, num):
+
+
+class Solution(object):
+    def findMin(self, A):
         """
         similar to find target in rotated sorted array
 
-        :type num: list
-        :param num: a list of integer
+        :type A: list
+        :param A: a list of integer
         :return: an integer
         """
-        start = 0
-        end = len(num)
-        mini = 1<<32
-        while start<end:
-            mid = (start+end)/2  # skew to right
-            mini = min(mini, num[mid])
-            if num[start]==num[mid]:  # JUMP
-                start += 1
-            elif num[start]<num[mid]<=num[end-1]:
-                mini = min(mini, num[start])
-                break
-            elif num[start]>num[mid]<=num[end-1]:
-                end = mid
-            else:
-                start = mid+1
+        lo = 0
+        hi = len(A)
+        mini = sys.maxint
+        while lo < hi:
+            mid = (lo+hi)/2
+            mini = min(mini, A[mid])
+            if A[lo] == A[mid]:  # JUMP
+                lo += 1
+            elif A[lo] < A[mid] <= A[hi-1]:
+                return min(mini, A[lo])
+            elif A[lo] > A[mid] <= A[hi-1]:  # trough
+                hi = mid
+            else:  # peak
+                lo = mid+1
 
         return mini
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     num = [7, 1, 2, 2, 3, 4, 5, 6]
-    print Solution().findMin(num)
+    assert Solution().findMin(num) == 1
