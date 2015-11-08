@@ -16,7 +16,7 @@ __author__ = 'Daniel'
 class Solution(object):
     def lengthOfLIS(self, A):
         """
-        M: min of index last value of LIS of a particular length
+        MIN: min of index last value of LIS of a particular length
         :type A: List[int]
         :rtype: int
         """
@@ -24,16 +24,16 @@ class Solution(object):
             return 0
 
         n = len(A)
-        M = [-1 for _ in xrange(n+1)]
+        MIN = [-1 for _ in xrange(n+1)]
         l = 1
-        M[l] = 0
+        MIN[l] = 0
         for i in xrange(1,n):
-            if A[i] > A[M[l]]:
+            if A[i] > A[MIN[l]]:
                 l += 1
-                M[l] = i
+                MIN[l] = i
             else:
-                j = self.bin_search(M, A, A[i], 1, l+1)
-                M[j] = i
+                j = self.bin_search(MIN, A, A[i], 1, l+1)
+                MIN[j] = i
 
         return l
 
@@ -53,8 +53,8 @@ class Solution(object):
     def lengthOfLIS_output_all(self, A):
         """
         Maintain the result of LIS
-        M: min of index last value of LIS of a particular length
-        R: result table, store the predecessor idx
+        MIN: min of index last value of LIS of a particular length
+        RET: result table, store the predecessor's idx (optional)
         :type A: List[int]
         :rtype: int
         """
@@ -62,26 +62,29 @@ class Solution(object):
             return 0
 
         n = len(A)
-        M = [-1 for _ in xrange(n+1)]
-        R = [-1 for _ in xrange(n)]
+        MIN = [-1 for _ in xrange(n+1)]
+        RET = [-1 for _ in xrange(n)]
         l = 1
-        M[l] = 0
+        MIN[l] = 0
         for i in xrange(1, n):
-            if A[i] > A[M[l]]:
+            if A[i] > A[MIN[l]]:
                 l += 1
-                M[l] = i
-                R[i] = M[l-1]
-            else:
-                j = self.bin_search(M, A, A[i], 1, l+1)
-                M[j] = i
-                R[i] = M[j-1] if j-1 >= 1 else -1
+                MIN[l] = i
 
-        cur = M[l]
+                RET[i] = MIN[l-1]  # (optional)
+            else:
+                j = self.bin_search(MIN, A, A[i], 1, l+1)
+                MIN[j] = i
+
+                RET[i] = MIN[j-1] if j-1 >= 1 else -1  # (optional)
+
+        # build the LIS (optional)
+        cur = MIN[l]
         ret = []
         while True:
             ret.append(A[cur])
-            if R[cur] == -1: break
-            cur = R[cur]
+            if RET[cur] == -1: break
+            cur = RET[cur]
 
         ret = ret[::-1]
         print ret
