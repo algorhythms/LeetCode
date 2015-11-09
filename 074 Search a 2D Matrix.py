@@ -15,48 +15,50 @@ Consider the following matrix:
 Given target = 3, return true.
 """
 __author__ = 'Danyang'
-class Solution:
-    def searchMatrix(self, matrix, target):
+
+
+class Solution(object):
+    def searchMatrix(self, mat, target):
         """
         binary search. Two exactly the same binary search algorithm
-        :param matrix: a list of lists of integers
+        :param mat: a list of lists of integers
         :param target: an integer
         :return: a boolean
         """
-        if not matrix:
+        if not mat:
             return False
 
-        m = len(matrix)
-        n = len(matrix[0])
+        m = len(mat)
+        n = len(mat[0])
 
         # binary search
-        start = 0
-        end = m  # [0, m)
-        while start<end:
-            mid = (start+end)/2
-            if matrix[mid][0]==target:
+        lo = 0
+        hi = m  # [0, m)
+        while lo < hi:
+            mid = (lo+hi)/2
+            if mat[mid][0] == target:
                 return True
-            if target<matrix[mid][0]:
-                end = mid
-            elif target>matrix[mid][0]:
-                start = mid+1
+            elif mat[mid][0] < target:
+                lo = mid+1
+            else:
+                hi = mid
 
-
-        lst = matrix[end] if matrix[end][0]<=target else matrix[start]  # positioning !
+        lst = mat[lo-1]  # <=
 
         # binary search
-        start = 0
-        end = n  # [0, n)
-        while start<end:
-            mid = (start+end)/2
-            if lst[mid]==target:
+        lo = 0
+        hi = n  # [0, n)
+        while lo < hi:
+            mid = (lo+hi)/2
+            if lst[mid] == target:
                 return True
-            if target<lst[mid]:
-                end = mid
-            elif target>lst[mid]:
-                start = mid+1
+            elif lst[mid] < target:
+                lo = mid+1
+            else:
+                hi = mid
 
         return False
 
-if __name__=="__main__":
-    assert Solution().searchMatrix([[1], [3]], 3)==True
+
+if __name__ == "__main__":
+    assert Solution().searchMatrix([[1], [3]], 3) == True

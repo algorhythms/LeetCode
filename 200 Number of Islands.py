@@ -57,10 +57,10 @@ class Solution:
         visited[i][j] = True
 
         for dir in self.dirs:
-            n_i = i+dir[0]
-            n_j = j+dir[1]
-            if 0 <= n_i < m and 0 <= n_j < n and not visited[n_i][n_j] and grid[n_i][n_j] == "1":
-                self.dfs(grid, n_i, n_j, visited)
+            I = i+dir[0]
+            J = j+dir[1]
+            if 0 <= I < m and 0 <= J < n and not visited[I][J] and grid[I][J] == "1":
+                self.dfs(grid, I, J, visited)
 
 
 if __name__ == "__main__":

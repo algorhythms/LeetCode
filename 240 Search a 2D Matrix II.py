@@ -21,33 +21,64 @@ Given target = 20, return false.
 __author__ = 'Daniel'
 
 
-class Solution:
-    def searchMatrix(self, matrix, target):
+class Solution(object):
+    def searchMatrix(self, mat, target):
         """
-        Multiple round of binary search
+        Manhattan work
+        O(m+n) eliminate a row or a column at a time
+        Practically: 112 ms
 
-        :type matrix: list[int][int]
+        :type mat: list[int][int]
         :type target: int
         :rtype: bool
         """
-        try:
-            m = len(matrix)
-            n = len(matrix[0])
+        m = len(mat)
+        n = len(mat[0])
 
-            lst = [matrix[i][0] for i in xrange(m)]
-            row_by_first = self.bisect(lst, target)
-            lst = [matrix[i][-1] for i in xrange(m)]
-            row_by_last = self.bisect(lst, target, False)
-            for i in range(row_by_first, row_by_last-1, -1):
-                col = self.bisect(matrix[i], target)
-                if matrix[i][col] == target:
-                    return True
+        i = 0
+        j = n-1
+        while i < m and 0 <= j:
+            if mat[i][j] == target:
+                return True
+            elif mat[i][j] > target:
+                j -= 1
+            else:
+                i += 1
 
-            return False
-        except IndexError:
-            return False
+        return False
 
-    def bisect(self, A, t, lower=True):
+
+class SolutionBinSearch(object):
+    def searchMatrix(self, mat, target):
+        """
+        Binary search
+
+        Multiple round of binary search
+        possible to swap m and n, depends on the size
+        O(m log n) or O(n log m)
+        Practically: 204 ms
+
+        :type mat: list[int][int]
+        :type target: int
+        :rtype: bool
+        """
+        m = len(mat)
+        n = len(mat[0])
+
+        col = [mat[i][0] for i in xrange(m)]
+        row_by_first = self.bin_search(col, target)
+
+        col = [mat[i][-1] for i in xrange(m)]
+        row_by_last = self.bin_search(col, target, False)
+
+        for i in range(row_by_first, row_by_last-1, -1):
+            col = self.bin_search(mat[i], target)
+            if mat[i][col] == target:
+                return True
+
+        return False
+
+    def bin_search(self, A, t, lower=True):
         lo = 0
         hi = len(A)
         while lo < hi:
@@ -58,6 +89,7 @@ class Solution:
                 lo = mid+1
             else:
                 hi = mid
+
         if lower:
             return lo-1
         else:
@@ -65,3 +97,4 @@ class Solution:
 
 if __name__ == "__main__":
     assert Solution().searchMatrix([[1, 4], [2, 5]], 4) == True
+    assert SolutionBinSearch().searchMatrix([[1, 4], [2, 5]], 4) == True
