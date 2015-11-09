@@ -12,49 +12,70 @@ Given [1,2],[3,5],[6,7],[8,10],[12,16], insert and merge [4,9] in as [1,2],[3,10
 This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].
 """
 __author__ = 'Danyang'
+
+
 # Definition for an interval.
-class Interval:
+class Interval(object):
     def __init__(self, s=0, e=0):
         self.start = s
         self.end = e
+
     def __str__(self):
-        return "[%d, %d]"%(self.start, self.end)
+        return "[%d, %d]" % (self.start, self.end)
+
     def __repr__(self):
         return repr(self.__str__())
 
-class Solution:
-    def insert(self, intervals, newInterval):
+
+class Solution(object):
+    def insert(self, itvls, newItvl):
+        s, e = newItvl.start, newItvl.end
+        left = filter(lambda x: x.end < s, itvls)
+        right = filter(lambda x: x.start > e, itvls)
+        if len(left)+len(right) != len(itvls):
+            s = min(s, itvls[len(left)].start)
+            e = max(e, itvls[-len(right)-1].end)
+
+        return left + [Interval(s, e)] + right
+
+    def insert_itr(self, itvls, newItvl):
+        """
+        iterator TODO
         """
 
-        :param intervals: a list of Intervals
-        :param newInterval: a Interval
+
+class SolutionSlow(object):
+    def insert(self, itvls, newItvl):
+        """
+        :param itvls: a list of Intervals
+        :param newItvl: a Interval
         :return: a list of Interval
         """
-        return self.merge(intervals+[newInterval])
+        return self.merge(itvls+[newItvl])
 
-    def merge(self, intervals):
+    def merge(self, itvls):
         """
         sort first by .start
         then decide whether to extend the .end
-        :param intervals: list of Interval
+        :param itvls: list of Interval
         :return: list of Interval
         """
-        intervals.sort(cmp=lambda a, b: a.start - b.start)
+        itvls.sort(cmp=lambda a, b: a.start - b.start)
 
-        result = [intervals[0]]
-        for cur in intervals[1:]:
-            pre = result[-1]
-            if cur.start<=pre.end:  # overlap
+        ret = [itvls[0]]
+        for cur in itvls[1:]:
+            pre = ret[-1]
+            if cur.start <= pre.end:  # overlap
                 pre.end = max(pre.end, cur.end)
             else:
-                result.append(cur)
+                ret.append(cur)
 
-        return result
+        return ret
 
 
-if __name__=="__main__":
-    lst = [[1,2],[3,5],[6,7],[8,10],[12,16]]
-    insert = [4,9]
+if __name__ == "__main__":
+    lst = [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]]
+    insert = [4, 9]
     lst_interval = []
     for item in lst:
         lst_interval.append(Interval(item[0], item[1]))
