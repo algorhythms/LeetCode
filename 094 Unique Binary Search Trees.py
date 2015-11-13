@@ -10,8 +10,12 @@ Given n = 3, there are a total of 5 unique BST's.
     /     /       \                 \
    2     1         2                 3
 """
+import math
+
 __author__ = 'Danyang'
-class Solution:
+
+
+class Solution(object):
     def numTrees_math(self, n):
         """
         number of unique binary search tree
@@ -22,14 +26,8 @@ class Solution:
         :param n: integer
         :return: integer
         """
-        return self.factorial(2*n)/(self.factorial(n)*self.factorial(n)) -self.factorial(2*n)/(
-            self.factorial(n+1)*self.factorial(n-1))
-
-    def factorial(self, n):
-        factorial = 1
-        for i in range(n):
-            factorial *= i+1
-        return factorial
+        return math.factorial(2*n)/(math.factorial(n)*math.factorial(n))-math.factorial(2*n)/(
+            math.factorial(n+1)*math.factorial(n-1))
 
     def numTrees(self, n):
         """
@@ -47,7 +45,7 @@ class Solution:
         :param n: integer
         :return: integer
         """
-        if n<2:
+        if n < 2:
             return n
 
         dp = [0 for _ in xrange(n+1)]
@@ -58,5 +56,5 @@ class Solution:
         return dp[-1]
 
 
-if __name__=="__main__":
-    assert Solution().numTrees(100)==Solution().numTrees_math(100)
+if __name__ == "__main__":
+    assert Solution().numTrees(100) == Solution().numTrees_math(100)

@@ -15,7 +15,7 @@ class Solution:
     def nextPermutation(self, num):
         """
         Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
-        Unable to use Contour Expansion due to duplicates
+        Unable to use Cantor Expansion due to duplicates
 
         Classic algorithm in STL
         math problem; algorithm: http://fisherlei.blogspot.sg/2012/12/leetcode-next-permutation.html

@@ -34,7 +34,7 @@ class Solution(object):
 
     def getPermutation(self, n, k):
         """
-        Reverse Contour Expansion
+        Reverse Cantor Expansion
 
         equation: sum a_i * i! = k
         :param n: integer
@@ -75,7 +75,7 @@ class Solution(object):
     def getPermutation_complicated(self, n, k):
         """
         Mathematics
-        Reversed Contour Expansion
+        Reversed Cantor Expansion
 
         A = [1, 2, ..., n], where A's index starts from 0
         Suppose for n element, the k-th permutation is:
