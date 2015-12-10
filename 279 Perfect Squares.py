@@ -12,6 +12,7 @@ __author__ = 'Daniel'
 
 class Solution(object):
     F = [0]  # static dp for all test cases
+
     def numSquares(self, n):
         """
         static dp

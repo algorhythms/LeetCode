@@ -1,6 +1,8 @@
 """
 Premium Question
 """
+import operator
+
 __author__ = 'Daniel'
 
 
@@ -8,9 +10,6 @@ class Interval:
     def __init__(self, s=0, e=0):
         self.start = s
         self.end = e
-
-
-import operator
 
 
 class Solution:

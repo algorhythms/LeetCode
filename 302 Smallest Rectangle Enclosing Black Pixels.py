@@ -30,6 +30,7 @@ class Solution(object):
         x_hi = bisect.bisect_left(map(lambda e: 1^e, xaxis), 1, x)
         return (y_hi-y_lo)*(x_hi-x_lo)
 
+
 if __name__ == "__main__":
     image = [
         "00",

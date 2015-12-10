@@ -55,5 +55,6 @@ class Solution(object):
 
         return F[n]
 
+
 if __name__ == "__main__":
     assert Solution().canWinNim(5)

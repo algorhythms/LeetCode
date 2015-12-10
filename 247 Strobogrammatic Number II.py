@@ -120,5 +120,6 @@ class SolutionOutputLimitExceeded(object):
                 self.build(idx+1, n, cur, ret)
                 cur.pop()
 
+
 if __name__ == "__main__":
     assert Solution().findStrobogrammatic(3) == ['101', '609', '808', '906', '111', '619', '818', '916', '181', '689', '888', '986']

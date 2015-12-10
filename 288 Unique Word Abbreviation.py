@@ -3,7 +3,6 @@ Premium Question
 """
 from collections import defaultdict
 
-
 __author__ = 'Daniel'
 
 

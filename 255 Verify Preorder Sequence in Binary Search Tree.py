@@ -26,6 +26,7 @@ class Solution:
 
         return True
 
+
 if __name__ == "__main__":
     preorder = [3, 5, 2, 1, 4, 7, 6, 9, 8, 10]
     assert Solution().verifyPreorder(preorder) == False

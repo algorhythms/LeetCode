@@ -51,5 +51,6 @@ class Solution(object):
 
             self.find(root.left, target, ret, lower)
 
+
 if __name__ == "__main__":
     assert Solution().closestValue(TreeNode(2147483647), 0.0) == 2147483647

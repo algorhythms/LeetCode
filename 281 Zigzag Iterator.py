@@ -47,6 +47,7 @@ class ZigzagIterator(object):
         """
         return self.j <= self.maxa[0]
 
+
 if __name__ == "__main__":
     v1 = [1, 2]
     v2 = [3, 4, 5, 6]

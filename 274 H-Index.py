@@ -73,5 +73,6 @@ class Solution(object):
 
         return h
 
+
 if __name__ == "__main__":
     assert Solution().hIndex([3, 0, 6, 1, 5]) == 3

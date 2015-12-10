@@ -56,5 +56,6 @@ class Solution(object):
 
         return ret
 
+
 if __name__ == "__main__":
     assert Solution().nthUglyNumber(10) == 12
