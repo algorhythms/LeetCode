@@ -37,11 +37,11 @@ class Solution(object):
         if n == 2:
             return max(0, A[1]-A[0])
 
-        CD = 2  # cool down
+        CD = 1  # cool down
         F = [0 for _ in xrange(n)]
         M = [0 for _ in xrange(n)]
         F[1] = A[1]-A[0]
-        M[1] = max(F[:2])
+        M[1] = max(M[0], F[1])
         F[2] = max(A[2]-A[2-1-i] for i in xrange(2))
         M[2] = max(M[1], F[2])
 
