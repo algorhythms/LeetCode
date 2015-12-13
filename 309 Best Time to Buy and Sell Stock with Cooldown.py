@@ -25,7 +25,7 @@ class Solution(object):
         F[i] = max(
             F[i-1]+A[i]-A[i-1], // Sell the stock held for multiple days
             // i.e. revert previous transaction, sell at day i instead of day (i-1)
-            M[i-3]+A[i]-A[i-1]  // Sell the stock held for 1 days.
+            M[i-3]+A[i]-A[i-1]  // Sell the stock held for 1 day.
         )
         M[i] = max(M[i-1], F[i])
         :type A: List[int]
