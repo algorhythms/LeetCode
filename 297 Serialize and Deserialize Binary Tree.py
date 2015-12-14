@@ -52,17 +52,10 @@ class Codec:
             l = len(q)
             for i in xrange(l):
                 cur = q[i]
-                if cur.left:
-                    q.append(cur.left)
-                    ret.append(str(cur.left.val))
-                else:
-                    ret.append("null")
-
-                if cur.right:
-                    q.append(cur.right)
-                    ret.append(str(cur.right.val))
-                else:
-                    ret.append("null")
+                if cur.left: q.append(cur.left)
+                ret.append(self.encode(cur.left))
+                if cur.right: q.append(cur.right)
+                ret.append(self.encode(cur.right))
 
             q = q[l:]
 
@@ -77,19 +70,19 @@ class Codec:
         """
         lst = data.split(",")
         root = self.decode(lst[0])
+        
         q = deque([root])
         i = 1
-        while i < len(lst):
+        while q:
             cur = q.popleft()
-            cur.left = self.decode(lst[i])
-            i += 1
-            if cur.left:
-                q.append(cur.left)
+            if i < len(lst):
+                cur.left = self.decode(lst[i])
+                i += 1
+                if cur.left: q.append(cur.left)
             if i < len(lst):
                 cur.right = self.decode(lst[i])
                 i += 1
-                if cur.right:
-                    q.append(cur.right)
+                if cur.right: q.append(cur.right)
 
         return root
 
@@ -98,3 +91,9 @@ class Codec:
             return None
         else:
             return TreeNode(int(s))
+
+    def encode(self, node):
+        if not node:
+            return "null"
+        else:
+            return str(node.val)
