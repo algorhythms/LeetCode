@@ -71,5 +71,5 @@ if __name__ == "__main__":
     assert Solution().shortestDistance(
         [[1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 1], [0, 1, 1, 0, 0, 1], [1, 0, 0, 1, 0, 1], [1, 0, 1, 0, 0, 1],
          [1, 0, 0, 0, 0, 1], [0, 1, 1, 1, 1, 0]]) == 88
-    assert Solution().shortestDistance([[1, 2, 0]])
-    assert Solution().shortestDistance([[1, 0, 2, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]])
+    assert Solution().shortestDistance([[1, 2, 0]]) == -1
+    assert Solution().shortestDistance([[1, 0, 2, 0, 1], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]) == 7
