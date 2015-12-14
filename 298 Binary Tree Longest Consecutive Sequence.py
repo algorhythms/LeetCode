@@ -15,28 +15,29 @@ class TreeNode(object):
 
 class Solution(object):
     def __init__(self):
-        self.maxa = 0
+        self.gmax = 0
 
     def longestConsecutive(self, root):
         self.longest(root)
-        return self.maxa
+        return self.gmax
 
-    def longest(self, root):
+    def longest(self, cur):
         """
         longest ended at root
+        Only consider increasing order
         """
-        if not root:
+        if not cur:
             return 0
 
         maxa = 1
-        l = self.longest(root.left)
-        r = self.longest(root.right)
-        if root.left and root.val+1 == root.left.val:
+        l = self.longest(cur.left)
+        r = self.longest(cur.right)
+        if cur.left and cur.val+1 == cur.left.val:
             maxa = max(maxa, l+1)
-        if root.right and root.val+1 == root.right.val:
+        if cur.right and cur.val+1 == cur.right.val:
             maxa = max(maxa, r+1)
 
-        self.maxa = max(self.maxa, maxa)
+        self.gmax = max(self.gmax, maxa)
         return maxa
 
     def longestConsecutive_error(self, root):

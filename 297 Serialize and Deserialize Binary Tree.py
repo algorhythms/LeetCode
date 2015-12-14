@@ -70,7 +70,7 @@ class Codec:
         """
         lst = data.split(",")
         root = self.decode(lst[0])
-        
+
         q = deque([root])
         i = 1
         while q:

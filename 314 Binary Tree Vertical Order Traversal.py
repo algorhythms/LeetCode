@@ -47,3 +47,7 @@ class Solution(object):
     def rightmost(self, cur, r):
         if not cur: return r
         return max(self.rightmost(cur.left, r-1), self.rightmost(cur.right, r+1))
+
+    def sidemost(self, cur, p, f):
+        if not cur: return p
+        return f(self.sidemost(cur.left, p-1, f), self.sidemost(cur.right, p+1, f))

@@ -8,30 +8,25 @@ __author__ = 'Danyang'
 
 
 class Solution(object):
-    def maxProfit(self, prices):
+    def maxProfit(self, A):
         """
         Maximum subarray sum
         DP version
         Let F[i] be the maximum subarray sum ending at A[i-1]
         """
-        if len(prices) <= 1:
+        if len(A) <= 1:
             return 0
-        delta_prices = []
-        for i in xrange(1, len(prices)):
-            delta_prices.append(prices[i]-prices[i-1])
 
-
-        A = delta_prices
         n = len(A)
         F = [0 for _ in xrange(n+1)]
-        maxa = A[0]
-        for i in xrange(1, n+1):
-            F[i] = max(F[i-1]+A[i-1], 0)
+        maxa = 0
+        for i in xrange(2, n+1):
+            F[i] = max(F[i-1] + A[i-1] - A[i-2], 0)  # revert the previous transaction
             maxa = max(maxa, F[i])
 
         return maxa
 
-    def maxProfit(self, prices):
+    def maxProfitDelta(self, prices):
         """
         Only long position allowed, cannot short
 
@@ -61,4 +56,4 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    print Solution().maxProfit([3, 2, 1, 4, 5, 6, 2])
+    assert Solution().maxProfit([3, 2, 1, 4, 5, 6, 2]) == 5

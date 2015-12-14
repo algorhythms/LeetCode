@@ -23,14 +23,14 @@ class Solution(object):
         :type target: float
         :rtype: int
         """
-        lower = [-sys.float_info.max]
-        self.find(root, target, lower, True)
-        higher = [sys.float_info.max]
-        self.find(root, target, higher, False)
-        if higher[0] - target < target - lower[0]:
-            return int(higher[0])
+        lo = [-sys.float_info.max]
+        self.find(root, target, lo, True)
+        hi = [sys.float_info.max]
+        self.find(root, target, hi, False)
+        if hi[0] - target < target - lo[0]:
+            return int(hi[0])
         else:
-            return int(lower[0])
+            return int(lo[0])
 
     def find(self, root, target, ret, lower=True):
         if not root:
@@ -41,14 +41,10 @@ class Solution(object):
             return
 
         if root.val < target:
-            if lower:
-                ret[0] = max(ret[0], root.val)
-
+            if lower: ret[0] = max(ret[0], root.val)
             self.find(root.right, target, ret, lower)
         else:
-            if not lower:
-                ret[0] = min(ret[0], root.val)
-
+            if not lower: ret[0] = min(ret[0], root.val)
             self.find(root.left, target, ret, lower)
 
 

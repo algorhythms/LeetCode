@@ -88,4 +88,4 @@ class Solution(object):
 
 if __name__ == "__main__":
     assert Solution().countSmaller([5, 2, 6, 1]) == [2, 1, 1, 0]
-    assert Solution().countSmaller([-1, -1]) == [2, 1, 1, 0]
+    assert Solution().countSmaller([-1, -1]) == [0, 0]
