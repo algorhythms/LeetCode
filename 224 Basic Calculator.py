@@ -91,6 +91,7 @@ class Solution:
         assert len(stk) == 1
         return int(stk[-1])
 
+
 if __name__ == "__main__":
     assert Solution().calculate(" 2-1 + 2 ") == 3
     assert Solution().calculate("(1+(4+5+2)-3)+(6+8)") == 23
