@@ -5,19 +5,19 @@ __author__ = 'Daniel'
 
 
 class Solution(object):
-    def hIndex(self, citations):
+    def hIndex(self, A):
         """
         Given sorted -> binary search
         From linear search into bin search
-        :type citations: List[int]
+        :type A: List[int]
         :rtype: int
         """
-        n = len(citations)
+        n = len(A)
         s = 0
         e = n
         while s < e:
             m = (s+e)/2
-            if citations[m] >= n-m:
+            if A[m] >= n-m:
                 e = m
             else:
                 s = m+1

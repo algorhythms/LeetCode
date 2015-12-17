@@ -15,28 +15,29 @@ __author__ = 'Daniel'
 
 
 class Solution(object):
-    def hIndex(self, citations):
+    def hIndex(self, A):
         """
+        Determine the range of output (i.e. h-index):
+          Range of output: [0, N]
+          Chunk by N
         Reverse mapping & DP
-        Determine the range of h-index
-        Chunk by n
-        Let F[i] be the #paper with i citations (later transform F[i] to #paoer with >= i citations
-        :type citations: List[int]
+        Let cnt[i] be the #paper with == i citations
+        Let F[i] be the #paper with >= i citations
+        F[i] = F[i+1] + cnt[i]
+        :type A: List[int]
         :rtype: int
         """
-        n = len(citations)
-        F = [0 for _ in xrange(n+1)]
-        for elt in citations:
-            if elt >= n:  # chunk
-                F[n] += 1
+        n = len(A)
+        cnt = [0 for _ in xrange(n+1)]
+        for e in A:
+            if e >= n:  # chunk
+                cnt[n] += 1
             else:
-                F[elt] += 1
+                cnt[e] += 1
 
-        if F[n] >= n:
-            return n
-
-        for i in xrange(n-1, -1, -1):
-            F[i] += F[i+1]
+        F = [0 for _ in xrange(n+2)]
+        for i in xrange(n, -1, -1):
+            F[i] += F[i+1] + cnt[i]
             if F[i] >= i:
                 return i
 
