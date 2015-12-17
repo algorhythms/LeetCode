@@ -12,6 +12,7 @@ __author__ = 'Daniel'
 class Solution(object):
     def __init__(self):
         self.m = {
+            0: None,
             1: "One",
             2: "Two",
             3: "Three",
@@ -47,6 +48,7 @@ class Solution(object):
 
     def numberToWords(self, num):
         """
+        Pay attention to the handling of 0's
         :type num: int
         :rtype: str
         """
@@ -55,24 +57,22 @@ class Solution(object):
 
         ret = []
         self.toWords(num, ret)
+        ret = filter(lambda x: x, ret)  # filter zeros
         return " ".join(map(str, ret))
 
     def toWords(self, num, ret):
-        sigs = [1000000000, 1000000, 1000, 100]
-        for sig in sigs:
-            num = self.partial(num, sig, ret)
+        SIGS = [1000000000, 1000000, 1000, 100]
+        for SIG in SIGS:
+            num = self.partial_parse(num, SIG, ret)
 
-        ten = 10
-        if num/ten > 1:
-            ret.append(self.m[num/ten*ten])
-            if num%ten != 0:
-                ret.append(self.m[num%ten])
-        elif num/ten == 1:
-            ret.append(self.m[num])
-        elif num != 0:
+        TEN = 10
+        if num/TEN > 1:
+            ret.append(self.m[(num/TEN)*TEN])
+            ret.append(self.m[num%TEN])
+        else:
             ret.append(self.m[num])
 
-    def partial(self, num, sig, ret):
+    def partial_parse(self, num, sig, ret):
         if num/sig:
             pre = []
             self.toWords(num/sig, pre)
