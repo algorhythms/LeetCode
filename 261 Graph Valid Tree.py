@@ -9,35 +9,38 @@ __author__ = 'Daniel'
 class Solution(object):
     def validTree(self, n, edges):
         """
+        A graph is a tree:
+          1. no cycle
+          2. all connected
         :type n: int
-        :edges: List[List[int]
+        :type edges: List[List[int]
         :rtype: bool
         """
         if not edges:
             return n in (0, 1)
 
         V = defaultdict(list)
-        for edge in edges:
-            V[edge[0]].append(edge[1])
-            V[edge[1]].append(edge[0])
+        for e in edges:
+            V[e[0]].append(e[1])
+            V[e[1]].append(e[0])
 
         visited = set()
-        path_set = set()
-        if not self.dfs(V, edges[0][0], None, visited, path_set):
+        pathset = set()
+        if not self.dfs(V, edges[0][0], None, pathset, visited):
             return False
 
         return len(visited) == n
 
-    def dfs(self, V, k, pi, visited, path_set):
-        if k in path_set:
+    def dfs(self, V, v, pi, pathset, visited):
+        if v in pathset:
             return False
 
-        path_set.add(k)
-        for neighbor in V[k]:
-            if neighbor != pi:
-                if not self.dfs(V, neighbor, k, visited, path_set):
+        pathset.add(v)
+        for nbr in V[v]:
+            if nbr != pi:  # since undirected graph
+                if not self.dfs(V, nbr, v, pathset, visited):
                     return False
 
-        path_set.remove(k)
-        visited.add(k)
+        pathset.remove(v)
+        visited.add(v)
         return True
