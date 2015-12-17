@@ -19,7 +19,10 @@ class Solution(object):
         """
         read n chars to buf
         Algorithm:
-        Two ptrs
+        Two dimensions
+          1st dim: buf full or not
+          2nd dim: buf4 full or not
+
         :type buf: Destination buffer (List[str])
         :type n: Maximum number of characters to read (int)
         :rtype: The number of characters read (int)
@@ -29,14 +32,11 @@ class Solution(object):
             buf4 = ["" for _ in xrange(4)]
             r = read4(buf4)
             if idx+r < n:
-                for i in xrange(r):
-                    buf[idx+i] = buf4[i]
+                buf[idx:idx+r] = buf4[:r]
                 idx += r
-                if r < 4:
-                    break
+                if r < 4: break
             else:
-                for i in xrange(idx, n):
-                    buf[i] = buf4[i-idx]
+                buf[idx:n] = buf4[:n-idx]
                 idx = n
 
         return idx

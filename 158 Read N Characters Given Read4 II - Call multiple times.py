@@ -27,8 +27,7 @@ class Solution(object):
         :rtype: The number of characters read (int)
         """
         l = min(len(self.prev), n)
-        for i in xrange(l):
-            buf[i] = self.prev[i]
+        buf[:l] = self.prev[:l]
         self.prev = self.prev[l:]  # pitfall self.prev = []
 
         idx = l  # the next reading
@@ -36,16 +35,11 @@ class Solution(object):
             buf4 = ["" for _ in xrange(4)]
             r = read4(buf4)
             if idx+r < n:
-                for i in xrange(idx, idx+r):
-                    buf[i] = buf4[i-idx]
-
+                buf[idx:idx+r] = buf4[:r]
                 idx += r
-                if r < 4:
-                    return idx
+                if r < 4: return idx
             else:
-                for i in xrange(idx, n):
-                    buf[i] = buf4[i-idx]
-
+                buf[idx:n] = buf4[:n-idx]
                 self.prev = buf4[n-idx:r]  # pitfall buf4[n-idx:]
                 idx = n
 
