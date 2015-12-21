@@ -6,7 +6,9 @@ You may assume that A has enough space (size that is greater or equal to m + n) 
 number of elements initialized in A and B are m and n respectively.
 """
 __author__ = 'Danyang'
-class Solution:
+
+
+class Solution(object):
     def merge(self, A, m, B, n):
         """
         array, ascending order.
@@ -24,9 +26,9 @@ class Solution:
         j = n-1
         closed = m+n
 
-        while i>=0 and j>=0:
+        while i >= 0 and j >= 0:
             closed -= 1
-            if A[i]>B[j]:
+            if A[i] > B[j]:
                 A[closed] = A[i]
                 i -= 1
             else:
@@ -35,13 +37,5 @@ class Solution:
 
         # either-or
         # dangling
-        while j>=0:
-            closed -= 1
-            A[closed] = B[j]
-            j -= 1
-
-        # dangling
-        while i>=0:
-            closed -= 1
-            A[closed] = A[i]
-            i -= 1
+        if j >= 0: A[:closed] = B[:j+1]
+        # if i >= 0: A[:closed] = A[:i+1]
