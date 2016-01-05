@@ -7,7 +7,9 @@ For "(()", the longest valid parentheses substring is "()", which has length = 2
 Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4.
 """
 __author__ = 'Danyang'
-class Solution:
+
+
+class Solution(object):
     def longestValidParentheses(self, s):
         """
         Stack holds the index of unpaired brackets
@@ -23,22 +25,23 @@ class Solution:
         :param s: a string
         :return: an integer
         """
-        stack = []  # hold unpaired bracket, either ( or )
-        longest = 0
-        for ind, char in enumerate(s):
-            if char==")" and stack and s[stack[-1]]=="(":  # ), and non-empty stack
-                stack.pop()
-                if not stack:
-                    longest = ind+1
+        stk = []  # hold the INDEX of UNPAIRED bracket, either ( or )
+        maxa = 0
+        for idx, val in enumerate(s):
+            if val == ")" and stk and s[stk[-1]] == "(":
+                stk.pop()
+                if not stk:
+                    maxa = max(maxa, idx+1)
                 else:
-                    longest = max(longest, ind-stack[-1])
+                    maxa = max(maxa, idx-stk[-1])
             else:
-                stack.append(ind)
+                stk.append(idx)
 
-        return longest
+        return maxa
 
-if __name__=="__main__":
-    assert Solution().longestValidParentheses("(()()")==4
-    assert Solution().longestValidParentheses("()(()")==2
-    assert Solution().longestValidParentheses("(()")==2
-    assert Solution().longestValidParentheses(")()())")==4
+
+if __name__ == "__main__":
+    assert Solution().longestValidParentheses("(()()") == 4
+    assert Solution().longestValidParentheses("()(()") == 2
+    assert Solution().longestValidParentheses("(()") == 2
+    assert Solution().longestValidParentheses(")()())") == 4

@@ -21,7 +21,7 @@ class Solution:
         start = 0
         end = len(height)-1
 
-        max_area = -1<<32
+        max_area = -1 << 32
         while start < end:
             area = min(height[start], height[end])*(end-start)
             max_area = max(area, max_area)
