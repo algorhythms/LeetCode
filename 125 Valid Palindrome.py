@@ -11,7 +11,9 @@ Have you consider that the string might be empty? This is a good question to ask
 For the purpose of this problem, we define empty string as valid palindrome.
 """
 __author__ = 'Danyang'
-class Solution:
+
+
+class Solution(object):
     def isPalindrome(self, s):
         """
 
@@ -25,5 +27,4 @@ class Solution:
         if not s:
             return True
 
-        s2 = s[::-1]
-        return s2==s
+        return s == s[::-1]

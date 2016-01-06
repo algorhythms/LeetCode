@@ -23,23 +23,20 @@ class Solution:
         """
         n = len(nums)
 
-        f = [0 for _ in xrange(n+1)]
+        S = [0 for _ in xrange(n+1)]
         for i in xrange(1, n+1):
-            f[i] = f[i-1]+nums[i-1]
+            S[i] = S[i-1]+nums[i-1]
 
-        b, e = 0, 1
+        lo, hi = 0, 1
         mini = sys.maxint
-        while e <= n:
-            if f[e]-f[b] >= s:
-                mini = min(mini, e-b)
-                b += 1
+        while hi <= n:
+            if S[hi]-S[lo] >= s:
+                mini = min(mini, hi-lo)
+                lo += 1
             else:
-                e += 1
+                hi += 1
 
-        if mini == sys.maxint:
-            mini = 0
-
-        return mini
+        return mini if mini != sys.maxint else 0
 
 
 if __name__ == "__main__":
