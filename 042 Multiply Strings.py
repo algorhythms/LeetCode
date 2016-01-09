@@ -4,7 +4,9 @@ Given two numbers represented as strings, return multiplication of the numbers a
 Note: The numbers can be arbitrarily large and are non-negative.
 """
 __author__ = 'Danyang'
-class Solution:
+
+
+class Solution(object):
     def multiply(self, num1, num2):
         """
         Google Phone Interview Question, 20 Sep 2013
@@ -25,7 +27,7 @@ class Solution:
         result = []
 
         # pre processing
-        if len(num1)<len(num2): # order them first
+        if len(num1) < len(num2):  # order them first
             num1, num2 = num2, num1
 
         num2 = num2[::-1]  # reverse them first
@@ -63,11 +65,10 @@ class Solution:
             mul = mul%10
             temp[ind] = mul
 
-        if carry!=0:
+        if carry != 0:
             temp.append(carry)
 
         return temp
-
 
     def add_list(self, lst):
         """
@@ -84,9 +85,6 @@ class Solution:
             appending_zero += 1
         return result
 
-
-
-
     def add(self, num1, num2):
         """
         :param num1: list of digits in reverse order
@@ -95,7 +93,7 @@ class Solution:
         """
         num1 = list(num1)  # NOTICE: local copy
         num2 = list(num2)  # NOTICE: local copy
-        if len(num1)<len(num2):
+        if len(num1) < len(num2):
             num1, num2 = num2, num1
 
         carry = 0
@@ -104,24 +102,21 @@ class Solution:
                 result = num1[ind]+num2[ind]+carry
             except IndexError:
                 result = num1[ind]+carry
-                if result==num1[ind]: break  # prune
-
+                if result == num1[ind]: break  # prune
 
             carry = result/10
             num1[ind] = result%10
 
-        if carry!=0:
+        if carry != 0:
             num1.append(carry)
 
         return num1
 
 
-
-
-if __name__=="__main__":
+if __name__ == "__main__":
     solution = Solution()
-    #assert [1, 2]==solution.add([2,1], [9])
+    # assert [1, 2]==solution.add([2,1], [9])
     #assert [1, 9, 9, 8]==solution.multiply_1_digit("9", "999")
     #assert str(123*999)==solution.multiply("123", "999")
     #assert str(0)==solution.multiply("0", "0")
-    assert str(123*456)==solution.multiply("123", "456")
+    assert str(123*456) == solution.multiply("123", "456")

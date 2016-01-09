@@ -9,7 +9,7 @@ class Solution(object):
     def multiply(self, A, B):
         """
         Brute force O(n^3)
-        O(n^2 k)
+        O(n^2 k) HashMap
         Posting list
         :type A: List[List[int]]
         :type B: List[List[int]]
