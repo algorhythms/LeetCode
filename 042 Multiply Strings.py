@@ -115,8 +115,8 @@ class Solution(object):
 
 if __name__ == "__main__":
     solution = Solution()
-    # assert [1, 2]==solution.add([2,1], [9])
-    #assert [1, 9, 9, 8]==solution.multiply_1_digit("9", "999")
-    #assert str(123*999)==solution.multiply("123", "999")
-    #assert str(0)==solution.multiply("0", "0")
+    assert [1, 2]==solution.add([2,1], [9])
+    assert [1, 9, 9, 8]==solution.multiply_1_digit("9", "999")
+    assert str(123*999)==solution.multiply("123", "999")
+    assert str(0)==solution.multiply("0", "0")
     assert str(123*456) == solution.multiply("123", "456")
