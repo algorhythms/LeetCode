@@ -54,6 +54,8 @@ class Solution:
     def getSkyline(self, buildings):
         """
         Sweep line
+        The change of skyline only happens at start and end of buildings.
+
         Treat a building as entering line and leaving line
         :type buildings: list[list[int]]
         :rtype: list[list[int]]
@@ -65,28 +67,28 @@ class Solution:
             events[left].starts.append(building)  # possible multiple building at the same x-coordinate.
             events[right].ends.append(building)
 
-        cur_heap = []  # Heap of buildings currently standing.
-        cur_max_h = 0  # current max height of standing buildings.
+        heap_h = []  # Heap of buildings currently standing.
+        cur_h = 0  # current max height of standing buildings. the current skyline
         ret = []
         # Process events in order by x-coordinate.
         for x, event in sorted(events.items()):  # sort the dictionary by key
             for building in event.starts:
-                heapq.heappush(cur_heap, building)
+                heapq.heappush(heap_h, building)
             for building in event.ends:
                 building.deleted = True
 
             # Pop any finished buildings from the top of the heap.
             # To avoid using multiset - lazy deletion.
-            while cur_heap and cur_heap[0].deleted:
-                heapq.heappop(cur_heap)
+            while heap_h and heap_h[0].deleted:
+                heapq.heappop(heap_h)
 
             # Top of heap (if any) is the highest standing building, so
             # its height is the current height of the skyline.
-            new_h = cur_heap[0].h if cur_heap else 0
+            new_h = heap_h[0].h if heap_h else 0
 
-            if new_h != cur_max_h:
-                cur_max_h = new_h
-                ret.append([x, cur_max_h])
+            if new_h != cur_h:
+                cur_h = new_h
+                ret.append([x, cur_h])
 
         return ret
 
