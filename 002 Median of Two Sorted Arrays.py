@@ -55,16 +55,13 @@ class Solution:
         n = len(B)
 
         # pay attention to consider the equal sign. Assigning equal sign is an art.
-        if A[m/2] > B[n/2]:
+        if A[m/2] >= B[n/2]:
             if k > m/2+n/2:
-                return self.find_kth(A, B[n/2+1:], k-n/2-1)  # exclude B[n/2]
+                return self.find_kth(A, B[n/2+1:], k-n/2-1)  # exclude B[n/2] to make progress
             else:
-                return self.find_kth(A[:m/2], B, k)  # exclude A[m/2]
+                return self.find_kth(A[:m/2], B, k)  # exclude A[m/2] to make progess
         else:
-            if k > m/2+n/2:
-                return self.find_kth(A[m/2+1:], B, k-m/2-1)  # exclude A[m/2]
-            else:
-                return self.find_kth(A, B[:n/2], k)  # exclude B[n/2]
+            return self.find_kth(B, A, k)
 
 
 if __name__ == "__main__":
