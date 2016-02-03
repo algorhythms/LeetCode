@@ -43,23 +43,17 @@ class Solution:
         :param k: index starting from 0
         :return:
         """
-        if not A:
-            return B[k]
-        if not B:
-            return A[k]
+        if not A:  return B[k]
+        if not B:  return A[k]
+        if k == 0: return min(A[0], B[0])
 
-        if k == 0:
-            return min(A[0], B[0])
-
-        m = len(A)
-        n = len(B)
-
+        m, n = len(A), len(B)
         # pay attention to consider the equal sign. Assigning equal sign is an art.
         if A[m/2] >= B[n/2]:
             if k > m/2+n/2:
                 return self.find_kth(A, B[n/2+1:], k-n/2-1)  # exclude B[n/2] to make progress
             else:
-                return self.find_kth(A[:m/2], B, k)  # exclude A[m/2] to make progess
+                return self.find_kth(A[:m/2], B, k)  # exclude A[m/2] to make progress
         else:
             return self.find_kth(B, A, k)
 
