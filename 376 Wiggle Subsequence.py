@@ -17,14 +17,47 @@ __author__ = 'Daniel'
 class Solution(object):
     def wiggleMaxLength(self, A):
         """
+        Let H[i] be max wiggle length for [0, i] with A[i] as high point
+        Let L[i] be similarly defined but as low point.
+
+        Consider A[i] > A[i-1]:
+          H[i] = L[i-1] + 1 # wiggle up
+          L[i] = L[i-1]  #
+        A[i] < A[i-1] case has similar formula
+
+          H[i] = H[i-1]
+               = L[i-1] + 1
+
+          L[i] = L[i-1]
+               = H[i-1] + 1
+
+        Therefore, max(H[i], L[i]) are monotonously non-decreasing  (rather than H[i] or L[i] monotonously
+        non-decreasing separately.
+        O(n)
+
+        Additionally, possibly space optimized to O(1) by reusing space
+        :type A: List[int]
+        :rtype: int
+        """
+        if not A: return 0
+        N = len(A)
+        H = [1 for _ in xrange(N)]
+        L = [1 for _ in xrange(N)]
+        for i in xrange(1, N):
+            L[i] = H[i-1] + 1 if A[i] < A[i-1] else L[i-1]
+            H[i] = L[i-1] + 1 if A[i] > A[i-1] else H[i-1]
+
+        return max(H[N-1], L[N-1])
+
+    def wiggleMaxLengthSuboptimal(self, A):
+        """
         Let H[i] be wiggle length ends at i, with A[i] as high point
         Let L[i] be similarly defined but as low point.
         O(n^2)
         :type A: List[int]
         :rtype: int
         """
-        if not A:
-            return 0
+        if not A: return 0
 
         N = len(A)
         H = [1 for _ in xrange(N)]
