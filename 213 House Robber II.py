@@ -26,15 +26,15 @@ class Solution:
             return sum(nums)
 
         # include first but exclude last
-        dp = [0 for _ in xrange(n-1+2)]
+        F = [0 for _ in xrange(n-1+2)]
         for i in xrange(2, n+1):
-            dp[i] = max(dp[i-1], dp[i-2]+nums[i-2])
-        ret = dp[-1]
+            F[i] = max(F[i-1], F[i-2]+nums[i-2])
+        ret = F[-1]
 
         # exclude first but include last
-        dp = [0 for _ in xrange(n-1+2)]
+        F = [0 for _ in xrange(n-1+2)]
         for i in xrange(2, n+1):
-            dp[i] = max(dp[i-1], dp[i-2]+nums[i-1])
+            F[i] = max(F[i-1], F[i-2]+nums[i-1])
 
-        ret = max(ret, dp[-1])
+        ret = max(ret, F[-1])
         return ret
