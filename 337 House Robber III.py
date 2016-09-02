@@ -57,7 +57,7 @@ class Solution(object):
 
     def notrob(self, root):
         """
-        not rob at the root 
+        not rob at the root
         :param root: TreeNode
         :return: int
         """
