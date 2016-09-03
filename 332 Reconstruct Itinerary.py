@@ -26,7 +26,7 @@ class Solution(object):
         """
         Euler path
         Hierholzer's algorithm a Euler path, must be directed graph
-        The graph must be directed graph 
+        The graph must be directed graph
         :type tickets: List[List[str]]
         :rtype: List[str]
         """

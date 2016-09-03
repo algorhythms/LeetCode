@@ -48,7 +48,7 @@ class Solution(object):
         cur = self.head.next
         idx = 1
         while cur:
-            if random.randrange(0, idx+1) == idx:
+            if random.randrange(0, idx+1) == 0:
                 ret = cur
             cur = cur.next
             idx += 1
