@@ -33,7 +33,7 @@ class Solution(object):
         """
         m, n = len(matrix), len(matrix[0])
 
-        class Value(object):
+        class Node(object):
             def __init__(self, i, j):
                 self.i = i
                 self.j = j
@@ -46,13 +46,13 @@ class Solution(object):
 
             def next(self):
                 if self.hasnext():
-                    return Value(self.i, self.j + 1)
+                    return Node(self.i, self.j + 1)
 
                 raise StopIteration
 
         h = []
         for i in xrange(m):
-            heapq.heappush(h, Value(i, 0))
+            heapq.heappush(h, Node(i, 0))
 
         ret = None
         for _ in xrange(k):
