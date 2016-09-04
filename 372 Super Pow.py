@@ -23,7 +23,7 @@ C = 1337
 class Solution(object):
     def superPow(self, a, b):
         """
-        since b is given as a list rather than a number, we need to process it digit by digit.   
+        since b is given as a list rather than a number, we need to process it digit by digit.
 
         a^123 = a^120 * a^3
               = a^12 ^ 10 * a^3
