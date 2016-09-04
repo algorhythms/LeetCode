@@ -32,8 +32,7 @@ class Solution(object):
         :type A: List[int]
         :rtype: List[int]
         """
-        if not A:
-            return []
+        if not A: return []
 
         F = {}
         pi = {}
@@ -60,6 +59,7 @@ class Solution(object):
             ret.appendleft(A[cur])
 
         return list(ret)
+
 
 if __name__ == "__main__":
     assert Solution().largestDivisibleSubset([1, 2, 4, 8]) == [1, 2, 4, 8]
