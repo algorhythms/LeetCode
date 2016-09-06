@@ -112,7 +112,7 @@ class SolutionError(object):
 
 
 if __name__ == "__main__":
-    print Solution().decodeString('2[abc]3[cd]ef')
+    assert Solution().decodeString('2[abc]3[cd]ef') == 'abcabccdcdcdef'
 
 
 
