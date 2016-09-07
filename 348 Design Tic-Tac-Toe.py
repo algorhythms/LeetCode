@@ -11,8 +11,8 @@ class TicTacToe(object):
         :type n: int
         """
         self.n = n
-        self.row = [0 for _ in xrange(n)]
-        self.col = [0 for _ in xrange(n)]
+        self.rows = [0 for _ in xrange(n)]
+        self.cols = [0 for _ in xrange(n)]
         self.diag0 = 0
         self.diag1 = 0
 
@@ -35,15 +35,15 @@ class TicTacToe(object):
         :rtype: int
         """
         delta = -1 if player == 1 else 1
-        self.col[col] += delta
-        self.row[row] += delta
+        self.cols[col] += delta
+        self.rows[row] += delta
         if col == row:
             self.diag0 += delta
         if col + row == self.n - 1:
             self.diag1 += delta
 
         is_win = lambda x: delta * x == self.n
-        if any(map(is_win, self.col)) or any(map(is_win, self.row)) or is_win(self.diag0) or is_win(self.diag1):
+        if any(map(is_win, [self.rows[row], self.cols[col], self.diag0, self.diag1])):
             return player
 
         return 0
