@@ -28,22 +28,21 @@ class Solution(object):
 
         # pre processing
         if len(num1) < len(num2):  # order them first
-            num1, num2 = num2, num1
+            return self.multiply(num2, num1)
 
         num2 = num2[::-1]  # reverse them first
         num1 = num1[::-1]
 
         # multiply by 1 digit at a time
-        for i in range(len(num2)):
-            result.append(self.multiply_1_digit(num2[i], num1))
+        for char in num2:
+            result.append(self.multiply_1_digit(char, num1))
 
         # add the temporary results up
         lst = self.add_list(result)
 
-
         # post processing
         lst.reverse()  # reverse back
-        result = "".join(str(item) for item in lst).lstrip("0")
+        result = "".join(map(str, lst)).lstrip("0")
         if not result:
             return "0"
         return result
@@ -55,20 +54,20 @@ class Solution(object):
         :return: list of digit in reverse order
         """
         digit = int(digit)
-        temp = [int(item) for item in num]
+        ret = []
 
         carry = 0
-        for ind in range(len(temp)):
-            val = temp[ind]
-            mul = val*digit+carry
+        for elt in num:
+            val = int(elt)
+            mul = val*digit + carry
             carry = mul/10
-            mul = mul%10
-            temp[ind] = mul
+            mul %= 10
+            ret.append(mul)
 
         if carry != 0:
-            temp.append(carry)
+            ret.append(carry)
 
-        return temp
+        return ret
 
     def add_list(self, lst):
         """
@@ -76,14 +75,14 @@ class Solution(object):
         :param lst:
         :return:
         """
-        appending_zero = 0
-        result = [0]
+        sig = 0
+        ret = [0]
         for ind, val in enumerate(lst):
-            for i in range(appending_zero):
+            for i in range(sig):
                 val.insert(0, 0)  # NOTICE: side-effect
-            result = self.add(result, val)
-            appending_zero += 1
-        return result
+            ret = self.add(ret, val)
+            sig += 1
+        return ret
 
     def add(self, num1, num2):
         """
@@ -91,32 +90,31 @@ class Solution(object):
         :param num2: list of digits in reverse order
         :return: list of digits in reverse order
         """
-        num1 = list(num1)  # NOTICE: local copy
-        num2 = list(num2)  # NOTICE: local copy
+
         if len(num1) < len(num2):
-            num1, num2 = num2, num1
+            return self.add(num2, num1)
 
+        ret = []
         carry = 0
-        for ind in range(len(num1)):  # longer one
+        for idx in xrange(len(num1)):  # longer one
             try:
-                result = num1[ind]+num2[ind]+carry
+                sm = num1[idx]+num2[idx]+carry
             except IndexError:
-                result = num1[ind]+carry
-                if result == num1[ind]: break  # prune
+                sm = num1[idx] + carry
 
-            carry = result/10
-            num1[ind] = result%10
+            carry = sm/10
+            ret.append(sm % 10)
 
         if carry != 0:
-            num1.append(carry)
+            ret.append(carry)
 
-        return num1
+        return ret
 
 
 if __name__ == "__main__":
     solution = Solution()
-    assert [1, 2]==solution.add([2,1], [9])
-    assert [1, 9, 9, 8]==solution.multiply_1_digit("9", "999")
-    assert str(123*999)==solution.multiply("123", "999")
-    assert str(0)==solution.multiply("0", "0")
+    assert [1, 2] == solution.add([2, 1], [9])
+    assert [1, 9, 9, 8] == solution.multiply_1_digit("9", "999")
+    assert str(123*999) == solution.multiply("123", "999")
+    assert str(0) == solution.multiply("0", "0")
     assert str(123*456) == solution.multiply("123", "456")
