@@ -27,15 +27,16 @@ class Solution(object):
         result = []
 
         # pre processing
-        if len(num1) < len(num2):  # order them first
+        if len(num1) > len(num2):  # order them first
             return self.multiply(num2, num1)
 
-        num2 = num2[::-1]  # reverse them first
-        num1 = num1[::-1]
+        # reverse them first
+        num1 = map(int, list(num1[::-1]))
+        num2 = map(int, list(num2[::-1]))
 
         # multiply by 1 digit at a time
-        for char in num2:
-            result.append(self.multiply_1_digit(char, num1))
+        for d in num1:
+            result.append(self.multiply_1_digit(d, num2))
 
         # add the temporary results up
         lst = self.add_list(result)
@@ -53,13 +54,11 @@ class Solution(object):
         :param num: String
         :return: list of digit in reverse order
         """
-        digit = int(digit)
         ret = []
 
         carry = 0
         for elt in num:
-            val = int(elt)
-            mul = val*digit + carry
+            mul = elt*digit + carry
             carry = mul/10
             mul %= 10
             ret.append(mul)
@@ -78,8 +77,7 @@ class Solution(object):
         sig = 0
         ret = [0]
         for ind, val in enumerate(lst):
-            for i in range(sig):
-                val.insert(0, 0)  # NOTICE: side-effect
+            for i in xrange(sig): val.insert(0, 0)  # possible deque
             ret = self.add(ret, val)
             sig += 1
         return ret
@@ -91,16 +89,16 @@ class Solution(object):
         :return: list of digits in reverse order
         """
 
-        if len(num1) < len(num2):
+        if len(num1) > len(num2):
             return self.add(num2, num1)
 
         ret = []
         carry = 0
-        for idx in xrange(len(num1)):  # longer one
+        for idx in xrange(len(num2)):  # longer one
             try:
-                sm = num1[idx]+num2[idx]+carry
+                sm = num1[idx] + num2[idx] + carry
             except IndexError:
-                sm = num1[idx] + carry
+                sm = num2[idx] + carry
 
             carry = sm/10
             ret.append(sm % 10)
@@ -114,7 +112,6 @@ class Solution(object):
 if __name__ == "__main__":
     solution = Solution()
     assert [1, 2] == solution.add([2, 1], [9])
-    assert [1, 9, 9, 8] == solution.multiply_1_digit("9", "999")
     assert str(123*999) == solution.multiply("123", "999")
     assert str(0) == solution.multiply("0", "0")
     assert str(123*456) == solution.multiply("123", "456")
