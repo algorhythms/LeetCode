@@ -29,22 +29,20 @@ class Solution(object):
         median_idx = self.find_kth(A, 0, n, n/2)
         v = A[median_idx]
 
-        def idx(i):
-            return (2*i+1) % (n|1)
-
-        l = -1
-        r = n
+        idx = lambda i: (2*i+1)%(n|1)
+        lt = -1
+        hi = n
         i = 0
-        while i < r:
+        while i < hi:
             if A[idx(i)] > v:
-                l += 1
-                A[idx(l)], A[idx(i)] = A[idx(i)], A[idx(l)]
+                lt += 1
+                A[idx(lt)], A[idx(i)] = A[idx(i)], A[idx(lt)]
                 i += 1
             elif A[idx(i)] == v:
                 i += 1
             else:
-                r -= 1
-                A[idx(r)], A[idx(i)] = A[idx(i)], A[idx(r)]
+                hi -= 1
+                A[idx(hi)], A[idx(i)] = A[idx(i)], A[idx(hi)]
 
     def pivot(self, A, lo, hi, pidx=None):
         lt = lo-1
@@ -70,6 +68,7 @@ class Solution(object):
         if lo >= hi: return
 
         lt, gt = self.pivot(A, lo, hi)
+
         if lt < k < gt:
             return k
         if k <= lt:
@@ -105,7 +104,7 @@ class SolutionSort(object):
 
 if __name__ == "__main__":
     # A = [1, 5, 1, 1, 6, 4]
-    A = [3,2,1,1,3,2]
+    A = [3, 2, 1, 1, 3, 2]
     Solution().wiggleSort(A)
     print A
 

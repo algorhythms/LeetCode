@@ -66,14 +66,14 @@ class Solution(object):
             cur = pi[cur]
         ret.append(cur)
 
-        if level % 2 == 0:
+        if level%2 == 0:
             ret.append(pi[cur])
 
         return ret
 
     def bfs(self, s, V):
         # bfs
-        visisted = [False for _ in xrange(len(V))]
+        visited = [False for _ in xrange(len(V))]
         pi = [-1 for _ in xrange(len(V))]
         last = s
         level = 0
@@ -84,9 +84,9 @@ class Solution(object):
             for i in xrange(l):
                 cur = q[i]
                 last = cur
-                visisted[cur] = True
+                visited[cur] = True
                 for nbr in V[cur]:
-                    if not visisted[nbr]:
+                    if not visited[nbr]:
                         pi[nbr] = cur
                         q.append(nbr)
 
@@ -185,11 +185,12 @@ class SolutionError(object):
             q = q[l:]
             level += 1
 
-        if level % 2 == 0:
+        if level%2 == 0:
             return h2v[level/2-1]+h2v[level/2]
         else:
             return h2v[level/2]
 
+
 if __name__ == "__main__":
     # print Solution().findMinHeightTrees(6, [[3,0],[3,1],[3,2],[3,4],[5,4]])
-    print Solution().findMinHeightTrees(7, [[0,1],[1,2],[1,3],[2,4],[3,5],[4,6]])
+    assert Solution().findMinHeightTrees(7, [[0, 1], [1, 2], [1, 3], [2, 4], [3, 5], [4, 6]]) == [1, 2]
