@@ -71,8 +71,10 @@ class RandomizedSet(object):
             return False
 
         idx, last = self.pos[val], len(self.lst) - 1
-        self.lst[idx], self.lst[last] = self.lst[last], self.lst[idx]
-        self.pos[self.lst[idx]] = idx
+
+        if idx != last:
+            self.lst[idx], self.lst[last] = self.lst[last], self.lst[idx]
+            self.pos[self.lst[idx]] = idx
 
         del self.pos[val]
         self.lst.pop()
