@@ -11,7 +11,7 @@ __author__ = 'Daniel'
 
 class Solution(object):
     def __init__(self):
-        self.m = {
+        self.table = {
             0: None,
             1: "One",
             2: "Two",
@@ -52,35 +52,39 @@ class Solution(object):
         :type num: int
         :rtype: str
         """
-        if num == 0:
-            return "Zero"
+        if num == 0: return "Zero"
 
         ret = []
         self.toWords(num, ret)
-        ret = filter(lambda x: x, ret)  # filter zeros
+        ret = filter(lambda x: x, ret)  # filter None as zeros
         return " ".join(map(str, ret))
 
     def toWords(self, num, ret):
+        """
+        will call partial_parse
+
+        significance by significance
+        """
         SIGS = [1000000000, 1000000, 1000, 100]
         for SIG in SIGS:
-            num = self.partial_parse(num, SIG, ret)
+            self.partial_parse(num, SIG, ret)
+            num %= SIG
 
         TEN = 10
         if num/TEN > 1:
-            ret.append(self.m[(num/TEN)*TEN])
-            ret.append(self.m[num%TEN])
-        else:
-            ret.append(self.m[num])
+            ret.append(self.table[(num/TEN)*TEN])
+
+        ret.append(self.table[num%TEN])
 
     def partial_parse(self, num, sig, ret):
+        """
+        will call toWords
+        """
         if num/sig:
-            pre = []
-            self.toWords(num/sig, pre)
-            ret.extend(pre)
-            ret.append(self.m[sig])
-            num %= sig
-
-        return num
+            prefix = []
+            self.toWords(num/sig, prefix)
+            ret.extend(prefix)
+            ret.append(self.table[sig])
 
 
 if __name__ == "__main__":
