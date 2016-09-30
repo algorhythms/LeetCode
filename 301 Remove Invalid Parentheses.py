@@ -15,8 +15,11 @@ __author__ = 'Daniel'
 class Solution(object):
     def removeInvalidParentheses(self, s):
         """
+        Brute force: BFS and then validate
+
         Algorithm focuses on left parentheses
-        Backtracking/DFS with pruning
+        Backtracking/DFS with prune & jump
+
         :type s: str
         :rtype: List[str]
         """
@@ -27,6 +30,7 @@ class Solution(object):
 
     def minrm(self, s):
         """
+        Find the minimal removal count to limit the search depth
         returns minimal number of removals
         """
         rmcnt = 0
@@ -76,7 +80,3 @@ class Solution(object):
 
 if __name__ == "__main__":
     assert Solution().removeInvalidParentheses("(a)())()") == ['(a())()', '(a)()()']
-
-
-
-
