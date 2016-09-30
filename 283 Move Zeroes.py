@@ -15,6 +15,7 @@ __author__ = 'Daniel'
 class Solution(object):
     def moveZeroes(self, nums):
         """
+        Two pointers at the left side
         Pivot
         """
         left = -1
@@ -31,13 +32,13 @@ class SolutionCount(object):
         :type nums: List[int]
         :rtype: void Do not return anything, modify nums in-place instead.
         """
-        i = 0
+        cnt = 0
         for elt in nums:
             if elt != 0:
-                nums[i] = elt
-                i += 1
+                nums[cnt] = elt
+                cnt += 1
 
-        for j in xrange(i, len(nums)):
+        for j in xrange(cnt, len(nums)):
             nums[j] = 0
 
 
