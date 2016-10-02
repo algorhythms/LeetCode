@@ -11,12 +11,12 @@ class Solution(object):
         :type dictionary: List[str]
         :rtype: str
         """
-        ret = target
-        for abbr in self.dfs(target):
-            if self.validate(dictionary, abbr) and len(ret) > len(abbr):
-                ret = abbr
+        ret = (target, len(target))
+        for abbr, abbr_l in self.dfs(target):
+            if self.validate(dictionary, abbr) and ret[1] > abbr_l:
+                ret = (abbr, abbr_l)
 
-        return ret
+        return ret[0]
 
     def dfs(self, word):
         """
@@ -25,14 +25,17 @@ class Solution(object):
         :rtype: List[str]
         """
         if not word:
-            return [""]
+            return [("", 0)]
 
         ret = []
         for l in xrange(len(word)+1):
             left_num = str(l) if l else ""
-            for right in self.dfs(word[l+1:]):
-                cur = left_num+word[l:l+1]+right
-                ret.append(cur)
+            left_l = 1 if left_num != "" else 0
+            left_l += 1 if l < len(word) else 0
+
+            for right, right_l in self.dfs(word[l+1:]):
+                cur = left_num + word[l:l+1] + right  # word[l:l+1] possible ""
+                ret.append((cur, left_l + right_l))
 
         return ret
 
