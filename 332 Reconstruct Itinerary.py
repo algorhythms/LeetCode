@@ -33,7 +33,7 @@ class Solution(object):
         G = defaultdict(list)
         for elt in tickets:
             s, e = elt
-            heapq.heappush(G[s], e)
+            heapq.heappush(G[s], e)  # heap lexical order
 
         ret = deque()
         self.dfs(G, 'JFK', ret)
@@ -42,14 +42,9 @@ class Solution(object):
     def dfs(self, G, cur, ret):
         while G[cur]:
             self.dfs(G, heapq.heappop(G[cur]), ret)
+
         ret.appendleft(cur)
 
 
 if __name__ == "__main__":
     assert Solution().findItinerary([["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]]) == ['JFK', 'NRT', 'JFK', 'KUL']
-
-
-
-
-
-

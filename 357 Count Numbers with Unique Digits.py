@@ -22,9 +22,8 @@ class Solution(object):
         """
         ret = 1
         Fi = 1
-        for i in xrange(1, n+1):
-            Fi *= (10-i+1)
-            if i == 1: Fi -= 1
+        for i in xrange(n):
+            Fi *= (10-i) if i != 0 else 9
             ret += Fi
 
         return ret

@@ -16,15 +16,14 @@ class Solution(object):
         """
         def gen():
             i = 1
-            for _ in xrange(n):
+            for _ in xrange(n):  # erroneous for while i <= n:
                 yield i
                 if i * 10 <= n:
                     i *= 10  # * 10
                 elif i % 10 != 9 and i + 1 <= n:
                     i += 1  # for current digit
                 else:
-                    i /= 10  # move to next digit
-                    while i % 10 == 9:
+                    while i % 10 == 9 or i + 1 > n:
                         i /= 10
                     i += 1
 
@@ -47,5 +46,7 @@ class Solution(object):
 
         return ret
 
+
 if __name__ == "__main__":
-    print Solution().lexicalOrder(100)
+    assert Solution().lexicalOrder(30) == [1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2, 20, 21, 22, 23, 24, 25, 26, 27,
+                                           28, 29, 3, 30, 4, 5, 6, 7, 8, 9]

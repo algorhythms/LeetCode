@@ -27,7 +27,7 @@ class Solution(object):
         divisible by the largest number in the divisible subset.
 
         Let F[i] for the size of subset ended with A[i]
-        F[i] = max(1 + F[j] if A[i] % A[j] for j in xrange(i-1))
+        F[i] = max(1 + F[j] if A[i] % A[j] == 0 for j in xrange(i-1))
         pi[i] = argmax(...)
         :type A: List[int]
         :rtype: List[int]
@@ -63,4 +63,3 @@ class Solution(object):
 
 if __name__ == "__main__":
     assert Solution().largestDivisibleSubset([1, 2, 4, 8]) == [1, 2, 4, 8]
-

@@ -65,11 +65,11 @@ class Solution(object):
             heapq.heappush(h, Val(cnt, char))
 
         ret = []
-        while len(ret) < len(s):
+        while h:
             cur = []
-            diff = len(s) - len(ret)
-            for _ in xrange(min(k, diff)):
-                if not h: return ""
+            for _ in xrange(k):
+                if not h:
+                    return "".join(ret) if len(ret) == len(s) else ""
 
                 e = heapq.heappop(h)
                 ret.append(e.val)
