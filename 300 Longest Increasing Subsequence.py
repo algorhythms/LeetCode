@@ -10,6 +10,8 @@ Your algorithm should run in O(n2) complexity.
 
 Follow up: Could you improve it to O(n log n) time complexity?
 """
+import bisect
+
 __author__ = 'Daniel'
 
 
@@ -25,17 +27,14 @@ class Solution(object):
 
         n = len(A)
         MIN = [-1 for _ in xrange(n+1)]
-        l = 1
-        MIN[l] = 0
-        for i in xrange(1,n):
-            if A[i] > A[MIN[l]]:
-                l += 1
-                MIN[l] = i
-            else:
-                j = self.bin_search(MIN, A, A[i], 1, l+1)
-                MIN[j] = i
+        k = 1
+        MIN[k] = A[0]  # store value rather than index
+        for v in A[1:]:
+            idx = bisect.bisect_left(MIN, v, 1, k+1)
+            MIN[idx] = v
+            k += 1 if idx == k+1 else 0
 
-        return l
+        return k
 
     def bin_search(self, M, A, t, lo=0, hi=None):
         if not hi: hi = len(M)
@@ -121,4 +120,4 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    print Solution().lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18])
+    assert Solution().lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]) == 4
