@@ -2,8 +2,24 @@
 Write a function to find the longest common prefix string amongst an array of strings.
 """
 __author__ = 'Danyang'
-class Solution:
+
+
+class Solution(object):
     def longestCommonPrefix(self, strs):
+        if not strs: return ""
+        l = min(map(len, strs))
+        i = 0
+        while i < l:
+            char = strs[0][i]
+            for s in strs:
+                if s[i] != char:
+                    return strs[0][:i]
+
+            i += 1
+
+        return strs[0][:i]
+
+    def longestCommonPrefixComplex(self, strs):
         """
         O(k*n)
         :param strs: a list of string
@@ -21,14 +37,14 @@ class Solution:
             char = strs[0][i]
 
             j = 0
-            while j<n:
+            while j < n:
                 try:
-                    if strs[j][i]!=char: break
+                    if strs[j][i] != char: break
                     j += 1
                 except IndexError:
                     break
 
-            if j==n:
+            if j == n:
                 str_builder += char
             else:
                 break
@@ -36,7 +52,6 @@ class Solution:
         return str_builder
 
 
-
-if __name__=="__main__":
+if __name__ == "__main__":
     strs = ["abc", "abcd"]
     print Solution().longestCommonPrefix(strs)
