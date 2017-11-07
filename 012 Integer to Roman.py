@@ -34,10 +34,9 @@ class Solution:
         :return: a string
         """
         string_builder = []
-        components = [1, 4, 5, 9, 10, 10, 40, 50, 90, 100, 400, 500, 900, 1000]
 
         # starting from the largest
-        for component in reversed(components):  # reversed
+        for component in reversed(sorted(int2roman.keys())):  # reversed
             while num >= component:
                 string_builder.append(int2roman[component])
                 num -= component
