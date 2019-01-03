@@ -41,7 +41,6 @@ class Solution:
             return
 
         cur_sum += root.val
-        prefix_sum[cur_sum] = prefix_sum.get(cur_sum, 0) + 1
         # ∃ prefix_sum: cur_sum - prefix_sum = sum
         diff = cur_sum - sum
         if diff in prefix_sum:
@@ -49,6 +48,7 @@ class Solution:
         if diff == 0:  # trivial case
             count[0] += 1
 
+        prefix_sum[cur_sum] = prefix_sum.get(cur_sum, 0) + 1
         self.dfs(root.left, sum, cur_sum, prefix_sum, count)
         self.dfs(root.right, sum, cur_sum, prefix_sum, count)
         prefix_sum[cur_sum] -= 1  # pop to save space
