@@ -2,6 +2,8 @@
 """
 A sequence of number is called arithmetic if it consists of at least three
 elements and if the difference between any two consecutive elements is the same.
+
+The function should return the number of arithmetic slices in the array A.
 """
 
 class Solution:
@@ -13,7 +15,7 @@ class Solution:
         Diff the array, find the pattern.
         Find that it is a function of length of the sequence
         With 3 consecutive sequence (l - 1) * l / 2
-        
+
         :type A: List[int]
         :rtype: int
         """
