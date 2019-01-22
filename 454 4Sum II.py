@@ -52,6 +52,7 @@ class Solution:
                 CD[C[i] + D[j]] += 1
 
         ret = 0
+        # O(N^2)
         for gross, count in AB.items():
             target = 0 - gross
             ret += count * CD[target]
