@@ -19,7 +19,40 @@ All words have the same length.
 All words contain only lowercase alphabetic characters.
 """
 __author__ = 'Danyang'
+
+
 class Solution:
+    def is_neighbor(self, p, q):
+        diff = 0
+        for a, b in zip(p, q):
+            if a != b:
+                diff += 1
+            if diff > 1:
+                return False
+        return True
+
+    def ladderLength(self, start, end, dct):
+        """
+        bfs
+        """
+        q = [start]
+        visited = {start}
+        lvl = 1
+        while q:
+            cur_q = []
+            for a in q:
+                if a == end:
+                    return lvl
+                for b in dct:
+                    if b not in visited and self.is_neighbor(a, b):
+                        visited.add(b)
+                        cur_q.append(b)
+
+            lvl += 1
+            q = cur_q
+
+        return 0
+
     def ladderLength_TLE(self, start, end, dict):
         """
         bfs
@@ -115,7 +148,7 @@ class Solution:
         return path_len
 
 
-    def ladderLength(self, start, end, dict):
+    def ladderLength_complex(self, start, end, dict):
         """
         bfs
 
@@ -160,7 +193,7 @@ class Solution:
 
 
 if __name__=="__main__":
-    print Solution().ladderLength("sand", "acne", set(
+    assert Solution().ladderLength("sand", "acne", set(
         ["slit", "bunk", "wars", "ping", "viva", "wynn", "wows", "irks", "gang", "pool", "mock", "fort", "heel", "send",
          "ship", "cols", "alec", "foal", "nabs", "gaze", "giza", "mays", "dogs", "karo", "cums", "jedi", "webb", "lend",
          "mire", "jose", "catt", "grow", "toss", "magi", "leis", "bead", "kara", "hoof", "than", "ires", "baas", "vein",
@@ -364,4 +397,5 @@ if __name__=="__main__":
          "oral", "gets", "chid", "yens", "snub", "ages", "wide", "bail", "verb", "lamb", "bomb", "army", "yoke", "gels",
          "tits", "bork", "mils", "nary", "barn", "hype", "odom", "avon", "hewn", "rios", "cams", "tact", "boss", "oleo",
          "duke", "eris", "gwen", "elms", "deon", "sims", "quit", "nest", "font", "dues", "yeas", "zeta", "bevy", "gent",
-         "torn", "cups", "worm", "baum", "axon", "purr", "vise", "grew", "govs", "meat", "chef", "rest", "lame"]))
+         "torn", "cups", "worm", "baum", "axon", "purr", "vise", "grew", "govs", "meat", "chef", "rest", "lame"])
+    ) == 11
