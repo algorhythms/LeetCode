@@ -27,14 +27,15 @@ class Solution:
     def makesquare(self, nums):
         """
         need to use up all the stics
-        greedily fit the largest first
+        greedily fit the largest first - error, consider [5, 4, 2, 2, 2, 2, 3]
+        need to dfs
 
         :type nums: List[int]
         :rtype: bool
         """
         if not nums:
             return False
-            
+
         square = [0 for _ in range(4)]
         l = sum(nums) // 4
         if sum(nums) % 4 != 0:
