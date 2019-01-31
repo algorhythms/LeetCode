@@ -37,7 +37,7 @@ class Solution:
             if k != 0:  # edge case
                 s %= k
             if s in h:
-                if l - h[s] >= 2:
+                if l - h[s] >= 2:  # size at least 2
                     return True
             else:
                 # only keep the lowest
