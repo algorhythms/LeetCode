@@ -33,7 +33,7 @@ class Solution:
         """
         let F[amount][l] = # ways ending (but not necesserily) using coins[l-1]
         (i.e. coins[:l])
-        Two options: use coin[i] or not
+        Two options: use coin[l-1] or not
         F[amount][l] = F[amount][l-1] + F[amount - coin[l-1]][l]
 
         Similar to 0-1 knapsack
@@ -45,7 +45,7 @@ class Solution:
         F = defaultdict(lambda: defaultdict(int))
         n = len(coins)
         for l in range(n + 1):
-            F[0][l] = 1   # trival case
+            F[0][l] = 1   # trivial case
 
         for a in range(1, amount + 1):
             for l in range(1, n + 1):
