@@ -11,6 +11,8 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 1,1,5 -> 1,5,1
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def nextPermutation(self, num):
         """
@@ -44,6 +46,7 @@ class Solution:
         else:
             num[partition_num_index+1:] = reversed(num[partition_num_index+1:])
         return num
+
 
 if __name__=="__main__":
     print Solution().nextPermutation([3, 2, 1])
