@@ -41,6 +41,7 @@ class Solution:
         return ret[0]
 
     def walk(self, node: TreeNode, ret) -> int:
+        """get the sum of the subtree and add the tilt"""
         if not node:
             return 0
 
