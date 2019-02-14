@@ -19,12 +19,31 @@ class Node:
 
 
 from typing import List
+from collections import deque
 
 
 class Solution:
     def postorder(self, root: 'Node') -> List[int]:
         """
-        maintain a stack, if no child, then pop
+        maintain a stack, pop and reverse
+        """
+        if not root:
+            return []
+
+        ret = deque()
+        stk = [root]
+        visited = set()
+        while stk:
+            cur = stk.pop()
+            ret.appendleft(cur.val)
+            for c in cur.children:
+                stk.append(c)
+
+        return list(ret)
+        
+    def postorder_visited(self, root: 'Node') -> List[int]:
+        """
+        maintain a stack, if visited before, then pop
         """
         ret = []
         if not root:
