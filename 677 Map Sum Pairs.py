@@ -56,7 +56,8 @@ class MapSum:
         self.trie = Trie()
 
     def insert(self, key: str, val: int) -> None:
-        self.trie.root.children[key[0]], _ = self.trie.insert(self.trie.root.children[key[0]], key, 0, val)
+        root = self.trie.root
+        root.children[key[0]], _ = self.trie.insert(root.children[key[0]], key, 0, val)
 
     def sum(self, prefix: str) -> int:
         node = self.trie.root
