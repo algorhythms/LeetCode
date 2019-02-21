@@ -50,6 +50,7 @@ class MerkleHash:
     def __call__(self, val):
         return self.merkle_hash[val]
 
+
 class Solution:
     def __init__(self):
         self.counter = defaultdict(int)
