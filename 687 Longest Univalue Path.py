@@ -57,8 +57,8 @@ class Solution:
         if not node:
             return 0
 
-        left = self.find(node.left) if node.left else 0
-        right = self.find(node.right) if node.right else 0
+        left = self.find(node.left)
+        right = self.find(node.right)
         left_path = left + 1 if node.left and node.left.val == node.val else 0
         right_path = right + 1 if node.right and node.right.val == node.val else 0
         self.ret = max(self.ret, left_path + right_path)
