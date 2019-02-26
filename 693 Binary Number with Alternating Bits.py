@@ -21,6 +21,7 @@ class Solution:
         last = None
         while n:
             cur = n & 1
+            # `if last` is error
             if last is not None and last ^ cur == 0:
                 return False
             last = cur
