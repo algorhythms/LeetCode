@@ -22,6 +22,8 @@ class Solution(object):
     def increasingTriplet(self, nums):
         """
         Brute force: O(N^3)
+
+        dp: O(N)
         :type nums: List[int]
         :rtype: bool
         """
