@@ -37,13 +37,13 @@ class Solution:
         [0, 1, 2, 3, 4]
         [1, 0, 2, 3, 4]
 
-        The largest number in the chunk determines the ending index of the chunk 
+        The largest number in the chunk determines the ending index of the chunk
         """
         ret = 0
-        cur_idx = 0
+        cur_max_idx = 0
         for i in range(len(arr)):
-            cur_idx = max(cur_idx, arr[i])
-            if i == cur_idx:
+            cur_max_idx = max(cur_max_idx, arr[i])
+            if i == cur_max_idx:
                 ret += 1
 
         return ret
