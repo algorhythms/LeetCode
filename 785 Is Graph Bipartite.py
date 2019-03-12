@@ -48,7 +48,7 @@ class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
         """
         coloring the graph
-        dfs coloring 
+        dfs coloring
         """
         G = graph
         color = defaultdict(int)
@@ -67,7 +67,7 @@ class Solution:
                 if color[nbr] == color[u]:
                     return False
             else:
-                color[nbr] = 1 - color[u]
+                color[nbr] = 1 - color[u]  # can be (0, 1) or (-1, 1)
                 if not self.dfs(G, nbr, color):
                     return False
 
