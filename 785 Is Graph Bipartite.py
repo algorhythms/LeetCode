@@ -46,6 +46,10 @@ from collections import defaultdict
 
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
+        """
+        coloring the graph
+        dfs coloring 
+        """
         G = graph
         color = defaultdict(int)
         for k in range(len(G)):
