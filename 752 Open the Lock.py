@@ -55,10 +55,10 @@ class Solution:
         bfs
         """
         destination = tuple(int(c) for c in target)
-        deadends_set = set([
+        deadends_set = set(
             tuple(int(c) for c in s)
             for s in deadends
-        ])
+        )
         q = [(0, 0, 0, 0)]
         if q[0] in deadends_set:
             return -1
