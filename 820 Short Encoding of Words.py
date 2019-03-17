@@ -36,7 +36,7 @@ class Solution:
         fast trie with dict
         """
         root = {}
-        leaves = []
+        ends = []
         for word in set(words):
             cur = root
             for c in word[::-1]:
@@ -44,11 +44,11 @@ class Solution:
                 cur[c] = nxt
                 cur = nxt
 
-            leaves.append((cur, len(word)))
+            ends.append((cur, len(word)))
 
         return sum(
             l + 1
-            for node, l in leaves
+            for node, l in ends
             if len(node) == 0  # no child
         )
 
