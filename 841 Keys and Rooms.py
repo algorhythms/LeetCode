@@ -55,6 +55,7 @@ class Solution:
             if not visited[nbr]:
                 self.dfs(G, nbr, visited)
 
+
 if __name__ == "__main__":
     assert Solution().canVisitAllRooms([[1],[2],[3],[]]) == True
     assert Solution().canVisitAllRooms([[1,3],[3,0,1],[2],[0]]) == False
