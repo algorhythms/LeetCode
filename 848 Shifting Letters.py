@@ -44,7 +44,6 @@ class Solution:
             b = chr(b)
             ret.append(b)
 
-        print(ret)
         return "".join(ret)
 
 
