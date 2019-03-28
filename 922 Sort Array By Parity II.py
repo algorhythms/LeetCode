@@ -37,7 +37,6 @@ class Solution:
 
         return A
 
-
     def sortArrayByParityII_complex(self, A: List[int]) -> List[int]:
         """
         in-place two passes
