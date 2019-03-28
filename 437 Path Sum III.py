@@ -18,7 +18,41 @@ class TreeNode:
         self.right = None
 
 
+from collections import defaultdict
+
+
 class Solution:
+    def __init__(self):
+        self.count = 0
+
+    def pathSum(self, root: TreeNode, target: int) -> int:
+        """
+        The path does not need to start or end at the root or a leaf, but it
+        must go downwards (traveling only from parent nodes to child nodes).
+
+        Downward path
+        """
+        self.dfs(root, target, 0, defaultdict(int))
+        return self.count
+
+    def dfs(self, node, target, cur_sum, prefix_sum_counter):
+        if not node:
+            return
+
+        cur_sum += node.val
+        # delta = target - cur_sum  # error
+        delta = cur_sum - target
+        self.count += prefix_sum_counter[delta]
+        if delta == 0:
+            self.count += 1
+
+        prefix_sum_counter[cur_sum] += 1
+        self.dfs(node.left, target, cur_sum, prefix_sum_counter)
+        self.dfs(node.right, target, cur_sum, prefix_sum_counter)
+        prefix_sum_counter[cur_sum] -= 1
+        
+
+class SolutionComplex:
     def pathSum(self, root, sum):
         """
         Brute force: two dfs, O(n^2)
