@@ -30,6 +30,7 @@ Note:
 from typing import List
 from collections import defaultdict
 
+
 class Solution:
     def minFallingPathSum(self, A: List[List[int]]) -> int:
         """
