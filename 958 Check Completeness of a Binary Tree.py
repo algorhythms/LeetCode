@@ -36,15 +36,16 @@ class Solution:
 
     def isCompleteTree(self, root: TreeNode) -> bool:
         """
-        Do it in one path
-        left first dfs
-        record the max depth and expecting partial fill in the last level
+        Do it in one pass
+        Left first dfs
+        Record the max depth and expecting partial fill in the last level
+        Need a special flag to tell whether expecting partial now
         """
         return self.dfs(root, 0)
 
     def dfs(self, node, d):
         if not node:
-            # empty node is the key decision point
+            # empty node (below leaf) is the key decision point
             if self.max_depth == -float("inf"):  # leftmost empty node
                 self.max_depth = d - 1
                 return True
