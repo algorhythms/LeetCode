@@ -44,6 +44,8 @@ class LRUCache:
         But Single linked list is not enough then Double Linked List
 
         Need dummy head and tail to avoid over complication of null checking
+
+        Essentially it is the OrderedDict
         """
         self.head = Node(None, None)
         self.tail = Node(None, None)

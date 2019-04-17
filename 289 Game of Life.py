@@ -34,6 +34,12 @@ class Solution(object):
         Similar to dp space optimization.
         1. Line buffer, directional, main the entires for previous state.
         2. higher bit, since you got 32-bit int
+
+
+        new new new
+        new cur pre
+        pre pre pre
+
         :type board: List[List[int]]
         :rtype: void Do not return anything, modify board in-place instead.
         """
