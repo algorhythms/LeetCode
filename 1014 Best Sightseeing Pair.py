@@ -39,7 +39,7 @@ class Solution:
 
         return ret
 
-    def maxScoreSightseeingPair_errpr(self, A: List[int]) -> int:
+    def maxScoreSightseeingPair_error(self, A: List[int]) -> int:
         """
         brute force O(N^2)
 

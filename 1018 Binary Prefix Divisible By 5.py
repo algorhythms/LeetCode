@@ -42,7 +42,7 @@ class Solution:
         cur = 0
         ret = []
         for a in A:
-            cur = cur << 1 + a
+            cur = (cur << 1) + a
             cur %= 5
             if cur == 0:
                 ret.append(True)
