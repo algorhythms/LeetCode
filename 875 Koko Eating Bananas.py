@@ -57,7 +57,10 @@ class Solution:
         lo = 1
         while lo < hi:
             mid = (lo + hi) // 2
-            if sum(math.ceil(piles[i] / mid) for i in range(n)) > H:
+            if sum(
+                math.ceil(piles[i] / mid)
+                for i in range(n)
+            ) > H:
                 lo = mid + 1
             else:
                 hi = mid
