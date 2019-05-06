@@ -10,10 +10,12 @@ from collections import defaultdict
 class Solution:
     def wordsAbbreviation(self, words: List[str]) -> List[str]:
         """
-        sort the word, check prefix and last word
+        Sort the word, check prefix and last word
 
-        group by first and last char, group by prefix and last char
-        then make a trie - hard to implement
+        Group by first and last char, group by prefix and last char
+        then make a trie - hard to implement? TrieNode lambda
+
+        Need to count the #appearances in the TrieNode
         """
         hm = defaultdict(list)
         ret = [None for _ in words]

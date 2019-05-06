@@ -24,15 +24,20 @@ __author__ = 'Daniel'
 class Solution(object):
     def findItinerary(self, tickets):
         """
-        Euler path
+        Euler path:
+        An Euler path is a path that uses every edge of a graph exactly once.
+
         Hierholzer's algorithm a Euler path, must be directed graph
         The graph must be directed graph
+
+        Heap can be replaced by stack/queue and sort the original list
+
+        The ret is build as from right to left: JFK <- NRT <- JFK <- KUL
         :type tickets: List[List[str]]
         :rtype: List[str]
         """
-        G = defaultdict(list)
-        for elt in tickets:
-            s, e = elt
+        G = defaultdict(list)  # every list is a heap
+        for s, e in tickets:
             heapq.heappush(G[s], e)  # heap lexical order
 
         ret = deque()

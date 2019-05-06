@@ -7,6 +7,8 @@ Given "25525511135",
 return ["255.255.11.135", "255.255.111.35"]. (Order does not matter)
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def restoreIpAddresses(self, s):
         """
@@ -27,11 +29,11 @@ class Solution:
         :param result:
         :return:
         """
-        if len(cur)>4:
+        if len(cur) > 4:
             return
 
         if not cur or self.is_valid(cur[-1]):
-            if len(cur)==4 and not seq:  # check the last one first
+            if len(cur) == 4 and not seq:  # check the last one first
                 result.append(".".join(cur))
                 return
 
@@ -57,19 +59,18 @@ class Solution:
 
         # for i in xrange(1, 3+1):
         # for loop
-        for i in xrange(1, min(3, len(seq))+1):
+        for i in xrange(1, min(3, len(seq)) + 1):
             new_seg = seq[:i]
             # condition check
-            if len(cur)<4 and self.is_valid(new_seg):
-                self.dfs(seq[i:], cur+[new_seg], result)
+            if len(cur) < 4 and self.is_valid(new_seg):
+                self.dfs(seq[i:], cur + [new_seg], result)
             else:
                 return
-
 
     def is_valid(self, s):
         if not s:
             return False
-        return s=="0" or s[0]!="0" and 0<=int(s)<256  # ["0.0.0.0"]
+        return s == "0" or s[0]!="0" and 0<= int(s) <256  # ["0.0.0.0"]
 
 if __name__=="__main__":
     IP = "25525511135"

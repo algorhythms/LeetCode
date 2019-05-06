@@ -34,6 +34,16 @@ class Interval:
 class Solution:
     def intervalIntersection(self, A: List[Interval], B: List[Interval]) -> List[Interval]:
         """
+        Among the given intervals, consider the interval A[0] with the smallest
+        endpoint. (Without loss of generality, this interval occurs in array A.)
+        Then, among the intervals in array B, A[0] can only intersect one such
+        interval in array B. (If two intervals in B intersect A[0], then they
+        both share the endpoint of A[0] -- but intervals in B are disjoint, which
+        is a contradiction.)
+
+        If A[0] has the smallest endpoint, it can only intersect B[0]. After, we
+        can discard A[0] since it cannot intersect anything else.
+
         merge by checking max starts and min ends
         pop by ends
         """

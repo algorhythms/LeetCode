@@ -12,7 +12,11 @@ __author__ = 'Danyang'
 class Solution:
     def isValidSudoku(self, board):
         """
+        Brute force - check rows, cols, and squares and maintain a hashmap to store the previously seen elements
+
         Notice how check the square in the board.
+
+        Save space by one iterations.
 
         9 squares are iterated by i
         9 cells are iterated by j
@@ -22,14 +26,14 @@ class Solution:
         Squares lie on 3 big column; index for the 3 big column: i%3*3-th, thus iteration pattern: (036, 036, 036)
         Subdivide the 1 big column into 3 small column; index for the 3 small columns: j%3-th, thus iteration pattern 012, 012, 012)
 
-        thus, iterate by board[i/3*3+j/3][i%3*3+j%3]
+        thus, iterate by board[i/3*3 + j/3][i%3*3 + j%3]
 
         :param board: a 9x9 2D array
         :return: boolean
         """
         # check row & column
         for i in xrange(9):
-            row = []
+            row = []  # change to hashamp
             column = []
             square = []
             for j in xrange(9):
@@ -55,7 +59,7 @@ class Solution:
 
                 # check square
                 try:
-                    square_element = int(board[i/3*3+j/3][i%3*3+j%3])
+                    square_element = int(board[i/3*3 + j/3][i%3*3 + j%3])
                     if square_element in square:
                         return False
                     else:

@@ -39,8 +39,10 @@ __author__ = 'Daniel'
 class Solution(object):
     def canCross(self, stones):
         """
+        Instead of having F[i][step] = True/False, use F[i] = set of steps
+
         F, step table
-        Let F[i] be stone at position i,
+        Let F[i] be all possible steps at stone i.
 
         dp with a set as the table cell.
         :type stones: List[int]
@@ -54,9 +56,9 @@ class Solution(object):
         for stone in stones:
             for step in F[stone]:
                 for i in (-1, 0, 1):
-                    nxt = stone+step+i
+                    nxt = stone + step + i
                     if nxt != stone and nxt in F:
-                        F[nxt].add(step+i)
+                        F[nxt].add(step + i)
 
         return True if F[stones[-1]] else False
 

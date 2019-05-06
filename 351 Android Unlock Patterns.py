@@ -7,7 +7,8 @@ __author__ = 'Daniel'
 class Solution(object):
     def __init__(self):
         """
-        encode rules
+        Skip matrix
+        Encode rule for 2, 4, 6, 8, 5
         """
         self.skip = [[None for _ in xrange(10)] for _ in xrange(10)]
         self.skip[1][3], self.skip[3][1] = 2, 2
@@ -21,7 +22,7 @@ class Solution(object):
 
     def numberOfPatterns(self, m, n):
         """
-        NP
+        NP - O(N!)
         dfs
 
         Maintain a skip matrix
@@ -38,6 +39,10 @@ class Solution(object):
         )
 
     def dfs(self, cur, visited, remain):
+        """
+        Return the count of combination
+        Optimization - memoization
+        """
         if remain == 1:
             return 1
 
