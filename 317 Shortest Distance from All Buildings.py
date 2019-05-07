@@ -12,6 +12,17 @@ class Solution(object):
 
     def shortestDistance(self, grid):
         """
+        BFS & collect all distance
+
+        ideas:
+        Pruning: don't use a fresh "visited" for each BFS. Instead, I walk only
+        onto the cells that were reachable from all previous buildings. From the
+        first building I only walk onto cells where grid is 0, and make them -1.
+        From the second building I only walk onto cells where grid is -1, and I
+        make them -2.
+        -1
+        -2
+        -3
         :type grid: List[List[int]]
         :rtype: int
         """
