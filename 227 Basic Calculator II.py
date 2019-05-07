@@ -23,11 +23,14 @@ class Solution:
         :type s: str
         :rtype: int
         """
-        lst = self.to_list(s)
+        lst = self.parse(s)
         post = self.infix2postfix(lst)
         return self.eval_postfix(post)
 
-    def to_list(self, s):
+    def parse(self, s):
+        """
+        return tokens
+        """
         i = 0
         ret = []
         while i < len(s):
@@ -47,7 +50,8 @@ class Solution:
         return ret
 
     def infix2postfix(self, lst):
-        stk = []  # store operators in strictly increasing precedence
+        # operator stacks rather than operand
+        stk = []  # stk only stores operators in strictly increasing precedence
         ret = []
         for elt in lst:
             if elt.isdigit():
