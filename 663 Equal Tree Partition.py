@@ -13,6 +13,33 @@ class TreeNode:
 
 class Solution:
     def __init__(self):
+        self.sums = []
+
+    def checkEqualTree(self, root: TreeNode) -> bool:
+        """
+        To save 2nd pass, store sums
+        space: O(N)
+        """
+        self.dfs(root)
+        total = self.sums.pop()
+        return total % 2 == 0 and total // 2 in self.sums
+
+    def dfs(self, node):
+        if not node:
+            return 0
+
+        l = self.dfs(node.left)
+        r = self.dfs(node.right)
+        s = l + r + node.val
+        self.sums.append(s)
+        return s
+
+
+class Solution:
+    def __init__(self):
+        """
+        Save space, two passes
+        """
         self.exists = False
         self.root = None  # need to handle 0
         self.total_sum = None
@@ -24,7 +51,7 @@ class Solution:
         2nd pass, check whether has sum/2
         space: O(log N)
 
-        two save 2nd pass, store sums
+        To save 2nd pass, store sums
         space: O(N)
         """
         self.root = root
