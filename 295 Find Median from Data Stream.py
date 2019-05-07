@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the
 median is the mean of the two middle value.
@@ -28,7 +29,10 @@ class DualHeap(object):
     def __init__(self):
         """
         Dual Heap is great in the case where there is no removal.
-        :return:
+
+        ----------> number line
+          Δ      Δ
+         max    min
         """
         self.min_h = []
         self.max_h = []
@@ -43,25 +47,26 @@ class DualHeap(object):
     def balance(self):
         l1 = len(self.min_h)
         l2 = len(self.max_h)
-        if l1-l2 > 1:
+        if abs(l1 - l2) <= 1:
+            return
+        elif l1 - l2 > 1:
             heapq.heappush(self.max_h, -heapq.heappop(self.min_h))
             self.balance()
-        elif l2-l1 > 1:
+        else:
             heapq.heappush(self.min_h, -heapq.heappop(self.max_h))
             self.balance()
-        return
 
     def get_median(self):
         l1 = len(self.min_h)
         l2 = len(self.max_h)
-        m = (l1+l2-1)/2
-        if (l1+l2) % 2 == 1:
-            if m == l2-1:
+        if (l1 + l2) % 2 == 1:
+            m = (l1 + l2) / 2  # median index, equivalent to (l1 + l2 - 1) / 2
+            if m < l2:
                 return -self.max_h[0]
             else:
                 return self.min_h[0]
         else:
-            return (-self.max_h[0]+self.min_h[0])/2.0
+            return (-self.max_h[0] + self.min_h[0]) / 2.0
 
 
 class MedianFinder(object):
