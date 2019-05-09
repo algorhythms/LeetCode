@@ -25,7 +25,7 @@ class Solution(object):
 
     def construct_graph(self, words):
         V = defaultdict(list)
-        for i in xrange(len(words)-1):
+        for i in xrange(len(words) - 1):  # compare word_i and word_{i+1}
             for j in xrange(min(len(words[i]), len(words[i+1]))):
                 if words[i][j] != words[i+1][j]:
                     V[words[i][j]].append(words[i+1][j])
@@ -41,7 +41,7 @@ class Solution(object):
         :param visited: visited letters
         :param pathset: marked predecessor in the path
         :param ret: the path, ordered  topologically
-        :return: whether contains cycles 
+        :return: whether contains cycles
         """
         if v in pathset:
             return False

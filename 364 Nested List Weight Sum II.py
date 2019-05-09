@@ -56,7 +56,7 @@ class Solution(object):
 
     def depthSumInverse(self, nestedList):
         """
-        NestedInteger is  a union type
+        NestedInteger is a union type
         :type nestedList: List[NestedInteger]
         :rtype: int
         """
@@ -112,7 +112,3 @@ class SolutionError(object):
             self.sum += sum(map(lambda x: x.getInteger() * height, ni_list))
 
         return height
-
-
-
-
