@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 There is a new alien language which uses the latin alphabet. However, the order
 among letters are unknown to you. You receive a list of non-empty words from the

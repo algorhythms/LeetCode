@@ -25,16 +25,17 @@ class Solution:
         :param left: number of left parenthesis remaining
         :param right: number of right parenthesis remaining
         """
-        # trivial
-        if left==0 and right==0:
+        if left == 0 and right == 0:
             result.append(cur)
             return
+
         # add left parenthesis
-        if left>0:
-            self.generateParenthesisDfs(result, cur+"(", left-1, right)
+        if left > 0:
+            self.generateParenthesisDfs(result, cur + "(", left - 1, right)
         # add right parenthesis
-        if right>left:
-            self.generateParenthesisDfs(result, cur+")", left, right-1)
+        if right > left:
+            self.generateParenthesisDfs(result, cur + ")", left, right - 1)
+
 
 if __name__=="__main__":
     assert Solution().generateParenthesis(3)==['((()))', '(()())', '(())()', '()(())', '()()()']
