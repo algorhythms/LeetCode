@@ -35,8 +35,8 @@ class Solution:
 
     def is_palindrome(self, s):
         # O(n)
-        # return s==reversed(s)  # error, need to use ''.join(reversed(s))
-        return s==s[::-1]
+        # return s == reversed(s)  # error, need to use ''.join(reversed(s))
+        return s == s[::-1]
 
 if __name__=="__main__":
     assert Solution().partition("aab")==[['a', 'a', 'b'], ['aa', 'b']]
