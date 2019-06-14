@@ -46,6 +46,7 @@ class Solution:
         n = len(coins)
         for l in range(n + 1):
             F[0][l] = 1   # trivial case
+             # why not start from 0, because we need to handle trivial case F[0][0]
 
         for a in range(1, amount + 1):
             for l in range(1, n + 1):

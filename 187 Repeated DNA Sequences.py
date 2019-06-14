@@ -19,6 +19,8 @@ class Solution:
         """
         Limited space of possible values --> rewrite hash function
 
+        Rolling hash
+
         "A": 0 (00)
         "C": 1 (01)
         "G": 2 (10)
@@ -32,26 +34,25 @@ class Solution:
 
         s = map(self.mapping, list(s))
         h = set()
-        added = set()
-        ret = []
+        # in_ret = set()
+        ret = set()
         cur = 0
         for i in xrange(10):
             cur <<= 2
             cur &= 0xFFFFF
             cur += s[i]
-
         h.add(cur)
+
         for i in xrange(10, len(s)):
             cur <<= 2
-            cur &= 0xFFFFF
+            cur &= 0xFFFFF  # 10 * 2 = 20 position
             cur += s[i]
-            if cur in h and cur not in added:
-                ret.append(self.decode(cur))
-                added.add(cur)
+            if cur in h and cur not in ret:
+                ret.add(cur)
             else:
                 h.add(cur)
 
-        return ret
+        return map(self.decode, ret)
 
     def decode(self, s):
         dic = {
@@ -78,4 +79,4 @@ class Solution:
         return dic[a]
 
 if __name__ == "__main__":
-    assert Solution().findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT") == ['AAAAACCCCC', 'CCCCCAAAAA']
+    assert Solution().findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT") == ['CCCCCAAAAA', 'AAAAACCCCC']
