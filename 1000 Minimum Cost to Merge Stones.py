@@ -72,8 +72,8 @@ class Solution:
 
         Answer:
         F[i][j][m] = cost of merge A[i:j] into m piles
-        F[i][j][1] = F[i][j][k] + sum(stones[i:j])
-        F[i][j][m] = min F[i][mid][1] + F[mid][j][m-1]
+        F[i][j][1] = F[i][j][k] + sum(stones[i:j])  # merge 
+        F[i][j][m] = min F[i][mid][1] + F[mid][j][m-1]  # add
 
         initial:
         F[i][i+1][1] = 0
@@ -100,7 +100,7 @@ class Solution:
                 if m == 1:
                     return 0
                 return float("inf")
-                
+
             if m == 1:
                 return F(i, j, K) + sums[j] - sums[i]
 
