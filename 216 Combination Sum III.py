@@ -42,15 +42,16 @@ class Solution:
             ret.append(list(cur))
             return
 
-        if remain_k*9 < remain_n or remain_k*1 > remain_n:
+        # check max and min reach
+        if remain_k * 9 < remain_n or remain_k * 1 > remain_n:
             return
 
         start = 1
         if cur:
-            start = cur[-1]+1  # unique
+            start = cur[-1] + 1  # unique
         for i in xrange(start, 10):
             cur.append(i)
-            self.dfs(remain_k-1, remain_n-i, cur, ret)
+            self.dfs(remain_k - 1, remain_n - i, cur, ret)
             cur.pop()
 
 

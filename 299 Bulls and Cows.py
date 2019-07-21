@@ -6,6 +6,12 @@ __author__ = 'Daniel'
 class Solution(object):
     def getHint(self, secret, guess):
         """
+        Need to revert B
+
+        Example:
+        1121
+        2323
+
         :type secret: str
         :type guess: str
         :rtype: str
@@ -19,12 +25,10 @@ class Solution(object):
         for i, v in enumerate(guess):
             if v == secret[i]:
                 A += 1
-                cnt[v] -= 1
-                if cnt[v] < 0:
-                    # revert matched B
-                    assert cnt[v] == -1
+                if cnt[v] > 0:
+                    cnt[v] -= 1
+                else:
                     B -= 1
-                    cnt[v] = 0
 
             elif cnt[v] > 0:
                 B += 1
