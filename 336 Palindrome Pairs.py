@@ -55,20 +55,20 @@ class Solution:
         for idx, w in enumerate(words):
             cur = root
             for i in range(len(w) - 1, -1, -1):
-                #  cur.children[w[i]]  # error, pre-forward unable to handle empty str
-                if self.is_palindrome(w, 0, i + 1):  # exclude w[i] rather than include
+                #  cur.children[w[i]]  # error, pre-advancing the trie is unable to handle empty str
+                if self.is_palindrome(w, 0, i + 1):
                     cur.pali_prefix_idxes.append(idx)
 
                 cur = cur.children[w[i]]
 
-            cur.pali_prefix_idxes.append(idx)
+            cur.pali_prefix_idxes.append(idx)  # empty str is palindrome
             cur.word_idx = idx  # word ends
 
         ret = []
         for idx, w in enumerate(words):
             cur = root
             for i in range(len(w)):
-                # cur.children.get(w[i], None)  # error, pre-forward unable to handle empty str
+                # cur.children.get(w[i], None)  # error, pre-advancing the trie is unable to handle empty str
                 if self.is_palindrome(w, i, len(w)) and cur.word_idx is not None and cur.word_idx != idx:
                     ret.append([idx, cur.word_idx])
 

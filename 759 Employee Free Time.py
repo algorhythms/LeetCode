@@ -60,7 +60,7 @@ class Solution:
 
         Similar to meeting rooms II
         """
-        max_end = min(
+        cur_max_end = min(
             itv[E]
             for itvs in schedule
             for itv in itvs
@@ -76,10 +76,10 @@ class Solution:
         while q:
             _, i, j = heapq.heappop(q)
             itv = schedule[i][j]
-            if max_end < itv[S]:
-                ret.append([max_end, itv[S]])
+            if cur_max_end < itv[S]:
+                ret.append([cur_max_end, itv[S]])
 
-            max_end = max(max_end, itv[E])
+            cur_max_end = max(cur_max_end, itv[E])
 
             # next
             j += 1
@@ -122,7 +122,7 @@ class Solution:
         use index instead
         """
         schedules = list(map(iter, schedule))
-        max_end = min(
+        cur_max_end = min(
             itv[E]
             for emp in schedule
             for itv in emp
@@ -136,9 +136,9 @@ class Solution:
         ret = []
         while q:
             _, itv, emp_iter = heapq.heappop(q)
-            if max_end < itv[S]:
-                ret.append([max_end, itv[S]])
-            max_end = max(max_end, itv[E])
+            if cur_max_end < itv[S]:
+                ret.append([cur_max_end, itv[S]])
+            cur_max_end = max(cur_max_end, itv[E])
             itv = next(emp_iter, None)
             if itv:
                 heapq.heappush(q, (itv[S], itv, emp_iter))
