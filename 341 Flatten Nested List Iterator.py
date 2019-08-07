@@ -56,21 +56,20 @@ class NestedIterator(object):
         Linear structure usually use stack as structure.
         Iterator Invariant:
         1. has the value to be returned ready: idx pointing to the integer to be return in the next().
-        2. move the pointer in hasNext()
+        2. rember move the parent pointer in hasNext()
 
         Possible to compile nl and idx into a tuple.
         """
-        self.stk = [[nestedList, 0]]
+        self.stk = [[nestedList, 0]]  # stack of iterators
 
     def next(self):
         """
         :rtype: int
         """
-        if self.hasNext():
-            nl, idx = self.stk[-1]
-            nxt = nl[idx].getInteger()
-            self.stk[-1][1] = idx + 1
-            return nxt
+        nl, idx = self.stk[-1]
+        nxt = nl[idx].getInteger()
+        self.stk[-1][1] = idx + 1  # advance the index
+        return nxt
 
     def hasNext(self):
         """
@@ -84,7 +83,7 @@ class NestedIterator(object):
                 if ni.isInteger():
                     return True
                 else:
-                    self.stk[-1][1] = idx + 1
+                    self.stk[-1][1] = idx + 1  # prepare the parent, otherwise dead loop
                     nxt_nl = ni.getList()
                     self.stk.append([nxt_nl, 0])
             else:

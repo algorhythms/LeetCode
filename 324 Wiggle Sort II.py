@@ -29,7 +29,7 @@ class Solution(object):
         median_idx = self.find_kth(A, 0, n, n/2)
         v = A[median_idx]
 
-        idx = lambda i: (2*i+1)%(n|1)
+        idx = lambda i: (2*i+1) % (n|1)
         lt = -1
         hi = n
         i = 0
@@ -92,9 +92,9 @@ class SolutionSort(object):
         n = len(nums)
         A = sorted(nums)
 
-        j, k = (n-1)/2, n-1
+        j, k = (n-1) / 2, n-1
         for i in xrange(len(nums)):
-            if i%2 == 0:
+            if i % 2 == 0:
                 nums[i] = A[j]
                 j -= 1
             else:
@@ -107,4 +107,3 @@ if __name__ == "__main__":
     A = [3, 2, 1, 1, 3, 2]
     Solution().wiggleSort(A)
     print A
-

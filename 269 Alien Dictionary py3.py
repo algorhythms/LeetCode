@@ -63,7 +63,7 @@ class Solution(object):
 
         for i in range(len(words) - 1):  # compare word_i and word_{i+1}
             for c1, c2 in zip(words[i], words[i+1]):
-                if c1 != c2:
+                if c1 != c2:  # lexical order 
                     G[c1].append(c2)
                     break  # need to break for lexical order
 

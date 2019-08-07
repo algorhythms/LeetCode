@@ -9,6 +9,8 @@ class Solution(object):
     def wiggleSort(self, nums):
         """
         Solve by enumerating examples
+        Sort-based: interleave the small half and large half
+        
         Time: O(n lg n)
         Space: O(1)
         :type nums: List[int]

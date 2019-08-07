@@ -69,6 +69,16 @@ class Solution:
     def ipToCIDR(self, ip: str, n: int) -> List[str]:
         """
         bit manipulation
+
+        IP address, 8 bit, at each digit, total 32 bit, 8 byte
+        Follow the example
+        Input: ip = "255.0.0.7", n = 10
+        Output: ["255.0.0.7/32","255.0.0.8/29","255.0.0.16/32"]
+        255.0.0.7 -> 11111111 00000000 00000000 00000111 => cover 1
+        255.0.0.8 -> 11111111 00000000 00000000 00001000 => cover 8
+        255.0.0.16 -> 11111111 00000000 00000000 00010000 => cover 16 but only 32
+        32 means all bits as fixed prefix 
+
         111, then 32 to cover only one, depends on LSB
         Greedy
         To cover n, can have representation covers > n

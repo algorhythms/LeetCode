@@ -71,6 +71,8 @@ class Solution:
         Chain the matrix into 1d array. N = R * C
         Complexity O(N * N!)
         There are O(N!) possible board states. O(N) is the time to scan the board for the operations in the loop.
+
+        Possible to reduce the 2D array in a 1D array and do %C and //C, where C is the size of the column
         """
         visited = defaultdict(bool)
         m, n = len(board), len(board[0])
