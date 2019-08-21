@@ -12,6 +12,8 @@ You should return the following matrix:
 ]
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def generateMatrix(self, n):
         """
@@ -47,6 +49,7 @@ class Solution:
             bottom -= 1
 
         return result
+
 
 if __name__=="__main__":
     result = Solution().generateMatrix(4)
