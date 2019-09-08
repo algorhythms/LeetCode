@@ -25,6 +25,7 @@ Note: Do not use the eval built-in library function.
 class Solution:
     def calculate(self, s: str) -> int:
         """
+        make +, - lower precedence operator as a unary operation
         recursively handle bracket
         """
         s = s + "\0"  # signal the end
@@ -69,7 +70,7 @@ class Solution:
                 raise
 
         return sum(stk), i
-        
+
 
 if __name__ == "__main__":
     assert Solution().calculate("(2+6* 3+5- (3*14/7+2)*5)+3") == -12
