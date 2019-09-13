@@ -12,6 +12,8 @@ Given the following matrix:
 You should return [1,2,3,6,9,8,7,4,5].
 """
 __author__ = 'Danyang'
+
+
 class Solution:
     def spiralOrder(self, matrix):
         """
@@ -21,7 +23,21 @@ class Solution:
                |
              bottom
 
-        be careful with the index
+             t
+             __
+          l |  | r
+            |__|
+             b
+
+        be careful with the index: be greedy for the first scan
+        [[1,2,3],
+         [8,9,4],
+         [7,6,5]]
+
+        if not greedy, the middle 9 won't be scanned
+        [[1,2,3],
+         [8,x,4],
+         [7,6,5]]
 
         :param matrix: a list of lists of integers
         :return: a list of integers
@@ -32,21 +48,21 @@ class Solution:
         result = []
 
         left = 0
-        right = len(matrix[0])-1
+        right = len(matrix[0]) - 1
         top = 0
-        bottom = len(matrix)-1
+        bottom = len(matrix) - 1
 
-        while left<=right and top<=bottom:
-            for i in xrange(left, right+1):
-                result.append(matrix[top][i])
-            for i in xrange(top+1, bottom+1):
-                result.append(matrix[i][right])
-            for i in reversed(xrange(left+1, right)):
-                if top<bottom:  # avoid double scanning the first row
-                    result.append(matrix[bottom][i])
-            for i in reversed(xrange(top+1, bottom+1)):
-                if left<right:  # avoid double scanning the first column
-                    result.append(matrix[i][left])
+        while left <= right and top <= bottom:
+            for c in xrange(left, right + 1):
+                result.append(matrix[top][c])
+            for r in xrange(top + 1, bottom + 1):
+                result.append(matrix[r][right])
+            for c in xrange(right - 1, left - 1, -1):
+                if top < bottom:  # avoid double scanning the first row
+                    result.append(matrix[bottom][c])
+            for r in xrange(bottom - 1, top, -1):
+                if left < right:  # avoid double scanning the first column
+                    result.append(matrix[r][left])
 
             left += 1
             right -= 1

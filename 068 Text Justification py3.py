@@ -95,6 +95,7 @@ class Solution2:
         Round robin distribution of spaces
 
         Look before jump
+        Look before you leap
         """
         ret = []
         char_cnt = 0
@@ -106,7 +107,7 @@ class Solution2:
                 # break, move w into the next line
                 # Round robin distribut the spaces except for the last word
                 for i in range(maxWidth - char_cnt):
-                    cur_words[i % max(1, len(cur_words) - 1)] += " "
+                    cur_words[i % max(1, len(cur_words) - 1)] += " "  # insert in between
                     # len(cur_words) - 1 can be 0
                 ret.append("".join(cur_words))
 

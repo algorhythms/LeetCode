@@ -36,15 +36,17 @@ class Solution:
             return
 
         counter = defaultdict(int)
-        first = {}
+        first = {}  # map from number to index
         mx = [0, 0]  #  [degree, length]
         for i, n in enumerate(nums):
             if n not in first:
                 first[n] = i  # setdefault
             counter[n] += 1
             if counter[n] > mx[0]:
+                # If there is only one mode number 
                 mx = [counter[n], i - first[n] + 1]
             elif counter[n] == mx[0]:
+                # How to handle duplicate mode number
                 mx[1] = min(mx[1], i - first[n] + 1)
 
         return mx[1]
