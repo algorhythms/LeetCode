@@ -30,20 +30,21 @@ class Solution:
         """
         s = s + "\0"  # signal the end
         ret, _ = self.eval(s, 0, [])
-        print(ret)
         return ret
 
     def eval(self, s, i, stk):
+        """
+        return the cursor since the cursor advances in recursion
+        """
         operand = 0
         prev_op = "+"
         while i < len(s):
             c = s[i]
             if c == " ":
-                i += 1
+                pass  # not continue since need trigger i += 1
             elif c.isdigit():
                 operand = operand * 10 + int(c)
-                i += 1
-            elif c in ("+", "-", "*", "/", ")", "\0"):   # delimited
+            elif c in ("+", "-", "*", "/", ")", "\0"):   # delimiter
                 if prev_op == "+":
                     stk.append(operand)
                 elif prev_op == "-":
@@ -55,22 +56,19 @@ class Solution:
                     prev_operand = stk.pop()
                     stk.append(int(prev_operand / operand))
 
-                operand = 0
-                prev_op = c
-                i += 1
-
-                if c == ")":
+                if c in ("+", "-", "*", "/"):
+                    operand = 0
+                    prev_op = c
+                elif c in (")", "\0"):
                     return sum(stk), i
-
-            elif c == "(":
+            elif c == "(":  # "(" is not delimiter
                 operand, i = self.eval(s, i + 1, [])
-            # elif c == ")":
-            #     return sum(stk), i + 1
             else:
                 raise
 
-        return sum(stk), i
+            i += 1
 
 
 if __name__ == "__main__":
+    assert Solution().calculate("(( ( ( 4- 2)+ ( 6+ 10 ) )+ 1) /( ( ( 7 + 9 )* ( 5*8) )- ( 5 + ( 2 * 10 ) ) ) )") == 0
     assert Solution().calculate("(2+6* 3+5- (3*14/7+2)*5)+3") == -12
