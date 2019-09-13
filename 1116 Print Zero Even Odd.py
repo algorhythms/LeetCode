@@ -30,6 +30,7 @@ Example 2:
 Input: n = 5
 Output: "0102030405"
 """
+from typing import Callable
 from threading import Lock
 
 
@@ -45,7 +46,7 @@ class ZeroEvenOdd:
         self.locks[2].acquire()
 
 	# printNumber(x) outputs "x", where x is an integer.
-    def zero(self, printNumber: 'Callable[[int], None]') -> None:
+    def zero(self, printNumber: Callable[[int], None]) -> None:
         for i in range(self.n):
             self.locks[0].acquire()
             printNumber(0)
@@ -54,13 +55,13 @@ class ZeroEvenOdd:
             else:
                 self.locks[2].release()
 
-    def odd(self, printNumber: 'Callable[[int], None]') -> None:
+    def odd(self, printNumber: Callable[[int], None]) -> None:
         for i in range((self.n + 1) // 2):
             self.locks[1].acquire()
             printNumber(i * 2 + 1)
             self.locks[0].release()
 
-    def even(self, printNumber: 'Callable[[int], None]') -> None:
+    def even(self, printNumber: Callable[[int], None]) -> None:
         for i in range(self.n // 2):
             self.locks[2].acquire()
             printNumber(i * 2 + 2)
